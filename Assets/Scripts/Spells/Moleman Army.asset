@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac330d7026218c4b9b43d120d3b0463, type: 3}
+  m_Name: Moleman Army
+  m_EditorClassIdentifier: 
+  name: Moleman Army
+  description: Doubles the attack or health of a character
+  artwork: {fileID: 21300000, guid: aa0378101cabd79409d48dbd7cc9742d, type: 3}
+  inHand: 0
+  canPlay: 0
