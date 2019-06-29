@@ -13,11 +13,9 @@ public class DeckManager : MonoBehaviour
 
     public HorizontalLayoutGroup HandArea;
 
-    [SerializeField]
-    GameObject cardPrefab = null;
+    public GameObject cardPrefab;
 
-    [SerializeField]
-    Text DeckNumberText = null;
+    public Text DeckNumberText;
     
     // Start is called before the first frame update
     void Start()

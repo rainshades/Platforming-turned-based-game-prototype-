@@ -26,7 +26,7 @@ public class SpellListObject : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData pe)
     {
         dbh.PreviewImage.sprite = Image.sprite;
-        if (pe.clickCount > 1 && dbh.Deck.spells.Count < 20)
+        if (dbh.Deck.spells.Count < 20)
         {
             dbh.addToDeck(spell);
         }

@@ -32,7 +32,7 @@ public class PopulateMonsterContentBox : MonoBehaviour
         {
             prefab.GetComponent<MonsterListObject>().setMon(FullListOfMonsters[i]);
             newObj = Instantiate(prefab, transform);
-            Debug.Log(newObj.name + " has been born");
+            //Debug.Log(newObj.name + " has been born");
         }
     }
 }

@@ -25,11 +25,8 @@ public class MonsterListObject : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData pe)
     {
         dbh.PreviewImage.sprite = Image.sprite;
-        Debug.Log(name + "Was Clicked");
-        if(pe.clickCount > 1)
-        {
-            dbh.addToParty(mon);
-        }
+        //Debug.Log(name + "Was Clicked");
+        dbh.addToParty(mon);
     }
 
     public void setMon(Monster mon)

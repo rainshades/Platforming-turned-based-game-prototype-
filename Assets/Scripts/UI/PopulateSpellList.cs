@@ -31,7 +31,7 @@ public class PopulateSpellList : MonoBehaviour
         {
             prefab.GetComponent<SpellListObject>().setSpell(FullListOfSpells[i]);
             newObj = Instantiate(prefab, transform);
-            Debug.Log(newObj.name + " has been born");
+            //Debug.Log(newObj.name + " has been born");
         }
     }
 }

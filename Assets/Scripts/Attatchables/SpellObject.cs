@@ -37,9 +37,6 @@ public class SpellObject : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData pe)
     {
-        if(gm.getPhase() == Phase.Battle)
-        {
-        }
     }
 
     public SpellObject Select()
