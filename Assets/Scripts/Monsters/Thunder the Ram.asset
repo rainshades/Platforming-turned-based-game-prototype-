@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Thunder the Ram
   m_EditorClassIdentifier: 
   name: Thunder the Ram
+  monNumber: 5
+  ActiveAbility: 0
   description: Arrogant and Wanting to Destroy
   attack: 5
   health: 5

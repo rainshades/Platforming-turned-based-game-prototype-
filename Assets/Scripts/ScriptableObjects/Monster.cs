@@ -7,6 +7,8 @@ public class Monster : ScriptableObject
 {
     public new string name;
 
+    public int monNumber;
+
     public Abilities ActiveAbility;
     //public Abilities PassiveAbility;
     

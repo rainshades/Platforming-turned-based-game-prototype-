@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Fox Enforcer
   m_EditorClassIdentifier: 
   name: Fox Enforcer
+  monNumber: 3
+  ActiveAbility: 0
   description: Sly, Angry, and Armed
   attack: 6
   health: 3

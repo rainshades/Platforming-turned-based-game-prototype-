@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Fairy Marquess
   m_EditorClassIdentifier: 
   name: Fairy Marquess
+  monNumber: 2
+  ActiveAbility: 0
   description: Small Time Fairy royalty
   attack: 2
   health: 2

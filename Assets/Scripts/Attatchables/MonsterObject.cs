@@ -43,6 +43,19 @@ public class MonsterObject : MonoBehaviour
         return this;
     }
 
+    public void Attack(MonsterObject target)
+    {
+        target.health -= attack;
+    }
+    public void Ability(MonsterObject target)
+    {
+        
+    }
+    public void CastSpell(MonsterObject target, SpellCard card)
+    {
+
+    }
+
     public bool getCanAct()
     {
         return canAct;

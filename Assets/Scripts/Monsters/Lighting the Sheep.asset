@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Lighting the Sheep
   m_EditorClassIdentifier: 
   name: Lighting the Sheep
+  monNumber: 4
+  ActiveAbility: 0
   description: Can heal any character you choose for 2 at the end of her turn
   attack: 2
   health: 10

@@ -71,7 +71,7 @@ public class BattleManager : MonoBehaviour
 
     void Update()
     {
-        tm.determineTurnOrder(tm.TurnOrder);
+        
     }
 
     public void setAllyDeck(Deck d)
@@ -94,10 +94,4 @@ public class BattleManager : MonoBehaviour
         EnemyParty = p;
     }
     
-    public void SelectSpell(SpellObject s)
-    {
-
-    }
-
-
 }

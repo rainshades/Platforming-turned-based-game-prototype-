@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     {
         mon = currentParty.PartyMembers;
         spell = currentDeck.spells;
-
     }
 
     // Update is called once per frame
