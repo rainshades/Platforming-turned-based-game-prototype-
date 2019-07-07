@@ -10,6 +10,12 @@ public class TurnManager : MonoBehaviour
     public int a = 0;
 
     [SerializeField]
+    int currentMonIndex = 0;
+
+    [SerializeField]
+    Canvas PlayerControls;
+
+    [SerializeField]
     MonsterObject CurrentMonster;
     [SerializeField]
     MonsterObject NextMonster;
@@ -26,9 +32,6 @@ public class TurnManager : MonoBehaviour
     {
         bm = FindObjectOfType<BattleManager>();
         determineTurnOrder(TurnOrder);
-
-        CurrentMonster = TurnOrder[0];
-        NextMonster = TurnOrder[1];
     }
 
     public List<MonsterObject> determineTurnOrder(List<MonsterObject> A)
@@ -48,17 +51,27 @@ public class TurnManager : MonoBehaviour
                 }
             }
         }
+        CurrentMonster = tmp[currentMonIndex];
+        NextMonster = tmp[currentMonIndex + 1];
         return tmp;
     }
 
     public void EndTurn()
     {
-        CurrentMonster = NextMonster;
+        if(currentMonIndex < determineTurnOrder(TurnOrder).Count)
+        {
+            Debug.Log("Goes to next Monster");
+        }
+        else
+        {
+            Debug.Log("The cycle begins again");
+        }
+
+        bm.DrawCard();
     }
 
     void Update()
     {
-        determineTurnOrder(TurnOrder);
 
         if (a == 1)
         {
@@ -77,6 +90,14 @@ public class TurnManager : MonoBehaviour
             currentAction = Action.Defend;
         }
 
+        if (CurrentMonster.ownedByPlayer)
+        {
+            PlayerControls.gameObject.SetActive(true);
+        }
+        else
+        {
+            PlayerControls.gameObject.SetActive(false);
+        }
     }
 
     public void GoToSelect(int action)
@@ -89,6 +110,17 @@ public class TurnManager : MonoBehaviour
         TargetMon = mon;
     }
 
+    public void CanvasOn(GameObject c)
+    {
+        c.gameObject.SetActive(true);
+    }
+
+    public void CanvasOff(GameObject c)
+    {
+        c.gameObject.SetActive(false);
+    }
+
+
     public void Act(MonsterObject target)
     {
 
@@ -98,4 +130,13 @@ public class TurnManager : MonoBehaviour
 
     }
 
+    public Action getAction()
+    {
+        return currentAction;
+    }
+
+    public MonsterObject getCurrentMonster()
+    {
+        return CurrentMonster;
+    }
 }

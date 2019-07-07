@@ -38,20 +38,29 @@ public class MonsterObject : MonoBehaviour
             sr.sprite = thisMonster.artwork;
         }
     }
+
+    void Update()
+    {
+        if(health < 1)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public MonsterObject Select()
     {
         return this;
     }
 
-    public void Attack(MonsterObject target)
+    public void AttackTarget(MonsterObject target)
     {
         target.health -= attack;
     }
-    public void Ability(MonsterObject target)
+    public void AbilityTarget(MonsterObject target)
     {
         
     }
-    public void CastSpell(MonsterObject target, SpellCard card)
+    public void CastSpellTarget(MonsterObject target, SpellCard card)
     {
 
     }
