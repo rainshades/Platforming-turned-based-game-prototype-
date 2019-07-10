@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Monster", menuName = "Monster")]
-public class Monster : ScriptableObject
+public class Monster : ScriptableObject, Entity
 {
     public new string name;
 
     public int monNumber;
-
-    public Abilities ActiveAbility;
-    //public Abilities PassiveAbility;
     
     public string description;
 
@@ -21,18 +18,30 @@ public class Monster : ScriptableObject
     public Sprite artwork;
     public bool alive;
 
-    public void Attack(Monster target)
+    public void Damage(MonsterObject mon)
     {
-        target.health -= attack;
+        mon.health -= attack;
+    }
+    public void Heal(MonsterObject mon, int amount)
+    {
+        mon.health += amount;
+    }
+    public void selfHeal(int amount)
+    {
+        health += amount;
+    }
+    public void Destroy(MonsterObject mon)
+    {
+        Destroy(mon);
+    }
+    public void Destroy(SpellObject spell)
+    {
+        Negate();
+        Destroy(spell);
+    }
+    public void Negate()
+    {
+
     }
 
-    public void OnAfterDeserialize()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnBeforeSerialize()
-    {
-        throw new System.NotImplementedException();
-    }
 }
