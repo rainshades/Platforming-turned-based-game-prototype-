@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public enum Action { NoAction, Ability, Attack, Cast, Defend}
+public enum Action { Attack, ActiveAbility, PassiveAbility, Cast, Defend }
 public class TurnManager : MonoBehaviour
 {
+
     int currentTurn;
     int turnNumber;
-    public int a = 0;
+    Action a;
 
     [SerializeField]
     int currentMonIndex = 0;
@@ -19,8 +19,6 @@ public class TurnManager : MonoBehaviour
     MonsterObject CurrentMonster;
     [SerializeField]
     MonsterObject NextMonster;
-    [SerializeField]
-    Action currentAction;
     [SerializeField]
     MonsterObject TargetMon;
 
@@ -72,24 +70,6 @@ public class TurnManager : MonoBehaviour
 
     void Update()
     {
-
-        if (a == 1)
-        {
-            currentAction = Action.Attack;
-        }
-        if (a == 2)
-        {
-            currentAction = Action.Ability;
-        }
-        if (a == 3)
-        {
-            currentAction = Action.Cast;
-        }
-        if (a == 4)
-        {
-            currentAction = Action.Defend;
-        }
-
         if (CurrentMonster.ownedByPlayer)
         {
             PlayerControls.gameObject.SetActive(true);
@@ -98,11 +78,6 @@ public class TurnManager : MonoBehaviour
         {
             PlayerControls.gameObject.SetActive(false);
         }
-    }
-
-    public void GoToSelect(int action)
-    {
-        a = action;
     }
 
     public void Select(MonsterObject mon)
@@ -120,23 +95,13 @@ public class TurnManager : MonoBehaviour
         c.gameObject.SetActive(false);
     }
 
-
-    public void Act(MonsterObject target)
+    public MonsterObject getCurrentMonster()
     {
-
-    }
-    public void Act(MonsterObject target, SpellCard card)
-    {
-
+        return CurrentMonster;
     }
 
     public Action getAction()
     {
-        return currentAction;
-    }
-
-    public MonsterObject getCurrentMonster()
-    {
-        return CurrentMonster;
+        return a;
     }
 }

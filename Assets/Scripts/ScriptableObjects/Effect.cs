@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Effect 
+[CreateAssetMenu]
+public class Effect: ScriptableObject
 {
     public int EffectAmount;//For use in Healing and Damaging
-    public enum EffectType { Heal, Damage, Negate, Destroy }
+    public enum EffectType { Heal, Damage, Negate, Destroy, Stun}
+    MonsterObject AttatchedCard;
     Entity AttatchedEntity;
+    [SerializeField]
     EffectType effect;
 
     public void setEffect(EffectType effect)
@@ -23,16 +26,16 @@ public class Effect
             switch (effect)
             {
                 case EffectType.Heal:
-                    AttatchedEntity.Heal(AttatchedEntity as MonsterObject, EffectAmount);
+                    AttatchedEntity.Heal(AttatchedCard, EffectAmount);
                     break;
                 case EffectType.Damage:
-                    AttatchedEntity.Damage(AttatchedEntity as MonsterObject);
+                    AttatchedEntity.Damage(AttatchedCard);
                     break;
                 case EffectType.Negate:
                     AttatchedEntity.Negate();
                     break;
                 case EffectType.Destroy:
-                    AttatchedEntity.Destroy(AttatchedEntity as MonsterObject);
+                    AttatchedEntity.Destroy(AttatchedCard);
                     break;
             }
         }
@@ -68,25 +71,4 @@ public class Effect
                 break;
         }
     }//The attatched body effects a spell
-}
-
-public class Ability
-{
-    public string name;
-    public Effect effect;
-    public Entity Target;
-
-    //Effect Triggers
-    public virtual void Activate() { }
-    public virtual void Passive() { }
-    public virtual void RecurringOverDuration(int duration) { }
-    public virtual void InfinateRecurring() { }
-    public virtual void onDraw() { }
-    public virtual void onAttack() { }
-    public virtual void onDefend() { }
-    public virtual void onAbility() { }
-    public virtual void onDeath() { }
-    public virtual void onHealthAmount() { }
-    public virtual void onDestory() { }
-    public virtual void onEffect() { }
 }

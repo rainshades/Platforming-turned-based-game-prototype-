@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Spell", menuName = "Spell")]
-public class SpellCard : ScriptableObject, Entity
+public class SpellCard : Entity
 {
     public new string name;
+    [SerializeField]
+    public Ability Ability;
+
     public string description;
     public int SpellEffectAmount;
 
@@ -13,34 +16,23 @@ public class SpellCard : ScriptableObject, Entity
 
     public bool inHand, canPlay;
 
-    public void Damage(MonsterObject mon)
+    public override void Damage(MonsterObject mon)
     {
         mon.health -= SpellEffectAmount;
     }
-
-    public void Heal(MonsterObject mon, int amount)
+    public override void Heal(MonsterObject mon)
     {
-
-    }
-    public void Destroy(MonsterObject mon)
-    {
-
-    }
-    public void Negate()
-    {
-
-    }
-    public void Destroy(SpellObject spell)
-    {
-
+        mon.health += SpellEffectAmount;
     }
 }
 
-public interface Entity
+
+public class Entity: ScriptableObject
 {
-    void Damage(MonsterObject mon);
-    void Heal(MonsterObject mon, int amount);
-    void Destroy(MonsterObject mon);
-    void Destroy(SpellObject spell);
-    void Negate();
+    public virtual void Damage(MonsterObject mon) { }
+    public virtual void Heal(MonsterObject mon) {}
+    public virtual void Heal(MonsterObject mon, int HealAmount) { }
+    public virtual void Destroy(MonsterObject mon) { }
+    public virtual void Destroy(SpellObject spell) { Negate(); }
+    public virtual void Negate() { }
 }

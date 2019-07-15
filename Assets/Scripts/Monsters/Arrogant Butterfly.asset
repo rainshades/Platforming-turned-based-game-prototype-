@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Arrogant Butterfly
   m_EditorClassIdentifier: 
   name: Arrogant Butterfly
+  active: {fileID: 0}
+  passive: {fileID: 0}
+  effectAmount: 0
   description: Wiley and Fast. But not exactly strong
   attack: 3
   health: 2

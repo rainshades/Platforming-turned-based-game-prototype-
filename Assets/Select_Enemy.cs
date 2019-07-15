@@ -26,7 +26,7 @@ public class Select_Enemy : MonoBehaviour, IPointerClickHandler
                 tm.CanvasOff(CanvasToTurnOff);
                 tm.EndTurn();
                 break;
-            case Action.Ability:
+            case Action.ActiveAbility:
                 Debug.Log("Ability the target");
                 tm.EndTurn();
                 break;

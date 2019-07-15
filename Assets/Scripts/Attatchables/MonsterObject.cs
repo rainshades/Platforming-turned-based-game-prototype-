@@ -10,9 +10,11 @@ public class MonsterObject : MonoBehaviour
     public bool ownedByPlayer;
     
     bool canAct = false;
-    bool canbeTargeted = false;
+    bool AbilityTargets = false;
 
     public Monster thisMonster;
+    Ability ActiveAbility;
+    Ability PassiveAbility;
 
     public int health, attack, speed;
 
@@ -27,6 +29,13 @@ public class MonsterObject : MonoBehaviour
         health = thisMonster.health;
         attack = thisMonster.attack;
         speed = thisMonster.speed;
+        ActiveAbility = thisMonster.active;
+        PassiveAbility = thisMonster.passive;
+
+        if(ActiveAbility.Target != null)
+        {
+            AbilityTargets = true;
+        }
 
         gm = FindObjectOfType<BattleManager>();
         rt = GetComponent<RectTransform>();
@@ -47,22 +56,18 @@ public class MonsterObject : MonoBehaviour
         }
     }
 
-    public MonsterObject Select()
-    {
-        return this;
-    }
-
     public void AttackTarget(MonsterObject target)
     {
-        target.health -= attack;
+        thisMonster.Damage(target);
     }
-    public void AbilityTarget(MonsterObject target)
-    {
-        
-    }
-    public void CastSpellTarget(MonsterObject target, SpellCard card)
-    {
 
+    public void ActivateAbility(MonsterObject target)
+    {
+        ActiveAbility.Activate(target);
+    }
+    public void ActivateAbility()
+    {
+        ActiveAbility.Activate();
     }
 
     public bool getCanAct()
@@ -74,12 +79,8 @@ public class MonsterObject : MonoBehaviour
     {
         canAct = b;
     }
-    public void canBeTargeted(bool b)
+    public bool canTarget()
     {
-        canbeTargeted = b;
-    }
-    public bool getCanBeTargeted()
-    {
-        return canbeTargeted;
+        return AbilityTargets;
     }
 }
