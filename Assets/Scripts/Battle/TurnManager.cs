@@ -7,6 +7,7 @@ public class TurnManager : MonoBehaviour
 
     int currentTurn;
     int turnNumber;
+    [SerializeField]
     Action a;
 
     [SerializeField]
@@ -29,7 +30,8 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
         bm = FindObjectOfType<BattleManager>();
-        determineTurnOrder(TurnOrder);
+
+        TurnOrder = determineTurnOrder(TurnOrder);
     }
 
     public List<MonsterObject> determineTurnOrder(List<MonsterObject> A)
@@ -49,20 +51,20 @@ public class TurnManager : MonoBehaviour
                 }
             }
         }
-        CurrentMonster = tmp[currentMonIndex];
-        NextMonster = tmp[currentMonIndex + 1];
         return tmp;
     }
 
     public void EndTurn()
     {
-        if(currentMonIndex < determineTurnOrder(TurnOrder).Count)
+        if(currentMonIndex < TurnOrder.Count)
         {
             Debug.Log("Goes to next Monster");
+            currentMonIndex++;
         }
         else
         {
             Debug.Log("The cycle begins again");
+            currentMonIndex = 0;
         }
 
         bm.DrawCard();
@@ -70,6 +72,9 @@ public class TurnManager : MonoBehaviour
 
     void Update()
     {
+        CurrentMonster = TurnOrder[currentMonIndex];
+        NextMonster = TurnOrder[currentMonIndex + 1];
+
         if (CurrentMonster.ownedByPlayer)
         {
             PlayerControls.gameObject.SetActive(true);
@@ -103,5 +108,10 @@ public class TurnManager : MonoBehaviour
     public Action getAction()
     {
         return a;
+    }
+
+    public void setAction(Action a)
+    {
+        this.a = a;
     }
 }

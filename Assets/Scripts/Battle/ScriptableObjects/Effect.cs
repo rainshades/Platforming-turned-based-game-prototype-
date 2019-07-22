@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class Effect: ScriptableObject
+[System.Serializable]
+public class Effect
 {
     public int EffectAmount;//For use in Healing and Damaging
     public enum EffectType { Heal, Damage, Negate, Destroy, Stun}
@@ -17,7 +17,8 @@ public class Effect: ScriptableObject
         this.effect = effect;
     }
 
-    public void setAttatchedEntity(Entity e) { AttatchedEntity = e; }
+    public void SetAttatchedEntity(Entity e) { AttatchedEntity = e; }
+    public void SetAttatchedCard(MonsterObject mon) { AttatchedCard = mon; }
 
     public void Deploy()
     {
@@ -39,6 +40,7 @@ public class Effect: ScriptableObject
                     break;
             }
         }
+        Debug.Log("Effect Triggered");
     }//The attatched body effects itself.
 
     public void Deploy(MonsterObject targetMon)
@@ -58,6 +60,7 @@ public class Effect: ScriptableObject
                 AttatchedEntity.Destroy(targetMon);
                 break;
         }
+        Debug.Log("Effect Triggered");
     }//The attatched body effects another monster
     public void Deploy(SpellObject targetSpell)
     {
@@ -70,5 +73,6 @@ public class Effect: ScriptableObject
                 AttatchedEntity.Destroy(targetSpell);
                 break;
         }
+        Debug.Log("Effect Triggered");
     }//The attatched body effects a spell
 }

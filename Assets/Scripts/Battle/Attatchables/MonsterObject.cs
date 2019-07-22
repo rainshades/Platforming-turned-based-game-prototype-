@@ -32,9 +32,15 @@ public class MonsterObject : MonoBehaviour
         ActiveAbility = thisMonster.active;
         PassiveAbility = thisMonster.passive;
 
-        if(ActiveAbility.Target != null)
+        ActiveAbility.effect.SetAttatchedEntity(thisMonster);
+        PassiveAbility.effect.SetAttatchedEntity(thisMonster);
+
+        ActiveAbility.effect.SetAttatchedCard(this);
+        PassiveAbility.effect.SetAttatchedCard(this);
+
+        if (ActiveAbility != null)
         {
-            AbilityTargets = true;
+            AbilityTargets = ActiveAbility.isTargetAbility;
         }
 
         gm = FindObjectOfType<BattleManager>();

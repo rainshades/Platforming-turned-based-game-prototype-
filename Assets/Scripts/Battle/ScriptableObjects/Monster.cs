@@ -11,8 +11,6 @@ public class Monster : Entity
     public ActiveAbility active;
     public PassiveAbility passive;
 
-    public int effectAmount;
-
     public string description;
 
     public int attack;
@@ -25,13 +23,5 @@ public class Monster : Entity
     public override void Damage(MonsterObject mon)
     {
         mon.health -= attack;
-    }
-    public void selfHeal(int amount)
-    {
-        health += amount;
-    }
-    public override void Heal(MonsterObject mon)
-    {
-        mon.health += effectAmount;
     }
 }

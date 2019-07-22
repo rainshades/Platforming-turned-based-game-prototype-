@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Party 
 {
     public List<Monster> PartyMembers = new List<Monster>();

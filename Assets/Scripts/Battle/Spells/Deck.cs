@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Deck
 {
     public List<SpellCard> spells = new List<SpellCard>();

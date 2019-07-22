@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Active", menuName = "Active Ability")]
+[CreateAssetMenu]
 public class ActiveAbility : Ability
 {
 

@@ -24,18 +24,30 @@ public class Select_Enemy : MonoBehaviour, IPointerClickHandler
             case Action.Attack:
                 currentMon.AttackTarget(TargetMon);
                 tm.CanvasOff(CanvasToTurnOff);
+                Debug.Log(currentMon.name + " attacked " + TargetMon);
                 tm.EndTurn();
                 break;
             case Action.ActiveAbility:
                 Debug.Log("Ability the target");
-                tm.EndTurn();
+                if (currentMon.canTarget())
+                {
+                    currentMon.ActivateAbility(TargetMon);
+                    Debug.Log(currentMon.name + " used their ability on " + TargetMon);
+                    tm.EndTurn();
+                }
+                else
+                {
+                    currentMon.ActivateAbility();
+                    Debug.Log(currentMon.name + " used their ability");
+                    tm.EndTurn();
+                }
                 break;
             case Action.Cast:
                 Debug.Log("Cast Spell on the Target");
                 tm.EndTurn();
                 break;
             case Action.Defend:
-                Debug.Log("Defend Yourself");
+                Debug.Log("Defended Yourself");
                 tm.EndTurn();
                 break;
         }
