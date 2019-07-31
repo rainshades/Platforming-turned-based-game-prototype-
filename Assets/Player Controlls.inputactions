@@ -1,0 +1,71 @@
+{
+    "name": "Player Controlls",
+    "maps": [
+        {
+            "name": "Inputs Map",
+            "id": "46b7513f-3fdb-4882-829d-31ce4280628a",
+            "actions": [
+                {
+                    "name": "Walk",
+                    "type": "Button",
+                    "id": "bec6a991-3d71-49c5-a484-7dbe23fab0dc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Action0",
+                    "type": "Button",
+                    "id": "079279d2-a840-4a17-95c8-a3f8d3c1d5d0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Action1",
+                    "type": "Button",
+                    "id": "41c72032-5478-43cf-b4df-712c22054d7c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "db2330f1-c20a-4f6e-b0b3-6565621a8e0d",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b6e3413-61d5-4ccc-8afb-7b1f2a884eee",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action0",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aed51c11-76b3-4bec-9cac-7a8a338df16c",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
