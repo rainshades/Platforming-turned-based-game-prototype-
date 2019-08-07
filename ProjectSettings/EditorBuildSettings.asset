@@ -9,12 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 38cc73a8b7dffb74bb685385ba7fe0a0
   - enabled: 1
-    path: Assets/Scenes/MultiPlayer/BattleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Single Player/OverWorld.unity
+    guid: 1c2e9236fcb147344b55b94f33ff7e98
   - enabled: 1
-    path: Assets/Scenes/MultiPlayer/PartyBuilder.unity
-    guid: 4fb5cd5a5cad9d340a4fb206b9c6c3c8
+    path: Assets/Scenes/Single Player/Single Player Battle.unity
+    guid: 3ce0f3a000cdfc9409df4f8d9293a93e
   - enabled: 1
-    path: Assets/Scenes/MultiPlayer/DeckBulding.unity
-    guid: 4016eba13e071b54ebea681a42a23723
+    path: Assets/Scenes/Single Player/PartyMangement.unity
+    guid: edc75036116947a4fa343b7271a4769a
+  - enabled: 1
+    path: Assets/Scenes/Single Player/Single Player OverWorld.unity
+    guid: e5f3ec6c86b85e34f8d48bcbefae79c9
+  - enabled: 1
+    path: Assets/Scenes/Single Player/PartyManagement.unity
+    guid: 21d9ab80720cd654fbefbcd8f9d4c551
   m_configObjects: {}
