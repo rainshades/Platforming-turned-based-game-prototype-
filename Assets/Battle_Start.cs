@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Battle_Start : MonoBehaviour
 {
-    void Start()
+    OverworldEnemy em;
+    GameManager gm;
+    void Awake()
     {
+        em = transform.GetComponent<OverworldEnemy>();
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -14,6 +17,9 @@ public class Battle_Start : MonoBehaviour
         Debug.Log("Collision");
         if(col.gameObject.tag == "Player")
         {
+            gm = FindObjectOfType<GameManager>();
+            gm.enemyParty = em.party;
+            gm.enemyDeck = em.deck;
             SceneManager.LoadScene("BattleScene");
         }
     }

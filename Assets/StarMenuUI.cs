@@ -10,7 +10,7 @@ public class StarMenuUI : MonoBehaviour
     Button CurrentButtonSelected; //Just to show the current button on the inspector
 
     [SerializeField]
-    Button[] buttons;
+    Button[] buttons = null;
     bool canInteract = true;
     PlayerActions actions;
     int selectedButton, buttonInput;

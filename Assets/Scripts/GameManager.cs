@@ -5,8 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public Deck currentDeck = new Deck();
-    public Party currentParty = new Party();
+    public Deck currentDeck;
+    public Party currentParty;
+
+    public Deck enemyDeck;
+    public Party enemyParty;
 
     public List<Monster> mon;
     public List<SpellCard> spell;

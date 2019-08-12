@@ -47,8 +47,8 @@ public class BattleManager : MonoBehaviour
          
         AllyParty = gm.currentParty;
         AllyDeck = gm.currentDeck;
-        EnemyParty = new Party("GRR");
-        EnemyParty.Add(EnemyMonsters[0]); EnemyParty.Add(EnemyMonsters[1]); EnemyParty.Add(EnemyMonsters[2]);
+
+        
 
         SpellsDisplay = AllyDeck.spells;
         HandDisplay = Hand;

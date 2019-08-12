@@ -17,15 +17,14 @@ public class PlayerController : PhysicsObject
     void Awake()
     {
         action = new PlayerActions();
+
+        action.InputsMap.Walk.performed += ctx => move.x = ctx.ReadValue<Vector2>().x;
+        action.InputsMap.Walk.canceled += ctx => move = Vector2.zero;
+
     }
 
     protected override void ComputeVelocity()
     {
-        //    Vector2 m = new Vector2(move.x, move.y) * Time.deltaTime;
-        //    transform.Translate(m, Space.World);
-
-        action.InputsMap.Walk.performed += ctx => move.x = ctx.ReadValue<Vector2>().x;
-        action.InputsMap.Walk.canceled += ctx => move = Vector2.zero;
 
         targetVelocity = move * maxSpeed;
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class MenuContentBox : MonoBehaviour
 {
     [SerializeField]
-    GameObject MenuButtons;
+    GameObject MenuButtons = null;
     PlayerActions inputs;
     float player_speed_saver;
     PlayerController pc; 

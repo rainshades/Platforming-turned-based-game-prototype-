@@ -34,22 +34,6 @@ public class PlayerActions : IInputActionCollection
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Walk_Left"",
-                    ""type"": ""Button"",
-                    ""id"": ""96e2ed63-9d69-43e9-b42f-0f3a0d12cae4"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Walk_Right"",
-                    ""type"": ""Button"",
-                    ""id"": ""45b07bdc-8d54-4b89-b01c-0f76f1bb1c77"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""Walk"",
                     ""type"": ""Button"",
                     ""id"": ""c8408a61-4019-4ca0-a6b6-a3bb700ed6c9"",
@@ -135,50 +119,6 @@ public class PlayerActions : IInputActionCollection
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a4992b5a-a57d-4b47-aaf1-36ea40d00287"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Walk_Left"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a762d09c-facf-4e03-8cab-643a2a9bd97b"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Walk_Left"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""72fa2587-ddf1-413e-9719-61c0451ab23a"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Walk_Right"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""feb20544-48f8-44db-8630-c437d196eeb6"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Walk_Right"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""73fa2bc0-32e8-4431-9860-c2542cba27e9"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
@@ -200,6 +140,61 @@ public class PlayerActions : IInputActionCollection
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": ""Arrows"",
+                    ""id"": ""6d6754c7-17e4-4a5d-b1b6-066880f36ec8"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""2139ee04-ceb4-410d-8be5-2b30d6e1f8c9"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""91db99f0-e4cb-4a94-aa70-5381bc766df7"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""56707823-6490-40a0-b291-859a4b4fcab9"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""666080c5-60fd-4e01-8eee-55137947a57f"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""8d33bb5a-5657-44e9-9b19-52561cc69d72"",
                     ""path"": ""<Gamepad>/buttonNorth"",
@@ -219,8 +214,6 @@ public class PlayerActions : IInputActionCollection
         m_InputsMap = asset.GetActionMap("Inputs Map");
         m_InputsMap_Action0 = m_InputsMap.GetAction("Action0");
         m_InputsMap_Action1 = m_InputsMap.GetAction("Action1");
-        m_InputsMap_Walk_Left = m_InputsMap.GetAction("Walk_Left");
-        m_InputsMap_Walk_Right = m_InputsMap.GetAction("Walk_Right");
         m_InputsMap_Walk = m_InputsMap.GetAction("Walk");
         m_InputsMap_Action2 = m_InputsMap.GetAction("Action2");
     }
@@ -274,8 +267,6 @@ public class PlayerActions : IInputActionCollection
     private IInputsMapActions m_InputsMapActionsCallbackInterface;
     private readonly InputAction m_InputsMap_Action0;
     private readonly InputAction m_InputsMap_Action1;
-    private readonly InputAction m_InputsMap_Walk_Left;
-    private readonly InputAction m_InputsMap_Walk_Right;
     private readonly InputAction m_InputsMap_Walk;
     private readonly InputAction m_InputsMap_Action2;
     public struct InputsMapActions
@@ -284,8 +275,6 @@ public class PlayerActions : IInputActionCollection
         public InputsMapActions(PlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Action0 => m_Wrapper.m_InputsMap_Action0;
         public InputAction @Action1 => m_Wrapper.m_InputsMap_Action1;
-        public InputAction @Walk_Left => m_Wrapper.m_InputsMap_Walk_Left;
-        public InputAction @Walk_Right => m_Wrapper.m_InputsMap_Walk_Right;
         public InputAction @Walk => m_Wrapper.m_InputsMap_Walk;
         public InputAction @Action2 => m_Wrapper.m_InputsMap_Action2;
         public InputActionMap Get() { return m_Wrapper.m_InputsMap; }
@@ -303,12 +292,6 @@ public class PlayerActions : IInputActionCollection
                 Action1.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction1;
                 Action1.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction1;
                 Action1.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction1;
-                Walk_Left.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk_Left;
-                Walk_Left.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk_Left;
-                Walk_Left.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk_Left;
-                Walk_Right.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk_Right;
-                Walk_Right.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk_Right;
-                Walk_Right.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk_Right;
                 Walk.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk;
                 Walk.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk;
                 Walk.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk;
@@ -325,12 +308,6 @@ public class PlayerActions : IInputActionCollection
                 Action1.started += instance.OnAction1;
                 Action1.performed += instance.OnAction1;
                 Action1.canceled += instance.OnAction1;
-                Walk_Left.started += instance.OnWalk_Left;
-                Walk_Left.performed += instance.OnWalk_Left;
-                Walk_Left.canceled += instance.OnWalk_Left;
-                Walk_Right.started += instance.OnWalk_Right;
-                Walk_Right.performed += instance.OnWalk_Right;
-                Walk_Right.canceled += instance.OnWalk_Right;
                 Walk.started += instance.OnWalk;
                 Walk.performed += instance.OnWalk;
                 Walk.canceled += instance.OnWalk;
@@ -345,8 +322,6 @@ public class PlayerActions : IInputActionCollection
     {
         void OnAction0(InputAction.CallbackContext context);
         void OnAction1(InputAction.CallbackContext context);
-        void OnWalk_Left(InputAction.CallbackContext context);
-        void OnWalk_Right(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
         void OnAction2(InputAction.CallbackContext context);
     }

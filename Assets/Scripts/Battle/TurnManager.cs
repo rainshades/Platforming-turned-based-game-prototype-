@@ -14,7 +14,7 @@ public class TurnManager : MonoBehaviour
     int currentMonIndex = 0;
 
     [SerializeField]
-    Canvas PlayerControls;
+    Canvas PlayerControls = null;
 
     [SerializeField]
     MonsterObject CurrentMonster;

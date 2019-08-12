@@ -17,7 +17,8 @@ public class Player : MonoBehaviour
         
         if(gm == null)
         {
-            gm = new GameManager();
+            GameObject go = new GameObject("Game Manager");
+            gm = go.AddComponent<GameManager>();
         }
 
         gm.currentParty = p;
