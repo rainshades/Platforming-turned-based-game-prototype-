@@ -8,7 +8,13 @@ public class MonsterObject : MonoBehaviour
 {
     BattleManager gm;
     public bool ownedByPlayer;
-    
+
+    [SerializeField]
+    string AttackAnimation;
+
+    [SerializeField]
+    string CastAnimation;
+
     bool canAct = false;
     bool AbilityTargets = false;
 
@@ -16,7 +22,7 @@ public class MonsterObject : MonoBehaviour
     Ability ActiveAbility;
     Ability PassiveAbility;
 
-    public int health, attack, speed;
+    public float health, attack, speed;
 
     SpriteRenderer sr;
 
@@ -52,6 +58,32 @@ public class MonsterObject : MonoBehaviour
         {
             sr.sprite = thisMonster.artwork;
         }
+    }
+
+    public void hit(GameObject target)
+    {
+        MonsterObject ownerStats = this.GetComponent<MonsterObject>();
+        MonsterObject targetStats = target.GetComponent<MonsterObject>();
+
+        float damage = ownerStats.attack;
+
+        this.GetComponent<Animator>().Play(AttackAnimation);
+        targetStats.RecieveDamage(damage);
+    }
+
+    public void cast(GameObject target)
+    {
+        this.GetComponent<Animator>().Play(CastAnimation);
+    }
+
+    public void defend()
+    {
+        
+    }
+
+    public void RecieveDamage(float damage)
+    {
+        health -= damage;
     }
 
     void Update()

@@ -1849,6 +1849,7 @@ GameObject:
   - component: {fileID: 1794990294}
   - component: {fileID: 1794990293}
   - component: {fileID: 1794990292}
+  - component: {fileID: 1794990295}
   m_Layer: 5
   m_Name: Battle Button UI
   m_TagString: Untagged
@@ -1943,6 +1944,24 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1794990295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794990290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 911aa52b3edca454a97c60a9d860b1da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentButton: {fileID: 0}
+  Battleoptions:
+  - {fileID: 922028808}
+  - {fileID: 619940351}
+  - {fileID: 379475927}
+  - {fileID: 1057174164}
 --- !u!1 &1856878233
 GameObject:
   m_ObjectHideFlags: 0
@@ -2523,7 +2542,7 @@ PrefabInstance:
     - target: {fileID: 3795028831260193069, guid: f5ae79612ac2f914f82e9a4fccb69052,
         type: 3}
       propertyPath: PostBattleScene
-      value: StartMenu
+      value: Overworld
       objectReference: {fileID: 0}
     - target: {fileID: 3795028831260193069, guid: f5ae79612ac2f914f82e9a4fccb69052,
         type: 3}
@@ -2555,6 +2574,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 0620137b896f7d14a848daa7de75d347,
         type: 2}
+    - target: {fileID: 3795028831260193069, guid: f5ae79612ac2f914f82e9a4fccb69052,
+        type: 3}
+      propertyPath: enemyMonPrefab
+      value: 
+      objectReference: {fileID: 3667198305289206808, guid: 471dd9098789d164682c0ec3ded5732b,
+        type: 3}
     - target: {fileID: 3795028831260193071, guid: f5ae79612ac2f914f82e9a4fccb69052,
         type: 3}
       propertyPath: PlayerControls

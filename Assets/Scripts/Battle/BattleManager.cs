@@ -20,11 +20,17 @@ public class BattleManager : MonoBehaviour
 
     public List<Monster> EnemyMonsters;
 
-    public GameObject monPrefab;
-    public GameObject cardPrefab;
+    [SerializeField]
+    GameObject monPrefab;
+    [SerializeField]
+    GameObject enemyMonPrefab;
 
-    public Transform[] SpawnPoints;
-    public Transform[] EnemySpawnPoints;
+    [SerializeField]
+    GameObject cardPrefab;
+    [SerializeField]
+    Transform[] SpawnPoints;
+    [SerializeField]
+    Transform[] EnemySpawnPoints;
 
     public Transform HandObject;
 
@@ -48,7 +54,8 @@ public class BattleManager : MonoBehaviour
         AllyParty = gm.currentParty;
         AllyDeck = gm.currentDeck;
 
-        
+        EnemyDeck = gm.enemyDeck;
+        EnemyParty = gm.enemyParty;
 
         SpellsDisplay = AllyDeck.spells;
         HandDisplay = Hand;
@@ -60,15 +67,13 @@ public class BattleManager : MonoBehaviour
             nw.GetComponent<MonsterObject>().ownedByPlayer = true;
             AllyField.Add(nw.GetComponent<MonsterObject>());
             tm.TurnOrder.Add(nw.GetComponent<MonsterObject>());
-            //Debug.Log("Spawn #" + i); 
         }
-        for(int i = 0; i < EnemyParty.PartyMembers.Count; i++)
+        for (int i = 0; i < EnemyParty.PartyMembers.Count; i++)
         {
-            monPrefab.GetComponent<MonsterObject>().thisMonster = EnemyParty.PartyMembers[i];
-            GameObject nw = Instantiate(monPrefab, EnemySpawnPoints[i].position, EnemySpawnPoints[i].rotation, EnemySpawnPoints[i]);
+            enemyMonPrefab.GetComponent<MonsterObject>().thisMonster = EnemyParty.PartyMembers[i];
+            GameObject nw = Instantiate(enemyMonPrefab, EnemySpawnPoints[i].position, EnemySpawnPoints[i].rotation, EnemySpawnPoints[i]);
             EnemyField.Add(nw.GetComponent<MonsterObject>());
             tm.TurnOrder.Add(nw.GetComponent<MonsterObject>());
-            //Debug.Log("Enemy Spawn #" + i);
         }
     }
 

@@ -56,7 +56,7 @@ public class TurnManager : MonoBehaviour
 
     public void EndTurn()
     {
-        if(currentMonIndex < TurnOrder.Count)
+        if(currentMonIndex < TurnOrder.Count-1)
         {
             Debug.Log("Goes to next Monster");
             currentMonIndex++;
@@ -73,15 +73,23 @@ public class TurnManager : MonoBehaviour
     void Update()
     {
         CurrentMonster = TurnOrder[currentMonIndex];
-        NextMonster = TurnOrder[currentMonIndex + 1];
+        if (currentMonIndex + 1 != TurnOrder.Count)
+        {
+            NextMonster = TurnOrder[currentMonIndex + 1];
+        }
+        else
+        {
+            NextMonster = TurnOrder[0];
+        }
 
         if (CurrentMonster.ownedByPlayer)
         {
             PlayerControls.gameObject.SetActive(true);
         }
-        else
+        else if(CurrentMonster != null)
         {
             PlayerControls.gameObject.SetActive(false);
+            CurrentMonster.GetComponentInChildren<EnemyBattleDecision>().act();
         }
     }
 
