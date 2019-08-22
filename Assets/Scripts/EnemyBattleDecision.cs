@@ -5,11 +5,10 @@ using UnityEngine;
 public class EnemyBattleDecision : MonoBehaviour
 {
     [SerializeField]
-    Action[] TurnOptions;
+    Action[] TurnOptions = null;
     [SerializeField]
-    string targetsTag;
-
-
+    string targetsTag = "";
+    
     GameObject findRandomTarget()
     {
         GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag(targetsTag);
@@ -25,17 +24,44 @@ public class EnemyBattleDecision : MonoBehaviour
         return null;
     }
 
-    void setAction()
+    Action setAction()
     {
-
+        int optionIndex = Random.Range(0, TurnOptions.Length);
+        return TurnOptions[optionIndex];
     }
 
     public void act()
     {
-        setAction();
+        MonsterObject actor = gameObject.transform.parent.GetComponent<MonsterObject>();
+        Action action = setAction();
         GameObject target = findRandomTarget();
-        Debug.Log(gameObject.transform.parent.name + " Acts");
         TurnManager tm = FindObjectOfType<TurnManager>();
+
+        switch (action)
+        {
+            case Action.Attack:
+                actor.AttackTarget(target.GetComponent<MonsterObject>());
+                Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
+                break;
+            case Action.Cast:
+                Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
+                break;
+            case Action.ActiveAbility:
+                if (actor.canTarget())
+                {
+                    actor.ActivateAbility(target.GetComponent<MonsterObject>());
+                }
+                else
+                {
+                    actor.ActivateAbility(target.GetComponent<MonsterObject>());
+                }
+                Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
+                break;
+            case Action.Defend:
+                actor.defend();
+                Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
+                break;
+        }
         tm.EndTurn();
     }
 }

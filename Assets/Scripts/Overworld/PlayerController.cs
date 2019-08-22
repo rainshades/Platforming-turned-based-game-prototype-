@@ -5,14 +5,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : PhysicsObject
 {
+    Player pete;
     PlayerActions action;
     Vector2 move;
 
     public float maxSpeed = 7;
-    public float jumpTakeOffSpeed = 7;
+    public float jumpTakeOffSpeed = 0.00001f;
 
-    private SpriteRenderer spriteRenderer;
-    private Animator animator;
+    SpriteRenderer spriteRenderer;
+    Animator animator;
 
     void Awake()
     {
@@ -20,11 +21,19 @@ public class PlayerController : PhysicsObject
 
         action.InputsMap.Walk.performed += ctx => move.x = ctx.ReadValue<Vector2>().x;
         action.InputsMap.Walk.canceled += ctx => move = Vector2.zero;
-
     }
 
     protected override void ComputeVelocity()
     {
+        if (grounded)
+        {
+            action.InputsMap.Jump.performed += ctx => velocity.y = jumpTakeOffSpeed;
+        }
+        else
+        {
+            action.InputsMap.Jump.performed += ctx => velocity.y = 0;
+        }//Accedental flutter jump. KEEP IT
+
 
         targetVelocity = move * maxSpeed;
     }
@@ -39,5 +48,4 @@ public class PlayerController : PhysicsObject
     {
         action.InputsMap.Disable();
     }
-
 }

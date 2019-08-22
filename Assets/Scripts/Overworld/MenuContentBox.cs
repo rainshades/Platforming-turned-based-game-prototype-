@@ -24,12 +24,12 @@ public class MenuContentBox : MonoBehaviour
         if (MenuButtons.gameObject.activeSelf)
         {
             pc.maxSpeed = 0;
-            inputs.InputsMap.Action2.performed += ctx => MenuButtons.gameObject.SetActive(false);
+            inputs.UI.ConfirmSelection.performed += ctx => MenuButtons.gameObject.SetActive(false);
         }
         else
         {
             pc.maxSpeed = player_speed_saver;
-            inputs.InputsMap.Action2.performed += ctx => MenuButtons.gameObject.SetActive(true);
+            inputs.UI.ConfirmSelection.performed += ctx => MenuButtons.gameObject.SetActive(true);
         }
     }
 

@@ -39,15 +39,21 @@ public class TurnManager : MonoBehaviour
         List<MonsterObject> tmp = new List<MonsterObject>();
         for (int i = 0; i < A.Count; i++)
         {
-            tmp.Add(A[i]);
-            for (int j = 0; j < A.Count - 1; j++)
+            if (A[i].health > 0)
             {
-                if (A[j].speed < A[i].speed)
+                tmp.Add(A[i]);
+            }
+            if (A.Count > 1)
+            {
+                for (int j = 0; j <= A.Count; j++)
                 {
-                    MonsterObject holder = A[i];
-                    A[i] = A[j];
-                    A[j] = holder;
-                   // Debug.Log(A[i].name + "is replaced by" + A[j].name);
+                    if (A[j].speed > A[i].speed)
+                    {
+                        MonsterObject holder = A[i];
+                        A[i] = A[j];
+                        A[j] = holder;
+                        //Debug.Log(A[i].name + "is replaced by" + A[j].name);
+                    }
                 }
             }
         }
@@ -58,16 +64,13 @@ public class TurnManager : MonoBehaviour
     {
         if(currentMonIndex < TurnOrder.Count-1)
         {
-            Debug.Log("Goes to next Monster");
             currentMonIndex++;
         }
-        else
-        {
-            Debug.Log("The cycle begins again");
+        else {    
             currentMonIndex = 0;
         }
 
-        bm.DrawCard();
+        TurnOrder = determineTurnOrder(TurnOrder);
     }
 
     void Update()

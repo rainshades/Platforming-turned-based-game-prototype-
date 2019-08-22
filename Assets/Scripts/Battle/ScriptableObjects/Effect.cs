@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EffectType { Heal, Damage, Negate, Destroy, Stun }
+
 [System.Serializable]
 public class Effect
 {
     public int EffectAmount;//For use in Healing and Damaging
-    public enum EffectType { Heal, Damage, Negate, Destroy, Stun}
     MonsterObject AttatchedCard;
     Entity AttatchedEntity;
     [SerializeField]
@@ -16,7 +17,10 @@ public class Effect
     {
         this.effect = effect;
     }
-
+    public EffectType getEffectType()
+    {
+        return effect;
+    }
     public void SetAttatchedEntity(Entity e) { AttatchedEntity = e; }
     public void SetAttatchedCard(MonsterObject mon) { AttatchedCard = mon; }
 

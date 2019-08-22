@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class Select_Enemy : MonoBehaviour, IPointerClickHandler
 {
     TurnManager tm;
+    SpellManager sm;
     public MonsterObject TargetMon;
     MonsterObject currentMon;
     public GameObject CanvasToTurnOff;
@@ -14,6 +15,7 @@ public class Select_Enemy : MonoBehaviour, IPointerClickHandler
     {
         CanvasToTurnOff = transform.parent.gameObject;
         tm = FindObjectOfType<TurnManager>();
+        sm = FindObjectOfType<SpellManager>();
         currentMon = tm.getCurrentMonster();
     }
 
@@ -27,6 +29,7 @@ public class Select_Enemy : MonoBehaviour, IPointerClickHandler
                 Debug.Log(currentMon.name + " attacked " + TargetMon);
                 tm.EndTurn();
                 break;
+
             case Action.ActiveAbility:
                 Debug.Log("Ability the target");
                 if (currentMon.canTarget())
@@ -43,7 +46,8 @@ public class Select_Enemy : MonoBehaviour, IPointerClickHandler
                 }
                 break;
             case Action.Cast:
-                Debug.Log("Cast Spell on the Target");
+                Debug.Log("Cast "+ sm.getCurrentSpell().name + " on " + TargetMon);
+                sm.getCurrentSpell().CastToTarget(TargetMon);
                 tm.EndTurn();
                 break;
             case Action.Defend:

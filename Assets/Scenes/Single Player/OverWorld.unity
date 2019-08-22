@@ -458,9 +458,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minGroundNormalY: 0.65
   gravityModifier: 1
+  grounded: 0
+  velocity: {x: 0, y: 0}
   party:
     PartyMembers:
-    - {fileID: 11400000, guid: 95f7a9cc27596dc41b6e15d3e25bb929, type: 2}
     - {fileID: 11400000, guid: 95f7a9cc27596dc41b6e15d3e25bb929, type: 2}
     - {fileID: 11400000, guid: 95f7a9cc27596dc41b6e15d3e25bb929, type: 2}
     name: 000
@@ -476,7 +477,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 126134143}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: -1.98, z: -10}
+  m_LocalPosition: {x: 5, y: -1.493, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1552038293}
@@ -502,8 +503,8 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 6
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!114 &126134147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,8 +530,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.010346651, y: -0.031041622}
-  m_Size: {x: 2.0934434, y: 2.4452434}
+  m_Offset: {x: -0.0067560673, y: 0.014820933}
+  m_Size: {x: 1.6487803, y: 1.9212801}
   m_Direction: 0
 --- !u!1 &331611663
 GameObject:
@@ -2748,6 +2749,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581262478658151450, guid: 0ee542e9f2aa67045b4d34b2f63799cf,
+        type: 3}
+      propertyPath: jumpTakeOffSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581262478658151450, guid: 0ee542e9f2aa67045b4d34b2f63799cf,
+        type: 3}
+      propertyPath: gravityModifier
+      value: 1.859
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581262478658151450, guid: 0ee542e9f2aa67045b4d34b2f63799cf,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4581262478658151450, guid: 0ee542e9f2aa67045b4d34b2f63799cf,
+        type: 3}
+      propertyPath: minGroundNormalY
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4233050634261803720, guid: 0ee542e9f2aa67045b4d34b2f63799cf,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ee542e9f2aa67045b4d34b2f63799cf, type: 3}

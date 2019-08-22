@@ -6,7 +6,7 @@
             "id": "46b7513f-3fdb-4882-829d-31ce4280628a",
             "actions": [
                 {
-                    "name": "Action0",
+                    "name": "Action",
                     "type": "Button",
                     "id": "079279d2-a840-4a17-95c8-a3f8d3c1d5d0",
                     "expectedControlType": "",
@@ -14,7 +14,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Action1",
+                    "name": "Jump",
                     "type": "Button",
                     "id": "41c72032-5478-43cf-b4df-712c22054d7c",
                     "expectedControlType": "",
@@ -30,7 +30,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Action2",
+                    "name": "OptionsMenu",
                     "type": "Button",
                     "id": "0d78cc39-ada6-4680-a338-cd4c65f1a76a",
                     "expectedControlType": "",
@@ -46,7 +46,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Action0",
+                    "action": "Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -57,7 +57,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Action0",
+                    "action": "Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -68,7 +68,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Action0",
+                    "action": "Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -79,7 +79,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Action1",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -90,7 +90,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Action1",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -101,7 +101,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Action1",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -189,9 +189,121 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Action2",
+                    "action": "OptionsMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "b2093992-1db1-4a74-9abc-b029384bff53",
+            "actions": [
+                {
+                    "name": "ConfirmSelection",
+                    "type": "Button",
+                    "id": "0c7d8168-0175-40a9-8264-7268663c3c23",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SelectCycle",
+                    "type": "Button",
+                    "id": "a04701fc-0324-46b1-b725-3844c6c29afd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "40261b58-f06f-4408-92cd-cf15337fd61f",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ConfirmSelection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de682790-0e40-4c07-9a61-56202b9ae09e",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectCycle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "80561148-7a09-49bc-b926-e15722be3d5d",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectCycle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Arrows",
+                    "id": "fe1c4f15-dd3b-43b4-bf62-cb30e3646198",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectCycle",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "be7230cf-12f4-4379-b538-8f957ddaaa25",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectCycle",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "6ad7d5d2-d09b-407f-9d8a-5b9ead550559",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectCycle",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "e65f97fd-23f1-4f7d-a5d8-2f880392ff55",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectCycle",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "2819fbd8-e9f3-40fc-8fba-a0c288502435",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectCycle",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

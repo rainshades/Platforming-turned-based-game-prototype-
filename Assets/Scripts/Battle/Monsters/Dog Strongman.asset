@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Dog Strongman
   m_EditorClassIdentifier: 
   name: Dog Strongman
-  monNumber: 1
-  ActiveAbility: 0
+  active: {fileID: 11400000, guid: 174d59c9fb20e5248b49e81f57584271, type: 2}
+  passive: {fileID: 11400000, guid: 51dc23e11b1122c4b9c0cc7b06f2c9c3, type: 2}
   description: Loyal and Strong. The gooddest boy
   attack: 5
   health: 3

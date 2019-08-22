@@ -18,7 +18,7 @@ public class PlayerActions : IInputActionCollection
             ""id"": ""46b7513f-3fdb-4882-829d-31ce4280628a"",
             ""actions"": [
                 {
-                    ""name"": ""Action0"",
+                    ""name"": ""Action"",
                     ""type"": ""Button"",
                     ""id"": ""079279d2-a840-4a17-95c8-a3f8d3c1d5d0"",
                     ""expectedControlType"": """",
@@ -26,7 +26,7 @@ public class PlayerActions : IInputActionCollection
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Action1"",
+                    ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""41c72032-5478-43cf-b4df-712c22054d7c"",
                     ""expectedControlType"": """",
@@ -42,7 +42,7 @@ public class PlayerActions : IInputActionCollection
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Action2"",
+                    ""name"": ""OptionsMenu"",
                     ""type"": ""Button"",
                     ""id"": ""0d78cc39-ada6-4680-a338-cd4c65f1a76a"",
                     ""expectedControlType"": """",
@@ -58,7 +58,7 @@ public class PlayerActions : IInputActionCollection
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action0"",
+                    ""action"": ""Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -69,7 +69,7 @@ public class PlayerActions : IInputActionCollection
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action0"",
+                    ""action"": ""Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -80,7 +80,7 @@ public class PlayerActions : IInputActionCollection
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action0"",
+                    ""action"": ""Action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -91,7 +91,7 @@ public class PlayerActions : IInputActionCollection
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action1"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -102,7 +102,7 @@ public class PlayerActions : IInputActionCollection
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action1"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -113,7 +113,7 @@ public class PlayerActions : IInputActionCollection
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action1"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -201,9 +201,121 @@ public class PlayerActions : IInputActionCollection
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action2"",
+                    ""action"": ""OptionsMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""b2093992-1db1-4a74-9abc-b029384bff53"",
+            ""actions"": [
+                {
+                    ""name"": ""ConfirmSelection"",
+                    ""type"": ""Button"",
+                    ""id"": ""0c7d8168-0175-40a9-8264-7268663c3c23"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SelectCycle"",
+                    ""type"": ""Button"",
+                    ""id"": ""a04701fc-0324-46b1-b725-3844c6c29afd"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""40261b58-f06f-4408-92cd-cf15337fd61f"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ConfirmSelection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de682790-0e40-4c07-9a61-56202b9ae09e"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectCycle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80561148-7a09-49bc-b926-e15722be3d5d"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectCycle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""fe1c4f15-dd3b-43b4-bf62-cb30e3646198"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectCycle"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""be7230cf-12f4-4379-b538-8f957ddaaa25"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectCycle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""6ad7d5d2-d09b-407f-9d8a-5b9ead550559"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectCycle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""e65f97fd-23f1-4f7d-a5d8-2f880392ff55"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectCycle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""2819fbd8-e9f3-40fc-8fba-a0c288502435"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectCycle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -212,10 +324,14 @@ public class PlayerActions : IInputActionCollection
 }");
         // Inputs Map
         m_InputsMap = asset.GetActionMap("Inputs Map");
-        m_InputsMap_Action0 = m_InputsMap.GetAction("Action0");
-        m_InputsMap_Action1 = m_InputsMap.GetAction("Action1");
+        m_InputsMap_Action = m_InputsMap.GetAction("Action");
+        m_InputsMap_Jump = m_InputsMap.GetAction("Jump");
         m_InputsMap_Walk = m_InputsMap.GetAction("Walk");
-        m_InputsMap_Action2 = m_InputsMap.GetAction("Action2");
+        m_InputsMap_OptionsMenu = m_InputsMap.GetAction("OptionsMenu");
+        // UI
+        m_UI = asset.GetActionMap("UI");
+        m_UI_ConfirmSelection = m_UI.GetAction("ConfirmSelection");
+        m_UI_SelectCycle = m_UI.GetAction("SelectCycle");
     }
 
     ~PlayerActions()
@@ -265,18 +381,18 @@ public class PlayerActions : IInputActionCollection
     // Inputs Map
     private readonly InputActionMap m_InputsMap;
     private IInputsMapActions m_InputsMapActionsCallbackInterface;
-    private readonly InputAction m_InputsMap_Action0;
-    private readonly InputAction m_InputsMap_Action1;
+    private readonly InputAction m_InputsMap_Action;
+    private readonly InputAction m_InputsMap_Jump;
     private readonly InputAction m_InputsMap_Walk;
-    private readonly InputAction m_InputsMap_Action2;
+    private readonly InputAction m_InputsMap_OptionsMenu;
     public struct InputsMapActions
     {
         private PlayerActions m_Wrapper;
         public InputsMapActions(PlayerActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Action0 => m_Wrapper.m_InputsMap_Action0;
-        public InputAction @Action1 => m_Wrapper.m_InputsMap_Action1;
+        public InputAction @Action => m_Wrapper.m_InputsMap_Action;
+        public InputAction @Jump => m_Wrapper.m_InputsMap_Jump;
         public InputAction @Walk => m_Wrapper.m_InputsMap_Walk;
-        public InputAction @Action2 => m_Wrapper.m_InputsMap_Action2;
+        public InputAction @OptionsMenu => m_Wrapper.m_InputsMap_OptionsMenu;
         public InputActionMap Get() { return m_Wrapper.m_InputsMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -286,43 +402,89 @@ public class PlayerActions : IInputActionCollection
         {
             if (m_Wrapper.m_InputsMapActionsCallbackInterface != null)
             {
-                Action0.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction0;
-                Action0.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction0;
-                Action0.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction0;
-                Action1.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction1;
-                Action1.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction1;
-                Action1.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction1;
+                Action.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction;
+                Action.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction;
+                Action.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction;
+                Jump.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnJump;
+                Jump.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnJump;
+                Jump.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnJump;
                 Walk.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk;
                 Walk.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk;
                 Walk.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk;
-                Action2.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction2;
-                Action2.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction2;
-                Action2.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction2;
+                OptionsMenu.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnOptionsMenu;
+                OptionsMenu.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnOptionsMenu;
+                OptionsMenu.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnOptionsMenu;
             }
             m_Wrapper.m_InputsMapActionsCallbackInterface = instance;
             if (instance != null)
             {
-                Action0.started += instance.OnAction0;
-                Action0.performed += instance.OnAction0;
-                Action0.canceled += instance.OnAction0;
-                Action1.started += instance.OnAction1;
-                Action1.performed += instance.OnAction1;
-                Action1.canceled += instance.OnAction1;
+                Action.started += instance.OnAction;
+                Action.performed += instance.OnAction;
+                Action.canceled += instance.OnAction;
+                Jump.started += instance.OnJump;
+                Jump.performed += instance.OnJump;
+                Jump.canceled += instance.OnJump;
                 Walk.started += instance.OnWalk;
                 Walk.performed += instance.OnWalk;
                 Walk.canceled += instance.OnWalk;
-                Action2.started += instance.OnAction2;
-                Action2.performed += instance.OnAction2;
-                Action2.canceled += instance.OnAction2;
+                OptionsMenu.started += instance.OnOptionsMenu;
+                OptionsMenu.performed += instance.OnOptionsMenu;
+                OptionsMenu.canceled += instance.OnOptionsMenu;
             }
         }
     }
     public InputsMapActions @InputsMap => new InputsMapActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_ConfirmSelection;
+    private readonly InputAction m_UI_SelectCycle;
+    public struct UIActions
+    {
+        private PlayerActions m_Wrapper;
+        public UIActions(PlayerActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ConfirmSelection => m_Wrapper.m_UI_ConfirmSelection;
+        public InputAction @SelectCycle => m_Wrapper.m_UI_SelectCycle;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+                ConfirmSelection.started -= m_Wrapper.m_UIActionsCallbackInterface.OnConfirmSelection;
+                ConfirmSelection.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnConfirmSelection;
+                ConfirmSelection.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnConfirmSelection;
+                SelectCycle.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectCycle;
+                SelectCycle.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectCycle;
+                SelectCycle.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectCycle;
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                ConfirmSelection.started += instance.OnConfirmSelection;
+                ConfirmSelection.performed += instance.OnConfirmSelection;
+                ConfirmSelection.canceled += instance.OnConfirmSelection;
+                SelectCycle.started += instance.OnSelectCycle;
+                SelectCycle.performed += instance.OnSelectCycle;
+                SelectCycle.canceled += instance.OnSelectCycle;
+            }
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IInputsMapActions
     {
-        void OnAction0(InputAction.CallbackContext context);
-        void OnAction1(InputAction.CallbackContext context);
+        void OnAction(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
-        void OnAction2(InputAction.CallbackContext context);
+        void OnOptionsMenu(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnConfirmSelection(InputAction.CallbackContext context);
+        void OnSelectCycle(InputAction.CallbackContext context);
     }
 }

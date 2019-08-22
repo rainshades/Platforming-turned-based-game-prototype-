@@ -14,7 +14,7 @@ public class Battle_Start : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("Collision");
+        Debug.Log(col.gameObject.name);
         if(col.gameObject.tag == "Player")
         {
             gm = FindObjectOfType<GameManager>();

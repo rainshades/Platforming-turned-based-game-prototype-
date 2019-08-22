@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Fox Enforcer
   m_EditorClassIdentifier: 
   name: Fox Enforcer
-  monNumber: 3
-  ActiveAbility: 0
+  active: {fileID: 11400000, guid: 174d59c9fb20e5248b49e81f57584271, type: 2}
+  passive: {fileID: 11400000, guid: 51dc23e11b1122c4b9c0cc7b06f2c9c3, type: 2}
   description: Sly, Angry, and Armed
   attack: 6
   health: 3

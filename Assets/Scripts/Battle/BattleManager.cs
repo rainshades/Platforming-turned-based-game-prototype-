@@ -18,32 +18,30 @@ public class BattleManager : MonoBehaviour
 
     public List<SpellCard> Hand = new List<SpellCard>();
 
-    public List<Monster> EnemyMonsters;
+    [SerializeField]
+    GameObject monPrefab = null;
+    [SerializeField]
+    GameObject enemyMonPrefab = null;
 
     [SerializeField]
-    GameObject monPrefab;
+    GameObject cardPrefab = null;
     [SerializeField]
-    GameObject enemyMonPrefab;
+    Transform[] SpawnPoints = null;
+    [SerializeField]
+    Transform[] EnemySpawnPoints = null;
 
-    [SerializeField]
-    GameObject cardPrefab;
-    [SerializeField]
-    Transform[] SpawnPoints;
-    [SerializeField]
-    Transform[] EnemySpawnPoints;
+    public Transform HandObject = null;
 
-    public Transform HandObject;
-
-    MonsterObject CurrentMonster;
+    MonsterObject CurrentMonster = null;
 
     public List<MonsterObject> AllyField;
     public List<MonsterObject> EnemyField;
 
-    Party AllyParty;
-    Party EnemyParty;
+    Party AllyParty = null;
+    Party EnemyParty = null;
 
-    Deck AllyDeck;
-    Deck EnemyDeck;
+    Deck AllyDeck = null;
+    Deck EnemyDeck = null;
 
     void Start()
     {
@@ -81,14 +79,14 @@ public class BattleManager : MonoBehaviour
     {
         switch (EnemyField.Count) {
             case 1:
-                if (EnemyField[0] == null)
+                if (EnemyField[0].health <= 0)
                 {
                     Debug.Log("You win!");
                     gm.SceneButton(PostBattleScene);
                 }
                 break;
             case 2:
-                if (EnemyField[0] == null && EnemyField[1] == null)
+                if (EnemyField[0].health <= 0 && EnemyField[1].health <= 0)
                 {
                     Debug.Log("You win!");
                     gm.SceneButton(PostBattleScene);
@@ -103,6 +101,27 @@ public class BattleManager : MonoBehaviour
                 break;
             default:
                 Debug.Log("Umm There definately too many people (or too few) fuckers on this battlefield");
+                break;
+        }
+
+        switch (AllyField.Count)
+        {
+            case 1: 
+                if(AllyField[0].health <= 0)
+                {
+                    Debug.Log("Big OOF Pal");
+                } break;
+            case 2:
+                if (AllyField[0].health <= 0 && AllyField[1].health <= 0)
+                {
+                    Debug.Log("Big OOF Pal");
+                }
+                break;
+            case 3:
+                if (AllyField[0].health <= 0 && AllyField[1].health <= 0 && AllyField[2].health <= 0)
+                {
+                    Debug.Log("Big OOF Pal");
+                }
                 break;
         }
     }

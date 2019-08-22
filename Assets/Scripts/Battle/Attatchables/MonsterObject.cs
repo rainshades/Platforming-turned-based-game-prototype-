@@ -10,16 +10,18 @@ public class MonsterObject : MonoBehaviour
     public bool ownedByPlayer;
 
     [SerializeField]
-    string AttackAnimation;
+    string AttackAnimation = null;
 
     [SerializeField]
-    string CastAnimation;
+    string CastAnimation = null;
 
     bool canAct = false;
     bool AbilityTargets = false;
 
     public Monster thisMonster;
+    [SerializeField]
     Ability ActiveAbility;
+    [SerializeField]
     Ability PassiveAbility;
 
     public float health, attack, speed;
@@ -29,7 +31,7 @@ public class MonsterObject : MonoBehaviour
     RectTransform rt;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         name = thisMonster.name;
         health = thisMonster.health;
@@ -38,21 +40,18 @@ public class MonsterObject : MonoBehaviour
         ActiveAbility = thisMonster.active;
         PassiveAbility = thisMonster.passive;
 
+        gm = FindObjectOfType<BattleManager>();
+        rt = GetComponent<RectTransform>();
+
+        sr = GetComponent<SpriteRenderer>();
+
         ActiveAbility.effect.SetAttatchedEntity(thisMonster);
         PassiveAbility.effect.SetAttatchedEntity(thisMonster);
 
         ActiveAbility.effect.SetAttatchedCard(this);
         PassiveAbility.effect.SetAttatchedCard(this);
 
-        if (ActiveAbility != null)
-        {
-            AbilityTargets = ActiveAbility.isTargetAbility;
-        }
-
-        gm = FindObjectOfType<BattleManager>();
-        rt = GetComponent<RectTransform>();
-
-        sr = GetComponent<SpriteRenderer>();
+        AbilityTargets = ActiveAbility.isTargetAbility;
 
         if (sr != null)
         {
@@ -71,7 +70,7 @@ public class MonsterObject : MonoBehaviour
         targetStats.RecieveDamage(damage);
     }
 
-    public void cast(GameObject target)
+    public void CastSpellAnimation()
     {
         this.GetComponent<Animator>().Play(CastAnimation);
     }
@@ -90,8 +89,9 @@ public class MonsterObject : MonoBehaviour
     {
         if(health < 1)
         {
-            Destroy(gameObject);
+            this.gameObject.SetActive(false);
         }
+
     }
 
     public void AttackTarget(MonsterObject target)

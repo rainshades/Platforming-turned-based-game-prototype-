@@ -7,6 +7,8 @@ public class TargetUI : MonoBehaviour
 {
     public BattleManager bm;
     public List<MonsterObject> Monsters;
+    [SerializeField]
+    List<GameObject> HPList;
     public int numberToCreate;
 
     public GameObject prefabSprite;
@@ -16,6 +18,7 @@ public class TargetUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        HPList = new List<GameObject>();
         bm = FindObjectOfType<BattleManager>();
         Monsters = bm.AllyField;
         Populate();
@@ -26,6 +29,10 @@ public class TargetUI : MonoBehaviour
     void Update()
     {
         //Updates the Health Every Frame
+        for(int i = 0; i < HPList.Count; i++)
+        {
+            HPList[i].GetComponent<Text>().text = "HP: " + Monsters[i].health;
+        }
     }
 
     public void Populate()
@@ -49,9 +56,10 @@ public class TargetUI : MonoBehaviour
         {
             GameObject newObj = new GameObject();
             newObj.transform.SetParent(TextHealthUI);
-            newObj.AddComponent<Text>().text = "HP:" + Monsters[i].thisMonster.health;
+            newObj.AddComponent<Text>().text = "HP:" + Monsters[i].health;
             newObj.GetComponent<Text>().font = font;
             newObj.GetComponent<Text>().fontSize = 40;
+            HPList.Add(newObj);
             //Debug.Log(newObj.name + " has been born");
         }
     }

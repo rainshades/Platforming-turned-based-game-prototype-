@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public int HumanHealth = 0;
+    public float OverWorldManaPool = 0;
+    public int AttackDamage;
+    
     GameManager gm;
     public Party p;
     public Deck d;

@@ -24,7 +24,7 @@ public class StarMenuUI : MonoBehaviour
     void Update()
     {
         actions.InputsMap.Walk.performed += ctx => buttonInput = (int)(ctx.ReadValue<Vector2>().y * 10);
-        actions.InputsMap.Action0.performed += ctx => buttons[selectedButton].onClick.Invoke();
+        actions.UI.ConfirmSelection.performed += ctx => buttons[selectedButton].onClick.Invoke();
 
         if (buttonInput != 0 && canInteract)
         {

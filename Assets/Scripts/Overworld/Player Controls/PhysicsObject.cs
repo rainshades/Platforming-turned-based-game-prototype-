@@ -9,14 +9,15 @@ public class PhysicsObject : MonoBehaviour
     public float gravityModifier = 1f;
 
     protected Vector2 targetVelocity;
+    [SerializeField]
     protected bool grounded;
     protected Vector2 groundNormal;
     protected Rigidbody2D rb2d;
+    [SerializeField]
     protected Vector2 velocity;
     protected ContactFilter2D contactFilter;
     protected RaycastHit2D[] hitBuffer = new RaycastHit2D[16];
     protected List<RaycastHit2D> hitBufferList = new List<RaycastHit2D>(16);
-
 
     protected const float minMoveDistance = 0.001f;
     protected const float shellRadius = 0.01f;
