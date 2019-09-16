@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Player Controlls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Albatross/Player Controlls.inputactions'
 
 using System.Collections;
 using System.Collections.Generic;
@@ -204,6 +204,17 @@ public class PlayerActions : IInputActionCollection
                     ""action"": ""OptionsMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ecb016e9-418b-49ef-9b0e-a5f41a97e2bc"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OptionsMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -226,13 +237,21 @@ public class PlayerActions : IInputActionCollection
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""CloseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""40e6461b-9e8c-4238-abe4-ef198d14b6ee"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""40261b58-f06f-4408-92cd-cf15337fd61f"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/enter"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -316,6 +335,17 @@ public class PlayerActions : IInputActionCollection
                     ""action"": ""SelectCycle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2837da3-e1fa-4cbf-b685-4adbb559abb9"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -332,6 +362,7 @@ public class PlayerActions : IInputActionCollection
         m_UI = asset.GetActionMap("UI");
         m_UI_ConfirmSelection = m_UI.GetAction("ConfirmSelection");
         m_UI_SelectCycle = m_UI.GetAction("SelectCycle");
+        m_UI_CloseMenu = m_UI.GetAction("CloseMenu");
     }
 
     ~PlayerActions()
@@ -440,12 +471,14 @@ public class PlayerActions : IInputActionCollection
     private IUIActions m_UIActionsCallbackInterface;
     private readonly InputAction m_UI_ConfirmSelection;
     private readonly InputAction m_UI_SelectCycle;
+    private readonly InputAction m_UI_CloseMenu;
     public struct UIActions
     {
         private PlayerActions m_Wrapper;
         public UIActions(PlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @ConfirmSelection => m_Wrapper.m_UI_ConfirmSelection;
         public InputAction @SelectCycle => m_Wrapper.m_UI_SelectCycle;
+        public InputAction @CloseMenu => m_Wrapper.m_UI_CloseMenu;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -461,6 +494,9 @@ public class PlayerActions : IInputActionCollection
                 SelectCycle.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectCycle;
                 SelectCycle.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectCycle;
                 SelectCycle.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectCycle;
+                CloseMenu.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCloseMenu;
+                CloseMenu.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCloseMenu;
+                CloseMenu.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCloseMenu;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -471,6 +507,9 @@ public class PlayerActions : IInputActionCollection
                 SelectCycle.started += instance.OnSelectCycle;
                 SelectCycle.performed += instance.OnSelectCycle;
                 SelectCycle.canceled += instance.OnSelectCycle;
+                CloseMenu.started += instance.OnCloseMenu;
+                CloseMenu.performed += instance.OnCloseMenu;
+                CloseMenu.canceled += instance.OnCloseMenu;
             }
         }
     }
@@ -486,5 +525,6 @@ public class PlayerActions : IInputActionCollection
     {
         void OnConfirmSelection(InputAction.CallbackContext context);
         void OnSelectCycle(InputAction.CallbackContext context);
+        void OnCloseMenu(InputAction.CallbackContext context);
     }
 }

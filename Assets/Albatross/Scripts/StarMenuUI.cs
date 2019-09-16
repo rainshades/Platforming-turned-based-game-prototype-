@@ -56,6 +56,18 @@ namespace Albatross
             canInteract = true;
         }
 
+        public void SwitchMode()
+        {
+            if (transform.gameObject.activeInHierarchy)
+            {
+                transform.gameObject.SetActive(false);
+            }
+            else
+            {
+                transform.gameObject.SetActive(true);
+            }
+        }
+
         void OnEnable()
         {
             actions.InputsMap.Enable();
