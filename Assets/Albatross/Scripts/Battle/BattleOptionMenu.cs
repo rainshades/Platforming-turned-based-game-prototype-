@@ -27,7 +27,7 @@ public class BattleOptionMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pa.InputsMap.Walk.performed += ctx => OptionsSelector = ctx.ReadValue<Vector2>();
+       // pa.InputsMap.Walk.performed += ctx => OptionsSelector = ctx.ReadValue<Vector2>();
     }
 
     IEnumerator MenuChange(Vector2 input)

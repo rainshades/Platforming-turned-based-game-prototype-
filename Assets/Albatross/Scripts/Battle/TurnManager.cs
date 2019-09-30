@@ -41,6 +41,7 @@ namespace Albatross
         public List<MonsterObject> determineTurnOrder(List<MonsterObject> A)
         {
             List<MonsterObject> tmp = new List<MonsterObject>();
+
             for (int i = 0; i < A.Count; i++)
             {
                 if (A[i].health > 0)
@@ -49,14 +50,16 @@ namespace Albatross
                 }
                 if (A.Count > 1)
                 {
-                    for (int j = 0; j <= A.Count; j++)
+                    for (int j = 0; j < A.Count; j++)
                     {
-                        if (A[j].speed > A[i].speed)
+                        if (A[i] != null && A[j] != null)
                         {
-                            MonsterObject holder = A[i];
-                            A[i] = A[j];
-                            A[j] = holder;
-                            //Debug.Log(A[i].name + "is replaced by" + A[j].name);
+                            if (A[j].speed > A[i].speed)
+                            {
+                                MonsterObject holder = A[i];
+                                A[i] = A[j];
+                                A[j] = holder;
+                            }
                         }
                     }
                 }

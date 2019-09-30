@@ -16,5 +16,5 @@ MonoBehaviour:
   effect:
     EffectAmount: 10
     effect: 1
-  TargetType: 0
+  TargetType: 1
   EffectDescription: 

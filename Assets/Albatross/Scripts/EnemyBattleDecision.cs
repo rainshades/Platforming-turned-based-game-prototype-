@@ -40,32 +40,39 @@ namespace Albatross
             GameObject target = findRandomTarget();
             TurnManager tm = FindObjectOfType<TurnManager>();
 
-            switch (action)
+            if (target != null)
             {
-                case Action.Attack:
-                    actor.AttackTarget(target.GetComponent<MonsterObject>());
-                    Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
-                    break;
-                case Action.Cast:
-                    Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
-                    break;
-                case Action.ActiveAbility:
-                    if (actor.canTarget())
-                    {
-                        actor.ActivateAbility(target.GetComponent<MonsterObject>());
-                    }
-                    else
-                    {
-                        actor.ActivateAbility(target.GetComponent<MonsterObject>());
-                    }
-                    Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
-                    break;
-                case Action.Defend:
-                    actor.defend();
-                    Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
-                    break;
+                switch (action)
+                {
+                    case Action.Attack:
+                        actor.AttackTarget(target.GetComponent<MonsterObject>());
+                        Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
+                        break;
+                    case Action.Cast:
+                        Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
+                        break;
+                    case Action.ActiveAbility:
+                        if (actor.canTarget())
+                        {
+                            actor.ActivateAbility(target.GetComponent<MonsterObject>());
+                        }
+                        else
+                        {
+                            actor.ActivateAbility(target.GetComponent<MonsterObject>());
+                        }
+                        Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
+                        break;
+                    case Action.Defend:
+                        actor.defend();
+                        Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
+                        break;
+                }
+                tm.EndTurn();
             }
-            tm.EndTurn();
+            else
+            {
+                act();
+            }
         }
     }
 }

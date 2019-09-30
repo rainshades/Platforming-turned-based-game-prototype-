@@ -8,7 +8,7 @@ namespace Albatross
 {
     public class TargetUI : MonoBehaviour
     {
-        public BattleManager bm;
+        FieldSpawner fs;
         public List<MonsterObject> Monsters;
         [SerializeField]
         List<GameObject> HPList;
@@ -22,8 +22,8 @@ namespace Albatross
         void Start()
         {
             HPList = new List<GameObject>();
-            bm = FindObjectOfType<BattleManager>();
-            Monsters = bm.AllyField;
+            fs = FindObjectOfType<FieldSpawner>();
+            Monsters = fs.AllyField;
             Populate();
             PopulateHealth();
         }

@@ -48,26 +48,15 @@ namespace Albatross
 
             targetVelocity = move * maxSpeed;
         }
+
         void OnCollisionEnter2D(UnityEngine.Collision2D col)
         {
-            if (col.gameObject.tag == "NPC")
-            {
-                flow.ExecuteBlock("SayBlock2");
-            }
-
             if (col.gameObject.tag == "EnemyNPC")
             {
                 flow.ExecuteBlock("BattleStarter");
             }
         }
 
-        void OnTriggerEnter2D(Collider2D trigger)
-        {
-            if (trigger.gameObject.tag == "SayStarter")
-            {
-                flow.ExecuteBlock("SayBlock");
-            }
-        }
         void OnEnable()
         {
             action.InputsMap.Enable();

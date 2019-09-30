@@ -49,6 +49,7 @@ namespace Albatross
 
             sr = GetComponent<SpriteRenderer>();
 
+
             ActiveAbility.effect.SetAttatchedEntity(thisMonster);
             PassiveAbility.effect.SetAttatchedEntity(thisMonster);
 
@@ -61,6 +62,8 @@ namespace Albatross
             {
                 sr.sprite = thisMonster.artwork;
             }
+
+            
         }
 
         public void hit(GameObject target)

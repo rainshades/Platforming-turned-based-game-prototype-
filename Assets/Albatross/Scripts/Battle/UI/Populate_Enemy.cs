@@ -18,7 +18,6 @@ namespace Albatross
         {
             bm = FindObjectOfType<BattleManager>();
             Monsters = bm.EnemyField;
-            Populate();
         }
 
         // Update is called once per frame
@@ -39,6 +38,14 @@ namespace Albatross
                 prefabSprite.GetComponent<Select_Enemy>().TargetMon = Monsters[i];
                 newObj = Instantiate(prefabSprite, transform);
                 //Debug.Log(newObj.name + " has been born");
+            }
+        }
+
+        public void Depopulate()
+        {
+            for(int i = 0; i < transform.childCount; i++)
+            {
+                Destroy(transform.GetChild(i).gameObject);
             }
         }
     }

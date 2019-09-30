@@ -13,6 +13,7 @@ namespace Albatross
         public MonsterObject TargetMon;
         MonsterObject currentMon;
         public GameObject CanvasToTurnOff;
+        Populate_Enemy populate;
 
         void Start()
         {
@@ -20,6 +21,7 @@ namespace Albatross
             tm = FindObjectOfType<TurnManager>();
             sm = FindObjectOfType<SpellManager>();
             currentMon = tm.getCurrentMonster();
+            populate = FindObjectOfType<Populate_Enemy>();
         }
 
         public void OnPointerClick(PointerEventData PE)
@@ -28,8 +30,8 @@ namespace Albatross
             {
                 case Action.Attack:
                     currentMon.AttackTarget(TargetMon);
+                    populate.Depopulate();
                     tm.CanvasOff(CanvasToTurnOff);
-                    Debug.Log(currentMon.name + " attacked " + TargetMon);
                     tm.EndTurn();
                     break;
 
@@ -38,13 +40,15 @@ namespace Albatross
                     if (currentMon.canTarget())
                     {
                         currentMon.ActivateAbility(TargetMon);
-                        Debug.Log(currentMon.name + " used their ability on " + TargetMon);
+                        populate.Depopulate();
+                        tm.CanvasOff(CanvasToTurnOff);
                         tm.EndTurn();
                     }
                     else
                     {
                         currentMon.ActivateAbility();
-                        Debug.Log(currentMon.name + " used their ability");
+                        populate.Depopulate();
+                        tm.CanvasOff(CanvasToTurnOff);
                         tm.EndTurn();
                     }
                     break;

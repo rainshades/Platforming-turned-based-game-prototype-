@@ -13,26 +13,28 @@ namespace Albatross
         public Canvas Hand;
         [SerializeField]
         MonsterObject mon;
-
-        void Start()
-        {
-            tm = FindObjectOfType<TurnManager>();
-        }
+        [SerializeField]
+        GameObject en;
+        
         void Update()
         {
+            tm = FindObjectOfType<TurnManager>();
+            en = FindObjectOfType<Populate_Enemy>().gameObject;
             mon = tm.getCurrentMonster();
         }
 
         public void AttackButton()
         {
+            targetBox.gameObject.SetActive(true);
             tm.setAction(Action.Attack);
-            tm.CanvasOn(targetBox.gameObject);
+            en.gameObject.GetComponent<Populate_Enemy>().Populate();
         }
 
         public void AbilityButton()
         {
             tm.setAction(Action.ActiveAbility);
             tm.CanvasOn(targetBox.gameObject);
+            en.gameObject.GetComponent<Populate_Enemy>().Populate();
         }
 
         public void DefendButton()
