@@ -1,5 +1,105 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &215286623110438497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 505345505640759430}
+  - component: {fileID: 4379298867648586737}
+  m_Layer: 0
+  m_Name: Turn Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &505345505640759430
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215286623110438497}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3795028831260193070}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4379298867648586737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215286623110438497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef7f14f8979b5b4cab01754b599e5bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  a: 0
+  currentMonIndex: 0
+  PlayerControls: {fileID: 0}
+  CurrentMonster: {fileID: 0}
+  NextMonster: {fileID: 0}
+  TargetMon: {fileID: 0}
+  TurnOrder: []
+--- !u!1 &2263021820047053992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6277482732265286140}
+  - component: {fileID: 3847956594479287218}
+  m_Layer: 0
+  m_Name: Field Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6277482732265286140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2263021820047053992}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3795028831260193070}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3847956594479287218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2263021820047053992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e875d0627c9cb7945993aa1d5c204889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnPoints: []
+  EnemySpawnPoints: []
+  BattleArea: {fileID: 0}
+  monPrefab: {fileID: 0}
+  enemyMonPrefab: {fileID: 0}
+  AllyField: []
+  EnemyField: []
 --- !u!1 &3795028831260193068
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +110,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3795028831260193070}
   - component: {fileID: 3795028831260193069}
-  - component: {fileID: 3795028831260193071}
   m_Layer: 0
   m_Name: Battle Manager
   m_TagString: Untagged
@@ -28,7 +127,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 693.7663, y: 662.68414, z: -548.06287}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 6277482732265286140}
+  - {fileID: 505345505640759430}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -44,42 +145,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d61a7dd0a89547e4baa4e766762085bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpellsDisplay: []
-  HandDisplay: []
-  EnemyMonsters:
-  - {fileID: 11400000, guid: cd525bc57a4b9b14dbb61a154934f7f3, type: 2}
-  - {fileID: 11400000, guid: 0620137b896f7d14a848daa7de75d347, type: 2}
-  - {fileID: 11400000, guid: af73fb0b7ecbaad4983a99ccbc50c722, type: 2}
-  - {fileID: 11400000, guid: feab6e63ac25bc642adf8d85e23003bd, type: 2}
-  - {fileID: 11400000, guid: 95f7a9cc27596dc41b6e15d3e25bb929, type: 2}
-  - {fileID: 11400000, guid: 23bdaf17fba01614d98bcc0e894e391d, type: 2}
-  monPrefab: {fileID: 3667198305289206808, guid: 4480b57bcbcc0d746a26143e6c9027de,
-    type: 3}
-  cardPrefab: {fileID: 5669091256209814731, guid: b87e7f0899aa3c34fa049ff0049779bc,
-    type: 3}
-  SpawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  EnemySpawnPoints:
-  - {fileID: 0}
-  HandObject: {fileID: 0}
   AllyField: []
   EnemyField: []
---- !u!114 &3795028831260193071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3795028831260193068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ef7f14f8979b5b4cab01754b599e5bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentMonster: {fileID: 0}
-  NextMonster: {fileID: 0}
-  currentAction: 0
-  TargetMon: {fileID: 0}
-  TurnOrder: []
+  PostBattleScene: 
+  SpellsDisplay: []
+  HandDisplay: []
+  Hand: []
+  cardPrefab: {fileID: 5669091256209814731, guid: b87e7f0899aa3c34fa049ff0049779bc,
+    type: 3}
+  HandObject: {fileID: 0}

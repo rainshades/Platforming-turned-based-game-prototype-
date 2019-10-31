@@ -50,7 +50,7 @@ namespace Albatross
                 }
                 if (A.Count > 1)
                 {
-                    for (int j = 0; j < A.Count; j++)
+                    for (int j = 0; j <= A.Count; j++)
                     {
                         if (A[i] != null && A[j] != null)
                         {

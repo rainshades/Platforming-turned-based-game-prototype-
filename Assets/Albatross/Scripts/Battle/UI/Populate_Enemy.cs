@@ -9,15 +9,12 @@ namespace Albatross
     public class Populate_Enemy : MonoBehaviour
     {
         public BattleManager bm;
-        public List<MonsterObject> Monsters;
-        public int numberToCreate;
 
         public GameObject prefabSprite;
         // Start is called before the first frame update
         void Start()
         {
             bm = FindObjectOfType<BattleManager>();
-            Monsters = bm.EnemyField;
         }
 
         // Update is called once per frame
@@ -26,11 +23,11 @@ namespace Albatross
 
         }
 
-        public void Populate()
+        public void Populate( List<MonsterObject> Monsters)
         {
             GameObject newObj;
 
-            numberToCreate = Monsters.Count;
+            int numberToCreate = Monsters.Count;
 
             for (int i = 0; i < numberToCreate; i++)
             {

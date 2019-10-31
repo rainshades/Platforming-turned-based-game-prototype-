@@ -55,7 +55,7 @@ public class PlayerActions : IInputActionCollection
                     ""name"": """",
                     ""id"": ""4b6e3413-61d5-4ccc-8afb-7b1f2a884eee"",
                     ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Action"",

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -60,7 +61,7 @@ namespace Albatross
             {
                 if(EnemyField[i].health <= 0 && EnemyField[i] != null)
                 {
-                    Destroy(EnemyField[i].gameObject);
+                    EnemyField[i].gameObject.SetActive(false);
                 }
             }
 
@@ -72,18 +73,56 @@ namespace Albatross
                 }
             }
 
-            if(AllyField.Count == 0)
+            switch (AllyField.Count)
             {
-
-            }//Loads the beginning of the Level
-
-            if(EnemyField.Count == 0)
+                case 1:
+                    if (AllyField[0].health == 0)
+                    {
+                        SceneManager.LoadScene(PostBattleScene);
+                    }//Loads the beginning of the Level
+                    break;
+                case 2:
+                    if (AllyField[0].health == 0 && AllyField[1].health == 0)
+                    {
+                        SceneManager.LoadScene(PostBattleScene);
+                    }//Loads the beginning of the Level
+                    break;
+                case 3:
+                    if (AllyField[0].health == 0 && AllyField[1].health == 0 && AllyField[2].health == 0)
+                    {
+                        SceneManager.LoadScene(PostBattleScene);
+                    }//Loads the beginning of the Level
+                    break;
+                
+            }
+            switch (EnemyField.Count)
             {
-
-            }//Loads where the player was before the battle, the enemy defeated.
-             //Sets the players party health to the same amount of health they had at the end of the battle
-             //If one of party members died it sets them to 1hp
-        }
+                case 1:
+                    if (EnemyField[0].health == 0)
+                    {
+                        SceneManager.LoadScene(PostBattleScene);
+                    }//Loads where the player was before the battle, the enemy defeated.
+                     //Sets the players party health to the same amount of health they had at the end of the battle
+                     //If one of party members died it sets them to 1hp
+                    break;
+                case 2:
+                    if (EnemyField[0].health == 0 && EnemyField[1].health == 0)
+                    {
+                        SceneManager.LoadScene(PostBattleScene);
+                    }//Loads where the player was before the battle, the enemy defeated.
+                     //Sets the players party health to the same amount of health they had at the end of the battle
+                     //If one of party members died it sets them to 1hp
+                    break;
+                case 3:
+                    if (EnemyField[0].health == 0 && EnemyField[1].health == 0 && EnemyField[2].health == 0)
+                    {
+                        SceneManager.LoadScene(PostBattleScene);
+                    }//Loads where the player was before the battle, the enemy defeated.
+                     //Sets the players party health to the same amount of health they had at the end of the battle
+                     //If one of party members died it sets them to 1hp
+                    break;
+            }
+         }
 
         public void setAllyDeck(Deck d)
         {
