@@ -12,6 +12,7 @@ namespace Albatross
     {
         GameManager gm;
         TurnManager tm;
+        TargetUI TargetUI;
         FieldSpawner fs;
 
         public List<MonsterObject> AllyField;
@@ -39,6 +40,7 @@ namespace Albatross
                
         void Start()
         {
+            TargetUI = FindObjectOfType<TargetUI>();
 
             gm = FindObjectOfType<GameManager>();
             tm = FindObjectOfType<TurnManager>();
@@ -61,18 +63,23 @@ namespace Albatross
             {
                 if(EnemyField[i].health <= 0 && EnemyField[i] != null)
                 {
-                    EnemyField[i].gameObject.SetActive(false);
-                }
+                    EnemyField.RemoveAt(i);
+                }               
             }
 
             for(int i = 0; i < AllyField.Count; i++)
             {
-                if(AllyField[i].health <= 0 && AllyField[i] != null)
+                if (AllyField[i].health > 1)
                 {
-                    AllyField[i].gameObject.SetActive(false);
+                    TargetUI.GetHPObjects()[i].GetComponent<Text>().text = "HP: " + AllyField[i].health;
+                }
+                if(AllyField[i].health <= 1 && AllyField[i] != null)
+                {
+                    TargetUI.GetHPObjects()[i].GetComponent<Text>().text = "HP: " + 0;
+                    AllyField.RemoveAt(i);
                 }
             }
-
+            
             switch (AllyField.Count)
             {
                 case 1:

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Fungus;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 namespace Albatross
@@ -37,7 +38,10 @@ namespace Albatross
 
             action.InputsMap.OptionsMenu.performed += ctx => optionsmenu.GetComponent<StarMenuUI>().SwitchMode();
 
-            animator = GetComponentInChildren<Animator>();
+            if (animator == null)
+            {
+                animator = GetComponentInChildren<Animator>();
+            }
         }
 
         private void AugmentAction(bool b)
@@ -56,19 +60,32 @@ namespace Albatross
             }
         }
 
+        protected void Jump()
+        {
+            action.InputsMap.Jump.performed += ctx => animator.SetBool("Grounded", false);
+            action.InputsMap.Jump.performed += ctx => velocity.y = jumpTakeOffSpeed;
+            action.InputsMap.Jump.performed += ctx => animator.SetBool("Jump_flag", true);
+            action.InputsMap.Jump.canceled += ctx => animator.SetBool("Jump_flag", false);
+            //JumpBlock
+
+        }
+
         protected override void ComputeVelocity()
         {
          
             action.InputsMap.Walk.performed += ctx => move.x = ctx.ReadValue<Vector2>().x;
+            action.InputsMap.Walk.performed += ctx => animator.SetBool("Running", true);
 
             action.InputsMap.Walk.canceled += ctx => move = Vector2.zero;
+            action.InputsMap.Walk.canceled += ctx => animator.SetBool("Running",false);
+
+            animator.SetBool("Grounded", grounded);
 
             if (grounded)
             {
-                action.InputsMap.Jump.performed += ctx => animator.SetBool("Grounded", true);
-                action.InputsMap.Jump.performed += ctx => velocity.y = jumpTakeOffSpeed;
-                action.InputsMap.Jump.performed += ctx => animator.SetTrigger("Jump_flag");
+                Jump();
             }
+
             else
             {
                 action.InputsMap.Jump.performed += ctx => animator.SetBool("Grounded", false);
@@ -92,6 +109,16 @@ namespace Albatross
             }
 
             targetVelocity = move * maxSpeed;
+        }
+
+        public void StartConversation()
+        {
+
+        }
+
+        public void ReleaseConversation()
+        {
+
         }
 
         void OnCollisionEnter2D(UnityEngine.Collision2D col)

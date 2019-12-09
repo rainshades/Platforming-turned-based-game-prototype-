@@ -12,10 +12,15 @@ namespace Albatross
     {
         BattleManager gm;
         DeckManager dm;
+
+        [SerializeField]
         SpellManager sm;
 
+        [SerializeField]
         TargetType tt;
         EffectType et;
+
+        public int cost; 
 
         public SpellCard spell;
 
@@ -31,6 +36,9 @@ namespace Albatross
             description = spell.description;
             cardImage = spell.artwork;
 
+            cost = spell.cost;
+
+           
             tt = spell.Ability.TargetType;
             et = spell.Ability.effect.getEffectType();
 
@@ -41,7 +49,14 @@ namespace Albatross
             gm = FindObjectOfType<BattleManager>();
             dm = FindObjectOfType<DeckManager>();
         }
-
+        void Update()
+        {
+            sm = FindObjectOfType<SpellManager>();
+            gm = FindObjectOfType<BattleManager>();
+            dm = FindObjectOfType<DeckManager>();
+            attatchedImage = GetComponent<Image>();
+            attatchedImage.sprite = cardImage;
+        }
         public TargetType getTargetType()
         {
             return tt;

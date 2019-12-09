@@ -10,6 +10,8 @@ namespace Albatross
 
         public Party party;
         public Deck deck;
+        public Animator animator;
+
 
         void OnCollisionEnter2D(Collision2D collision2D)
         {
@@ -19,6 +21,11 @@ namespace Albatross
                 Gm.enemyParty = party;
                 Gm.enemyDeck = deck;
             }
+        }
+
+        protected override void ComputeVelocity()
+        {
+            animator.SetBool("Grounded", grounded);
         }
     }
 }

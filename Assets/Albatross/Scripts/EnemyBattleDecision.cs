@@ -47,6 +47,7 @@ namespace Albatross
                     case Action.Attack:
                         actor.AttackTarget(target.GetComponent<MonsterObject>());
                         Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
+                        Debug.Log("target has " + target.GetComponent<MonsterObject>().health + "hp left");
                         break;
                     case Action.Cast:
                         Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
@@ -60,11 +61,12 @@ namespace Albatross
                         {
                             actor.ActivateAbility(target.GetComponent<MonsterObject>());
                         }
-                        Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
+                        Debug.Log(actor.name + " " + action.ToString() + " against " + target.name);
+                        Debug.Log("target has " + target.GetComponent<MonsterObject>().health + "hp left");
                         break;
                     case Action.Defend:
                         actor.defend();
-                        Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
+                        Debug.Log(actor.name + " gained hp back");
                         break;
                 }
                 tm.EndTurn();

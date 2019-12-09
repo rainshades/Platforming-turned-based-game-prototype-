@@ -9,9 +9,12 @@ namespace Albatross
     public class TargetUI : MonoBehaviour
     {
         FieldSpawner fs;
+        GameManager gm;
         public List<MonsterObject> Monsters;
+
         [SerializeField]
         List<GameObject> HPList;
+
         public int numberToCreate;
 
         public GameObject prefabSprite;
@@ -21,21 +24,12 @@ namespace Albatross
         // Start is called before the first frame update
         void Start()
         {
+            gm = FindObjectOfType<GameManager>();
             HPList = new List<GameObject>();
             fs = FindObjectOfType<FieldSpawner>();
             Monsters = fs.AllyField;
             Populate();
             PopulateHealth();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            //Updates the Health Every Frame
-            for (int i = 0; i < HPList.Count; i++)
-            {
-                HPList[i].GetComponent<Text>().text = "HP: " + Monsters[i].health;
-            }
         }
 
         public void Populate()
@@ -65,6 +59,10 @@ namespace Albatross
                 HPList.Add(newObj);
                 //Debug.Log(newObj.name + " has been born");
             }
+        }
+        public List<GameObject> GetHPObjects()
+        {
+            return HPList;
         }
     }
 }

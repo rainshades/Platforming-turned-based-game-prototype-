@@ -31,6 +31,8 @@ namespace Albatross
                 case Action.Attack:
                     currentMon.AttackTarget(TargetMon);
                     populate.Depopulate();
+                    Debug.Log(currentMon.name + " basic attacked " + TargetMon.name);
+                    Debug.Log(TargetMon.name + " has " + TargetMon.health + " left");
                     tm.CanvasOff(CanvasToTurnOff);
                     tm.EndTurn();
                     break;
@@ -41,6 +43,8 @@ namespace Albatross
                     {
                         currentMon.ActivateAbility(TargetMon);
                         populate.Depopulate();
+                        Debug.Log(currentMon.name + " used an ability towards " + TargetMon.name);
+                        Debug.Log(TargetMon.name + " has " + TargetMon.health + " left");
                         tm.CanvasOff(CanvasToTurnOff);
                         tm.EndTurn();
                     }
@@ -59,6 +63,8 @@ namespace Albatross
                     break;
                 case Action.Defend:
                     Debug.Log("Defended Yourself");
+                    Debug.Log(currentMon.name + " defends itself ");
+                    Debug.Log(currentMon.name + " has " + currentMon.health + " left");
                     tm.EndTurn();
                     break;
             }

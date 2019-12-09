@@ -9,8 +9,10 @@ namespace Albatross
     public class SpellCard : Entity
     {
         public new string name;
-        [SerializeField]
+
         public Ability Ability;
+
+        public int cost;
 
         public string description;
         public int SpellEffectAmount;
@@ -33,6 +35,8 @@ namespace Albatross
 namespace Albatross { 
     public class Entity : ScriptableObject
     {
+
+        public TypeElement element;
         public virtual void Damage(MonsterObject mon) { }
         public virtual void Heal(MonsterObject mon) { }
         public virtual void Heal(MonsterObject mon, int HealAmount) { }

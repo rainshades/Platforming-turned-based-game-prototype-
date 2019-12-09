@@ -48,7 +48,7 @@ namespace Albatross
         {
             int numberToCreate = 6;
 
-            for(int i = 0; i < numberToCreate - 1; i++)
+            for(int i = 0; i <= numberToCreate - 1; i++)
             {
                 if(i < 3)//Player's Party
                 {

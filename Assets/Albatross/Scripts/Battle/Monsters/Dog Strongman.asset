@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79eb32a404ce3c409e15815f32783b3, type: 3}
   m_Name: Dog Strongman
   m_EditorClassIdentifier: 
+  element: 0
   name: Dog Strongman
   active: {fileID: 11400000, guid: 174d59c9fb20e5248b49e81f57584271, type: 2}
   passive: {fileID: 11400000, guid: 51dc23e11b1122c4b9c0cc7b06f2c9c3, type: 2}
   description: Loyal and Strong. The gooddest boy
   attack: 5
-  health: 3
+  health: 35
   speed: 12
   artwork: {fileID: 21300000, guid: 7ca05297711f72f4cba0cb7992f5b838, type: 3}
   alive: 1

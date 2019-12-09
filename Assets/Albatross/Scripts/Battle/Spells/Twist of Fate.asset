@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac330d7026218c4b9b43d120d3b0463, type: 3}
   m_Name: Twist of Fate
   m_EditorClassIdentifier: 
+  element: 3
   name: Twist of Fate
+  Ability: {fileID: 0}
   description: Switch the Health and Attack of one character
+  SpellEffectAmount: 0
   artwork: {fileID: 21300000, guid: aa0378101cabd79409d48dbd7cc9742d, type: 3}
   inHand: 0
   canPlay: 0

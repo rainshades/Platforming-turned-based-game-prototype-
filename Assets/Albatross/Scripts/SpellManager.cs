@@ -17,7 +17,7 @@ namespace Albatross
             TurnManager tm = FindObjectOfType<TurnManager>();
             currentMonster = tm.getCurrentMonster();
         }
-
+        
         public void setSpell(SpellObject spell)
         {
             CurrentSelectedSpell = spell;

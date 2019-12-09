@@ -10,7 +10,7 @@ namespace Albatross
 {
     public class MonsterObject : MonoBehaviour
     {
-        BattleManager gm;
+        BattleManager bm;
         public bool ownedByPlayer;
 
         [SerializeField]
@@ -28,6 +28,8 @@ namespace Albatross
         [SerializeField]
         Ability PassiveAbility;
 
+        TypeElement type;
+
         public float health, attack, speed;
 
         SpriteRenderer sr;
@@ -41,10 +43,11 @@ namespace Albatross
             health = thisMonster.health;
             attack = thisMonster.attack;
             speed = thisMonster.speed;
+            type = thisMonster.element;
             ActiveAbility = thisMonster.active;
             PassiveAbility = thisMonster.passive;
 
-            gm = FindObjectOfType<BattleManager>();
+            bm = FindObjectOfType<BattleManager>();
             rt = GetComponent<RectTransform>();
 
             sr = GetComponent<SpriteRenderer>();
