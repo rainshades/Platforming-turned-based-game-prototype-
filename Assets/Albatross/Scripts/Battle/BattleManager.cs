@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/* Project Albatross 
+ * Prepared by Eddie Fulton
+ * Unpublished/Unfinished
+ * Purpose: The battle state manager: Handles battle phases, transitions them, and established win/loss battle condition 
+ * Status: Member: Testing 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;

@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/* Project Albatross 
+ * Prepared by Eddie Fulton
+ * Unpublished/Unfinished
+ * Purpose: Loads the Scritable Objects for use in Battle.
+ * Status: Member: Testing 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

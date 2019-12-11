@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/* Project Albatross 
+ * Prepared by Eddie Fulton
+ * Unpublished/Unfinished
+ * Purpose: Allows for Deck management between Scenes
+ * Status: TentativeMember (Due for deletion): Testing 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

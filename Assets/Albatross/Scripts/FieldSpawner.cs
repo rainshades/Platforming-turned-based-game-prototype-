@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/* Project Albatross
+ * Prepared by Eddie Fulton
+ * Unpublished/Unfinished
+ * Purpose: Populating the battlefield with the objects that reside in the game manager
+ * Status: Member: Testing
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

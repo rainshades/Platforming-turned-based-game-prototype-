@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/* Project Albatross 
+ * Prepared by Eddie Fulton
+ * Unpublished/Unfinished
+ * Purpose: Hold and Mangement of Spells to be used in the action script
+ * Status: Member: Testing 
+ */
+ 
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

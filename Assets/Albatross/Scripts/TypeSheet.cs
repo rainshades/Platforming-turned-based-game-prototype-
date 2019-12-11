@@ -1,6 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿/* Project Albatross 
+ * Prepared by Eddie Fulton
+ * Unpublished/Unfinished
+ * Purpose: A place to hold all public Enums
+ * Status: Member: TypeSheet 
+ */
 
 namespace Albatross
 {
@@ -10,5 +13,13 @@ namespace Albatross
         Sin,
         Chaos,
         Virtue
+    }
+
+    public enum Action {
+        Attack,
+        ActiveAbility,
+        PassiveAbility,
+        Cast,
+        Defend
     }
 }

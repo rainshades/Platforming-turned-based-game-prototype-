@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/* Project Albatross 
+ * Prepared by Eddie Fulton
+ * Unpublished/Unfinished
+ * Purpose: To manage individual decisions by a single dummy enemy unit.
+ * Status: Temporary: Testing 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

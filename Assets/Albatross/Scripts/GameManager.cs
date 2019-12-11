@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/* Project Albatross
+ * Prepared by Eddie Fulton
+ * Unpublished/Unfinished
+ * Purpose: SceneMangement, SaveStateManagement, Storing objects meant to be used inbetween scenes
+ * Status: Member: Testing
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;

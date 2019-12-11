@@ -1,11 +1,17 @@
-﻿using System.Collections;
+﻿/* Project Albatross 
+ * Prepared by Eddie Fulton
+ * Unpublished/Unfinished
+ * Purpose: Manages the array of Characters on screen
+ * Status: Member: Testing 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace Albatross
 {
-    public enum Action { Attack, ActiveAbility, PassiveAbility, Cast, Defend }
     public class TurnManager : MonoBehaviour
     {
 

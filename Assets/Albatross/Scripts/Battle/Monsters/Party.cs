@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/* Project Albatross 
+ * Prepared by Eddie Fulton
+ * Unpublished/Unfinished
+ * Purpose: Holds a group of Monster ScritableObjects
+ * Status: Member: Testing 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
