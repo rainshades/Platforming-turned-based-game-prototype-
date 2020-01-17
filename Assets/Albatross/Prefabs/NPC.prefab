@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 644715948329920231}
   - component: {fileID: 644715948329920230}
   m_Layer: 0
-  m_Name: NPC sprite
+  m_Name: NPC overworld sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,12 +70,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 30146a20060ffe443b4b43630816d596, type: 3}
+  m_Sprite: {fileID: -8298335142436343970, guid: 2f40a386903909e429aca2d93dcb7d8c,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.5, y: 1.94}
+  m_Size: {x: 1.9, y: 2.9}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -91,7 +92,7 @@ Animator:
   m_GameObject: {fileID: 644715948329920228}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b72c19de4513e0644861e57539d90085, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -114,7 +115,7 @@ GameObject:
   - component: {fileID: 644715949017889010}
   m_Layer: 0
   m_Name: NPC
-  m_TagString: NPC
+  m_TagString: EnemyNPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +129,7 @@ Transform:
   m_GameObject: {fileID: 644715949017888783}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5, y: -1.493, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 644715948329920229}
   - {fileID: 9167929437672177368}
@@ -159,6 +160,7 @@ MonoBehaviour:
   deck:
     spells: []
     name: Deck
+  animator: {fileID: 644715948329920230}
 --- !u!70 &644715949017889012
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

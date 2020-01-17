@@ -9,7 +9,7 @@ namespace Albatross
     {
 
         [SerializeField]
-        Flowchart flow;
+        Flowchart flow = null;
 
         Player pete;
         PlayerActions action;
