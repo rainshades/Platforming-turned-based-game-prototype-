@@ -8,19 +8,15 @@ namespace Albatross
 {
     public class Populate_Enemy : MonoBehaviour
     {
-        public BattleManager bm;
-
+		//Populates the enemy selectors for an action 
+		//and depopulates it so that actions cannot be taken twice
+        
+		public BattleManager bm;
         public GameObject prefabSprite;
-        // Start is called before the first frame update
+		
         void Start()
         {
             bm = FindObjectOfType<BattleManager>();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         public void Populate( List<MonsterObject> Monsters)

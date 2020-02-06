@@ -139,30 +139,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
-                    "id": "2139ee04-ceb4-410d-8be5-2b30d6e1f8c9",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Walk",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "91db99f0-e4cb-4a94-aa70-5381bc766df7",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Walk",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "56707823-6490-40a0-b291-859a4b4fcab9",
+                    "name": "Left",
+                    "id": "b349d1c7-5487-4adc-bfa9-0350a90889ec",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
@@ -172,8 +150,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
-                    "id": "666080c5-60fd-4e01-8eee-55137947a57f",
+                    "name": "Right",
+                    "id": "27472281-ca68-46ff-8fb3-8fdb40a98ba0",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",

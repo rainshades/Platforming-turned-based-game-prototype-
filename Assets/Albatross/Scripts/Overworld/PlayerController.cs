@@ -129,6 +129,11 @@ namespace Albatross
             }
         }
 
+        void OnTriggerEnter2D(UnityEngine.Collider2D col)
+        {
+			
+        }
+
         void OnEnable()
         {
             action.InputsMap.Enable();

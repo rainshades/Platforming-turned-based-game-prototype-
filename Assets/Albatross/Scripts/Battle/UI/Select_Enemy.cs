@@ -27,7 +27,7 @@ namespace Albatross
         public void OnPointerClick(PointerEventData PE)
         {
             switch (tm.getAction())
-            {
+            { //Enacts the action given to it by the turn manager
                 case Action.Attack:
                     currentMon.AttackTarget(TargetMon);
                     populate.Depopulate();

@@ -9,12 +9,12 @@ EditorBuildSettings:
     path: Assets/Albatross/Scenes/StartMenu.unity
     guid: 38cc73a8b7dffb74bb685385ba7fe0a0
   - enabled: 1
-    path: Assets/Albatross/Scenes/DOJO/BattleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/Albatross/Scenes/DOJO/OverWorldDojo.unity
     guid: 1c2e9236fcb147344b55b94f33ff7e98
   - enabled: 1
     path: Assets/Albatross/Scenes/DOJO/PartyManagement.unity
     guid: 21d9ab80720cd654fbefbcd8f9d4c551
+  - enabled: 1
+    path: Assets/Albatross/Scenes/DOJO/BattleDojo.unity
+    guid: 67f5477fa54766841a62a3707ac99ae2
   m_configObjects: {}

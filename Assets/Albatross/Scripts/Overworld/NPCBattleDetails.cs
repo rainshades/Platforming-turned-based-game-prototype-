@@ -11,6 +11,16 @@ namespace Albatross
         public Party party;
         public Deck deck;
         public Animator animator;
+        public bool isAlive;
+        public int NPC_identifier; 
+
+        void Awake()
+        {
+            if (!isAlive)
+            {
+                GameObject.Destroy(gameObject);
+            }
+        }
 
 
         void OnCollisionEnter2D(Collision2D collision2D)

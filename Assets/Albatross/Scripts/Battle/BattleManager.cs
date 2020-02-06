@@ -31,14 +31,8 @@ namespace Albatross
         List<SpellCard> SpellsDisplay = new List<SpellCard>();
 
         [SerializeField]
-        List<SpellCard> HandDisplay = new List<SpellCard>();
-
-        public List<SpellCard> Hand = new List<SpellCard>();
-
-        [SerializeField]
         GameObject cardPrefab = null;
        
-        public Transform HandObject = null;
 
         MonsterObject CurrentMonster = null;
       
@@ -60,7 +54,6 @@ namespace Albatross
             EnemyDeck = gm.enemyDeck;
         
             SpellsDisplay = AllyDeck.spells;
-            HandDisplay = Hand;
         }
 
         void Update()
@@ -78,7 +71,7 @@ namespace Albatross
             {
                 if (AllyField[i].health > 1)
                 {
-                    TargetUI.GetHPObjects()[i].GetComponent<Text>().text = "HP: " + AllyField[i].health;
+                 //   TargetUI.GetHPObjects()[i].GetComponent<Text>().text = "HP: " + AllyField[i].health;
                 }
                 if(AllyField[i].health <= 1 && AllyField[i] != null)
                 {
@@ -99,13 +92,13 @@ namespace Albatross
                     if (AllyField[0].health == 0 && AllyField[1].health == 0)
                     {
                         SceneManager.LoadScene(PostBattleScene);
-                    }//Loads the beginning of the Level
+                    }
                     break;
                 case 3:
                     if (AllyField[0].health == 0 && AllyField[1].health == 0 && AllyField[2].health == 0)
                     {
                         SceneManager.LoadScene(PostBattleScene);
-                    }//Loads the beginning of the Level
+                    }
                     break;
                 
             }
@@ -115,17 +108,13 @@ namespace Albatross
                     if (EnemyField[0].health == 0)
                     {
                         SceneManager.LoadScene(PostBattleScene);
-                    }//Loads where the player was before the battle, the enemy defeated.
-                     //Sets the players party health to the same amount of health they had at the end of the battle
-                     //If one of party members died it sets them to 1hp
+                    }
                     break;
                 case 2:
                     if (EnemyField[0].health == 0 && EnemyField[1].health == 0)
                     {
                         SceneManager.LoadScene(PostBattleScene);
-                    }//Loads where the player was before the battle, the enemy defeated.
-                     //Sets the players party health to the same amount of health they had at the end of the battle
-                     //If one of party members died it sets them to 1hp
+					}
                     break;
                 case 3:
                     if (EnemyField[0].health == 0 && EnemyField[1].health == 0 && EnemyField[2].health == 0)
@@ -152,11 +141,9 @@ namespace Albatross
         {
             if (AllyDeck.spells.Count > 0)
             {
-                Hand.Add(AllyDeck.spells[0]);
                 cardPrefab.GetComponent<SpellObject>().spell = AllyDeck.spells[0];
 
                 AllyDeck.spells.RemoveAt(0);
-                GameObject nw = Instantiate(cardPrefab, HandObject);
             }
         }
     }

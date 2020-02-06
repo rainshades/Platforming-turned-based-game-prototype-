@@ -29,7 +29,6 @@ namespace Albatross
             actions = new PlayerActions();
         }
 
-        // Update is called once per frame
         void Update()
         {
             actions.InputsMap.Walk.performed += ctx => buttonInput = (int)(ctx.ReadValue<Vector2>().y * 10);

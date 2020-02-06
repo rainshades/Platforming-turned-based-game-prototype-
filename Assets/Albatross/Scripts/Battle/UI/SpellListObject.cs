@@ -26,10 +26,18 @@ namespace Albatross
             transform.name = spell.name;
         }
 
+        public void UpdatePrefab(SpellCard spell, string SpellName, Sprite sprite)
+        {
+            this.spell = spell; this.SpellName.text = SpellName; this.Image.sprite = sprite; 
+        }
+
         public void OnPointerClick(PointerEventData pe)
         {
-            dbh.PreviewImage.sprite = Image.sprite;
-            if (dbh.Deck.spells.Count < 20)
+            if(pe.clickCount < 2 || pe.dragging)
+            {
+                dbh.SpellPreview.sprite = this.Image.sprite; 
+            }
+            else if (dbh.Deck.spells.Count < 20)
             {
                 dbh.addToDeck(spell);
             }

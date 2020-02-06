@@ -9,6 +9,8 @@ TagManager:
   - NPC
   - SayStarter
   - EnemyNPC
+  - TutorialPoint
+  - TransitionSpace
   layers:
   - Default
   - TransparentFX

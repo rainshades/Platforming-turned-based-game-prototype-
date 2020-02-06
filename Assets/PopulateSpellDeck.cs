@@ -2,30 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Albatross
 {
-    public class PopulateMonsterContentBox : MonoBehaviour
+    public class PopulateSpellDeck : MonoBehaviour
     {
-		
+        GameManager gm;
+
         [SerializeField]
-        List<Monster> FullListOfMonsters = new List<Monster>();
+        List<SpellCard> SpellsinDeck;
         [SerializeField]
         GameObject DemoGameManager;
-        GameManager gm;
-        
-		public GameObject prefab;
+
+        public GameObject prefab;
+
         public int numberToCreate;
 
 
         void Awake()
         {
-
             gm = FindObjectOfType<GameManager>();
-            FullListOfMonsters = gm.DemoInventory.MonstersInInventory; // Only for DEMO TODO: REMOVE
-
+            SpellsinDeck = gm.currentDeck.spells;
         }
 
+        // Start is called before the first frame update
         void Start()
         {
             InnitPopulate();
@@ -34,13 +33,15 @@ namespace Albatross
         public void InnitPopulate()
         {
             GameObject newObj;
-            numberToCreate = FullListOfMonsters.Count;
+            numberToCreate = SpellsinDeck.Count;
 
             for (int i = 0; i < numberToCreate; i++)
             {
-                prefab.GetComponent<MonsterListObject>().setMon(FullListOfMonsters[i]);
+                prefab.GetComponent<SpellListObject>().setSpell(SpellsinDeck[i]);
                 newObj = Instantiate(prefab, transform);
+                //Debug.Log(newObj.name + " has been born");
             }
         }
     }
 }
+

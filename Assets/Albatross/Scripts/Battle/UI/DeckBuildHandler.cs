@@ -14,12 +14,14 @@ namespace Albatross
         public Party Party;
         public Deck Deck;
 
+
         public GameObject SpellListPrefab;
         public GameObject SpellListContent;
 
         public Image PreviewImage;
+        public Image SpellPreview;
         public Image[] PartyPreview;
-
+        public Image[] PartyPreview2;
 
         // Start is called before the first frame update
         void Start()
@@ -33,12 +35,27 @@ namespace Albatross
         void Update()
         {
 
-            if (Party != null)
+            for (int i = 0; i < 3; i++)
+            {
+                PartyPreview[i].sprite = null;
+                PartyPreview2[i].sprite = null;
+            }
+
+            if (Party.PartyMembers.Count > 0)
             {
                 for (int i = 0; i < Party.PartyMembers.Count; i++)
                 {
                     if (Party.PartyMembers[i] != null)
                         PartyPreview[i].sprite = Party.PartyMembers[i].artwork;
+                    else
+                        PartyPreview[i].sprite = null;
+                }
+                for (int i = 0; i < Party.PartyMembers.Count; i++)
+                {
+                    if (Party.PartyMembers[i] != null)
+                        PartyPreview2[i].sprite = Party.PartyMembers[i].artwork;
+                    else
+                        PartyPreview2[i].sprite = null;
                 }
             }
         }
@@ -51,6 +68,23 @@ namespace Albatross
         {
             Deck.Add(spell);
             GameObject newObj = Instantiate(SpellListPrefab, SpellListContent.transform);
+            newObj.GetComponent<SpellListObject>().UpdatePrefab(spell, spell.name, spell.artwork);
+        }
+
+        public void removeFromParty(Monster mon)
+        {
+            if (Party.PartyMembers.Contains(mon))
+            {
+                Party.PartyMembers.Remove(mon);
+            }
+        }
+        public void removeFromParty(int index)
+        {
+            Party.PartyMembers.RemoveAt(index);
+        }
+        public void removeFromDeck(SpellCard spell)
+        {
+
         }
 
         public void setDeck()
@@ -64,28 +98,46 @@ namespace Albatross
 
         public void saveDeck(string DeckName)
         {
-        }
-
-        public void LoadDeck(string DeckName)
-        {
-
-        }
-
-        public void saveParty()
-        {
-            FileStream file = File.Create("Assets/Parties/Party1.txt");
-            string json = JsonUtility.ToJson(Party);
+            FileStream file = File.Create(Application.persistentDataPath + "/Deck");
+            string json = JsonUtility.ToJson(Deck);
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(file, json);
             file.Close();
         }
 
+        public void LoadDeck(string DeckName)
+        {
+            FileStream file = File.Open(Application.persistentDataPath + "/Deck", FileMode.Open);
+            BinaryFormatter bf = new BinaryFormatter();
+            string json = (string)bf.Deserialize(file);
+            Debug.Log(json);
+
+            Deck = JsonUtility.FromJson<Deck>(json);
+
+            file.Close();
+        }
+
+        public void saveParty()
+        {
+            FileStream file = File.Create(Application.persistentDataPath + "/Parties");
+            string json = JsonUtility.ToJson(Party);
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(file, json);
+            file.Close();
+                
+        }
+
 
         public void LoadParty(string PartyName)
         {
-            FileStream file = File.Open("Assets/Parties/Party1.txt", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/Parties", FileMode.Open);
+            BinaryFormatter bf = new BinaryFormatter();
+            string json = (string)bf.Deserialize(file);
+            Debug.Log(json);
 
-            Party = JsonUtility.FromJson<Party>(PartyName);
+            Party = JsonUtility.FromJson<Party>(json);
+
+            file.Close();
 
         }
     }

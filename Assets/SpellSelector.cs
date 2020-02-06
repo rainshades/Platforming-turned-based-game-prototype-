@@ -25,11 +25,16 @@ namespace Albatross
             sm = FindObjectOfType<SpellManager>();
 
             PlayerSpells = gm.currentDeck;
-            currentSpell = PlayerSpells.spells[CurrentSpellNumber];
 
             spellPrefab.GetComponent<SpellObject>().spell = currentSpell;
             GameObject go = Instantiate(spellPrefab, transform);
 
+        }
+
+        void Update()
+        {
+
+            currentSpell = PlayerSpells.spells[CurrentSpellNumber];
         }
 
         public void CycleUp()

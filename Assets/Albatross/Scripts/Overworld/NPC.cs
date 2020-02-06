@@ -5,14 +5,13 @@ using UnityEngine;
 
 namespace Albatross
 {
-    public class NPC : MonoBehaviour
+    public class NPC : MonoBehaviour //A non playerable character that contains dialog options
     {
         public enum NPCTYPE { Neutral, Hostile, Friendly }
         [SerializeField]
         protected NPCTYPE thisNPC;
-        NPCBattleDetails NpcPartyAndDeck;
+        NPCBattleDetails NpcPartyAndDeck; 
         public string overworld_dialog;
-
 
         public NPCTYPE GetNpcType()
         {

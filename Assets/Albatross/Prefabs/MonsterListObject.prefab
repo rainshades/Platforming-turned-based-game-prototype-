@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9117822881440e4997068ca3c57c38d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mon: {fileID: 0}
+  mon: {fileID: 11400000, guid: feab6e63ac25bc642adf8d85e23003bd, type: 2}
   CharacterName: {fileID: 0}
   Image: {fileID: 0}
   dbh: {fileID: 0}

@@ -10,11 +10,10 @@ namespace Albatross
         [SerializeField]
         TurnManager tm;
         public Canvas targetBox;
-        public Canvas Hand;
         [SerializeField]
         MonsterObject mon;
         [SerializeField]
-        GameObject en;
+        GameObject en; 
         BattleManager bm;
         
 
@@ -51,7 +50,6 @@ namespace Albatross
         public void SpellButton()
         {
             en.gameObject.GetComponent<Populate_Enemy>().Depopulate();
-            tm.CanvasOn(Hand.gameObject);
         }
     }
 }

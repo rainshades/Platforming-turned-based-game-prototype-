@@ -16,7 +16,8 @@ namespace Albatross
     {
 
         int currentTurn;
-        int turnNumber;
+
+        public int turnNumber;
         [SerializeField]
         Action a;
 
@@ -81,6 +82,7 @@ namespace Albatross
             }
             else
             {
+                Debug.Log(turnNumber++);
                 currentMonIndex = 0;
             }
 

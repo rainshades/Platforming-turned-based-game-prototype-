@@ -12,8 +12,10 @@ namespace Albatross
         PlayerActions inputs;
         float player_speed_saver;
         PlayerController pc;
+			//Creates the ability to stop the player from
+			//moving by setting their movement from 0 while
+			//the menu is open and back to its default value when it is closed
 
-        // Start is called before the first frame update
         void Awake()
         {
             inputs = new PlayerActions();
@@ -28,12 +30,12 @@ namespace Albatross
             {
                 pc.maxSpeed = 0;
                 inputs.UI.ConfirmSelection.performed += ctx => MenuButtons.gameObject.SetActive(false);
-            }
+            } 
             else
             {
                 pc.maxSpeed = player_speed_saver;
                 inputs.UI.ConfirmSelection.performed += ctx => MenuButtons.gameObject.SetActive(true);
-            }
+            } //Opens and closes the menu on the overworld  
         }
 
         void OnEnable()

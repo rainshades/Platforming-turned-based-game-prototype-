@@ -9,21 +9,36 @@ namespace Albatross
     {
         [SerializeField]
         List<SpellCard> FullListOfSpells = new List<SpellCard>();
+        [SerializeField]
+        GameObject DemoGameManager;
+        GameManager gm;
 
         public GameObject prefab;
-
         public int numberToCreate;
+		
+        void Awake()
+        {
 
-        // Start is called before the first frame update
+            if (FindObjectOfType<GameManager>() == null)
+            {
+                Instantiate(DemoGameManager);
+                FullListOfSpells = DemoGameManager.GetComponent<GameManager>().DemoInventory.SpellsInInventory; // Only for DEMO TODO: REMOVE
+            }
+            else
+            {
+
+                gm = FindObjectOfType<GameManager>();
+                FullListOfSpells = gm.DemoInventory.SpellsInInventory; // Only for DEMO TODO: REMOVE
+
+            }
+
+        }
+
         void Start()
         {
             Populate();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-        }
 
         public void Populate()
         {
@@ -34,7 +49,6 @@ namespace Albatross
             {
                 prefab.GetComponent<SpellListObject>().setSpell(FullListOfSpells[i]);
                 newObj = Instantiate(prefab, transform);
-                //Debug.Log(newObj.name + " has been born");
             }
         }
     }

@@ -9,6 +9,8 @@ namespace Albatross
 {
     public class MonsterListObject : MonoBehaviour, IPointerClickHandler
     {
+		//Represents an ID's data in UI for deck building 
+
         public Monster mon;
         public Text CharacterName;
         public Image Image;
@@ -28,9 +30,14 @@ namespace Albatross
 
         public void OnPointerClick(PointerEventData pe)
         {
-            dbh.PreviewImage.sprite = Image.sprite;
-            //Debug.Log(name + "Was Clicked");
-            dbh.addToParty(mon);
+            if (pe.clickCount < 2 || pe.dragging)
+            {
+                dbh.PreviewImage.sprite = Image.sprite;
+            }
+            else if (dbh.Party.PartyMembers.Count < 3) {
+                dbh.addToParty(mon); 
+            }
+
         }
 
         public void setMon(Monster mon)
