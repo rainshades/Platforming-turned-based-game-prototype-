@@ -4139,7 +4139,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4881651481846894478, guid: d19d2c26f82ae8d4ab641369f85d0ad1,
           type: 3}
-        m_MethodName: SceneButton
+        m_MethodName: SavedGameButton
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

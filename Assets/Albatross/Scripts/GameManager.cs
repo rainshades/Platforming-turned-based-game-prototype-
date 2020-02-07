@@ -29,9 +29,12 @@ namespace Albatross
         public List<Monster> mon;
         public List<SpellCard> spell;
 
+        bool DataLoaded, SavedGame; 
+
         [SerializeField]
         GameData data = new GameData();
 
+        
         void Start()
         {
             mon = currentParty.PartyMembers;
@@ -40,13 +43,17 @@ namespace Albatross
             DontDestroyOnLoad(this.gameObject);
         }
 
-        void Update()
-        {
-        }
-
-        public void SceneButton(string nextScene)
+        public void NewGameButton(string nextScene)
         {
             SceneManager.LoadScene(nextScene);
+            SaveGame();
+        }
+
+        public void SavedGameButton(string nextScene)
+        {
+            SceneManager.LoadScene(nextScene);
+            LoadData();
+            SetData();
         }
 
         public void SaveGame()
@@ -78,7 +85,21 @@ namespace Albatross
 
             data = JsonUtility.FromJson<GameData>(json);
 
+            DataLoaded = true;
+
             file.Close();
+        }
+
+
+        public void SetData()
+        {
+            FindObjectOfType<Player>().transform.position = data.PlayerLocation;
+            FindObjectOfType<Player>().HumanHealth = data.HumanHealth;
+            currentParty = data.currentParty;
+            FindObjectOfType<Camera>().transform.position = data.CameraLocation;
+            currentDeck=data.currentDeck;
+            DemoInventory=data.inv;
+            FindObjectOfType<Player>().OverWorldManaPool = data.OverWorldManaPool;
         }
 
         public void ExitGame()
