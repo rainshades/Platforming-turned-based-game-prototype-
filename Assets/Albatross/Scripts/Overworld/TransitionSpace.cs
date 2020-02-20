@@ -15,8 +15,8 @@ namespace Albatross
 
         void Update()
         {
-            float height = 10.0f;
-            float width = 10.0f;
+            float height = 5.0f;
+            float width = 15.0f;
             if (CameraDirection == Direction.North)
             {
                 NewCameraPosition = new Vector3(transform.parent.transform.position.x, transform.parent.transform.position.y + height, transform.parent.transform.position.z);

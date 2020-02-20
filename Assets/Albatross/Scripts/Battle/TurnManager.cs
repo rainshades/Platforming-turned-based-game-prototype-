@@ -1,6 +1,5 @@
 ﻿/* Project Albatross 
  * Prepared by Eddie Fulton
- * Unpublished/Unfinished
  * Purpose: Manages the array of Characters on screen
  * Status: Member: Testing 
  */
@@ -76,6 +75,8 @@ namespace Albatross
 
         public void EndTurn()
         {
+            SpellManager sm = FindObjectOfType<SpellManager>(); 
+
             if (currentMonIndex < TurnOrder.Count - 1)
             {
                 currentMonIndex++;
@@ -85,8 +86,9 @@ namespace Albatross
                 Debug.Log(turnNumber++);
                 currentMonIndex = 0;
             }
-
+            sm.DrawCard();
             TurnOrder = determineTurnOrder(TurnOrder);
+            
         }
 
         void Update()

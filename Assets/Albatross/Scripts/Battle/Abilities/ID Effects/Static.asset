@@ -16,6 +16,6 @@ MonoBehaviour:
   effect:
     EffectAmount: 0
     effect: 2
-  Target: {fileID: 0}
+  TargetType: 0
   EffectDescription: 
   PassiveTrigger: 2

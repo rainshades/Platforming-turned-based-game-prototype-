@@ -47,9 +47,17 @@ namespace Albatross
             mon.health += 10;
             tm.EndTurn();
         }
-        public void SpellButton()
+        public void SpellButton(SpellObject spell)
         {
-            en.gameObject.GetComponent<Populate_Enemy>().Depopulate();
+            if (spell != null)
+            {
+                
+                en.gameObject.GetComponent<Populate_Enemy>().Depopulate();
+            }
+            else
+            {
+                Debug.LogError("No spell selected");
+            }
         }
     }
 }

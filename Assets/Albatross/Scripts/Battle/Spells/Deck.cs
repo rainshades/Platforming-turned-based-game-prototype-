@@ -15,7 +15,7 @@ namespace Albatross
     [System.Serializable]
     public class Deck
     {
-        public List<SpellCard> spells = new List<SpellCard>();
+        public List<SpellCard> spells;
 
         public string name;
 

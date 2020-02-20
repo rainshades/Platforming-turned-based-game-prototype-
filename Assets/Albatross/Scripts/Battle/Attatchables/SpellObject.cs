@@ -72,16 +72,12 @@ namespace Albatross
         public void OnPointerClick(PointerEventData pe)
         {
             sm.setSpell(this);
-            TurnManager tm = FindObjectOfType<TurnManager>();
-            if (tt == TargetType.Self || tt == TargetType.NoTarget)
+            SpellPreviewPanel spp = FindObjectOfType<SpellPreviewPanel>();
+            spp.setPreviewPanel(spell.artwork, spell.description);
+
+            if (pe.clickCount > 1)
             {
-                if (tt == TargetType.Self) { CastToTarget(tm.getCurrentMonster()); }
-                if (tt == TargetType.NoTarget) { CastToTarget(); }
-            }
-            else
-            {
-                BattleUi boi = FindObjectOfType<BattleUi>();
-                tm.CanvasOn(boi.targetBox.gameObject);
+                Cast();
             }
         }
 
@@ -90,9 +86,32 @@ namespace Albatross
             return this;
         }
 
-        public void CastToTarget()
+        public void Cast()
         {
-            spell.Ability.Activate();
+            sm.setSpell(this);
+            TurnManager tm = FindObjectOfType<TurnManager>();
+
+            switch (tt)
+            {
+                case TargetType.Self:
+                    spell.Ability.Activate();
+                    Destroy(gameObject);
+                    tm.EndTurn();
+                    break;
+                case TargetType.AllyMonster:
+                    break;
+                case TargetType.AllySpell:
+                    break;
+                case TargetType.EnemySpell:
+                    break;
+                case TargetType.EnemyMonster:
+                    break;
+                case TargetType.NoTarget:
+                    spell.Ability.Activate();
+                    Destroy(gameObject);
+                    tm.EndTurn();
+                    break;
+            }
         }
 
         public void CastToTarget(MonsterObject target)
@@ -102,7 +121,7 @@ namespace Albatross
 
         public void CastToTarget(SpellObject target)
         {
-
+            spell.Ability.Activate(target);
         }
     }
 }

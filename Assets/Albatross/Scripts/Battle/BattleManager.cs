@@ -1,6 +1,5 @@
 ﻿/* Project Albatross 
  * Prepared by Eddie Fulton
- * Unpublished/Unfinished
  * Purpose: The battle state manager: Handles battle phases, transitions them, and established win/loss battle condition 
  * Status: Member: Testing 
  */
@@ -32,13 +31,9 @@ namespace Albatross
 
         [SerializeField]
         GameObject cardPrefab = null;
-       
 
         MonsterObject CurrentMonster = null;
       
-        Deck AllyDeck = null;
-        Deck EnemyDeck = null;
-               
         void Start()
         {
             TargetUI = FindObjectOfType<TargetUI>();
@@ -48,12 +43,8 @@ namespace Albatross
             fs = FindObjectOfType<FieldSpawner>();
 
             AllyField = fs.AllyField;
-            AllyDeck = gm.currentDeck;
 
             EnemyField = fs.EnemyField;
-            EnemyDeck = gm.enemyDeck;
-        
-            SpellsDisplay = AllyDeck.spells;
         }
 
         void Update()
@@ -126,25 +117,5 @@ namespace Albatross
                     break;
             }
          }
-
-        public void setAllyDeck(Deck d)
-        {
-            AllyDeck = d;
-        }
-
-        public void setEnemyDeck(Deck d)
-        {
-            EnemyDeck = d;
-        }
-
-        public void DrawCard()
-        {
-            if (AllyDeck.spells.Count > 0)
-            {
-                cardPrefab.GetComponent<SpellObject>().spell = AllyDeck.spells[0];
-
-                AllyDeck.spells.RemoveAt(0);
-            }
-        }
     }
 }

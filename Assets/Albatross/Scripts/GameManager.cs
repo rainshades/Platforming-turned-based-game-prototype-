@@ -1,6 +1,5 @@
 ﻿/* Project Albatross
  * Prepared by Eddie Fulton
- * Unpublished/Unfinished
  * Purpose: SceneMangement, SaveStateManagement, Storing objects meant to be used inbetween scenes
  * Status: Member: Testing
  */
@@ -20,19 +19,18 @@ namespace Albatross
 
         public PlayerInventory DemoInventory;//Inventory specifically for the DOJO
 
-        public Deck currentDeck;
-        public Party currentParty;
+        public Deck currentDeck = new Deck("Player's Deck");
+        public Party currentParty = new Party("Player's party");
 
-        public Deck enemyDeck = null;
-        public Party enemyParty = null;
+        public Deck enemyDeck;
+        public Party enemyParty;
 
         public List<Monster> mon;
         public List<SpellCard> spell;
 
-        bool DataLoaded, SavedGame; 
+        bool PleaseSetData = false;
 
-        [SerializeField]
-        GameData data = new GameData();
+        public GameData data = new GameData();
 
         
         void Start()
@@ -43,63 +41,123 @@ namespace Albatross
             DontDestroyOnLoad(this.gameObject);
         }
 
+
+        void Update()
+        {
+
+            if (PleaseSetData)
+            {
+                SetData();
+            }
+        }
+
         public void NewGameButton(string nextScene)
         {
             SceneManager.LoadScene(nextScene);
-            SaveGame();
         }
 
         public void SavedGameButton(string nextScene)
         {
             SceneManager.LoadScene(nextScene);
             LoadData();
-            SetData();
         }
 
         public void SaveGame()
         {
+            data.inv = DemoInventory;
+
             data.PlayerLocation = FindObjectOfType<Player>().transform.position;
             data.HumanHealth = FindObjectOfType<Player>().HumanHealth;
-            data.currentParty = currentParty;
             data.CameraLocation = FindObjectOfType<Camera>().transform.position;
-            data.currentDeck = currentDeck;
-            data.inv = DemoInventory;
             data.OverWorldManaPool = FindObjectOfType<Player>().OverWorldManaPool;
 
-            string filepath = Application.persistentDataPath + "/SaveGame.json";
+            data.Save();
+        }
 
-            FileStream file = File.Create(filepath);
-            string json = JsonUtility.ToJson(data);
-            BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(file, json);
-            file.Close();
+        public void SetParty(Party p)
+        {
+            currentParty = p;
+        }
+
+        public void SetDeck(Deck d)
+        {
+            currentDeck = d;
         }
 
         public void LoadData()
         {
-            string filepath = Application.persistentDataPath + "/SaveGame.json";
-            FileStream file = File.Open(filepath, FileMode.Open);
-            BinaryFormatter bf = new BinaryFormatter();
-            string json = (string)bf.Deserialize(file);
-            Debug.Log(json);
+            string DataPath = Application.persistentDataPath + "/SaveGame.json";
+            string PartyPath = Application.persistentDataPath + "/Parties.json";
+            string DeckPath = Application.persistentDataPath + "/Deck.json";
 
-            data = JsonUtility.FromJson<GameData>(json);
+            try
+            {
+                FileStream file = File.Open(DataPath, FileMode.Open);
+                BinaryFormatter bf = new BinaryFormatter();
+                string json = (string)bf.Deserialize(file);
 
-            DataLoaded = true;
+                data = JsonUtility.FromJson<GameData>(json);
 
-            file.Close();
+                file.Close();
+
+            }
+            catch
+            {
+                Debug.LogError("File not Found");
+            }
+
+            try
+            {
+                FileStream file = File.Open(PartyPath, FileMode.Open);
+                BinaryFormatter bf = new BinaryFormatter();
+                string json = (string)bf.Deserialize(file);
+
+                currentParty = JsonUtility.FromJson<Party>(json);
+
+                file.Close();
+            }
+            catch
+            {
+                Debug.LogError("File not Found");
+            }
+
+            try
+            {
+                FileStream file = File.Open(DeckPath, FileMode.Open);
+                BinaryFormatter bf = new BinaryFormatter();
+                string json = (string)bf.Deserialize(file);
+                currentDeck = JsonUtility.FromJson<Deck>(json);
+
+
+                file.Close();
+
+            }
+            catch
+            {
+                Debug.LogError("File not Found");
+            }
+
+            PleaseSetData = true;
+
         }
 
 
         public void SetData()
         {
-            FindObjectOfType<Player>().transform.position = data.PlayerLocation;
-            FindObjectOfType<Player>().HumanHealth = data.HumanHealth;
-            currentParty = data.currentParty;
-            FindObjectOfType<Camera>().transform.position = data.CameraLocation;
-            currentDeck=data.currentDeck;
-            DemoInventory=data.inv;
-            FindObjectOfType<Player>().OverWorldManaPool = data.OverWorldManaPool;
+            try
+            {
+                FindObjectOfType<Player>().transform.position = data.PlayerLocation;
+                FindObjectOfType<Player>().HumanHealth = data.HumanHealth;
+                FindObjectOfType<Camera>().transform.position = data.CameraLocation;
+
+                DemoInventory = data.inv;
+                FindObjectOfType<Player>().OverWorldManaPool = data.OverWorldManaPool;
+                PleaseSetData = false;
+            }
+            catch
+            {
+                Debug.LogError("Data not set");
+            }
         }
 
         public void ExitGame()

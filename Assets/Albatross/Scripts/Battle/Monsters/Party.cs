@@ -16,7 +16,7 @@ namespace Albatross
     [System.Serializable]
     public class Party
     {
-        public List<Monster> PartyMembers = new List<Monster>();
+        public List<Monster> PartyMembers;
         public string name;
 
         public void Add(Monster mon)
@@ -29,12 +29,13 @@ namespace Albatross
 
         public Party(string name)
         {
+            PartyMembers = new List<Monster>();
             this.name = name;
         }
 
         public Party()
         {
-
+            PartyMembers = new List<Monster>();
         }
     }
 }

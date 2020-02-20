@@ -28,6 +28,9 @@ namespace Albatross
 
         bool action_augment_flag = false;
 
+
+        Vector3 RespawnPoint = Vector3.zero;
+
         void Awake()
         {
 
@@ -69,7 +72,7 @@ namespace Albatross
             //JumpBlock
 
         }
-
+        
         protected override void ComputeVelocity()
         {
          
@@ -131,7 +134,36 @@ namespace Albatross
 
         void OnTriggerEnter2D(UnityEngine.Collider2D col)
         {
-			
+            if (col.gameObject.tag.Equals("NPC"))
+            {
+                Flowchart fc = FindObjectOfType<Flowchart>();
+                if(fc == null)
+                {
+                    GameObject go = new GameObject();
+                    go.AddComponent<Flowchart>();
+                    fc = go.GetComponent<Flowchart>();
+                }
+
+                Block nb = fc.CreateBlock(Vector2.zero);
+                Say dialog = col.GetComponent<Say>();
+                dialog.SetStandardText(col.GetComponent<NPC>().overworld_dialog);
+                nb.CommandList.Add(dialog);
+
+                
+            }
+            if (col.gameObject.tag.Equals("DeathZone"))
+            {
+                pete.HumanHealth = 0;
+            }
+            if (col.gameObject.tag.Equals("RespawnPoint"))
+            {
+                RespawnPoint = col.gameObject.transform.position;
+            }
+            if (col.gameObject.tag.Equals("TransitionSpace"))
+            {
+                GameManager gm = FindObjectOfType<GameManager>();
+                gm.NewGameButton(col.GetComponent<SceneTransition>().NextScene);
+            }
         }
 
         void OnEnable()
@@ -143,6 +175,11 @@ namespace Albatross
         void OnDisable()
         {
             action.InputsMap.Disable();
+        }
+
+        public Vector3 getRespawnPoint()
+        {
+            return RespawnPoint;
         }
     }
 }

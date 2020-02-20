@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Albatross/Scenes/DOJO/PartyManagement.unity
     guid: 21d9ab80720cd654fbefbcd8f9d4c551
   - enabled: 1
-    path: Assets/Albatross/Scenes/DOJO/BattleDojo.unity
+    path: Assets/Albatross/Scenes/3v3BattleScene.unity
     guid: 67f5477fa54766841a62a3707ac99ae2
   m_configObjects: {}

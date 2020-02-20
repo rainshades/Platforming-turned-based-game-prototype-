@@ -11,6 +11,8 @@ TagManager:
   - EnemyNPC
   - TutorialPoint
   - TransitionSpace
+  - DeathZone
+  - RespawnPoint
   layers:
   - Default
   - TransparentFX

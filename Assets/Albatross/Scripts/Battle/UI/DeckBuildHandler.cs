@@ -90,36 +90,37 @@ namespace Albatross
         public void setDeck()
         {
             gm.currentDeck = this.Deck;
+            gm.SetDeck(Deck);
         }
         public void setParty()
         {
             gm.currentParty = this.Party;
+            gm.SetParty(Party);
         }
 
         public void saveDeck(string DeckName)
         {
-            FileStream file = File.Create(Application.persistentDataPath + "/Deck");
+            FileStream file = File.Create(Application.persistentDataPath + "/Deck.json");
             string json = JsonUtility.ToJson(Deck);
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(file, json);
             file.Close();
         }
 
-        public void LoadDeck(string DeckName)
+        public static void LoadDeck(Deck d)
         {
-            FileStream file = File.Open(Application.persistentDataPath + "/Deck", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/Deck.json", FileMode.Open);
             BinaryFormatter bf = new BinaryFormatter();
             string json = (string)bf.Deserialize(file);
-            Debug.Log(json);
 
-            Deck = JsonUtility.FromJson<Deck>(json);
+            d = JsonUtility.FromJson<Deck>(json);
 
             file.Close();
         }
 
         public void saveParty()
         {
-            FileStream file = File.Create(Application.persistentDataPath + "/Parties");
+            FileStream file = File.Create(Application.persistentDataPath + "/Parties.json");
             string json = JsonUtility.ToJson(Party);
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(file, json);
@@ -128,14 +129,13 @@ namespace Albatross
         }
 
 
-        public void LoadParty(string PartyName)
+        public static void LoadParty(Party party)
         {
-            FileStream file = File.Open(Application.persistentDataPath + "/Parties", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/Parties.json", FileMode.Open);
             BinaryFormatter bf = new BinaryFormatter();
             string json = (string)bf.Deserialize(file);
-            Debug.Log(json);
 
-            Party = JsonUtility.FromJson<Party>(json);
+            party = JsonUtility.FromJson<Party>(json);
 
             file.Close();
 

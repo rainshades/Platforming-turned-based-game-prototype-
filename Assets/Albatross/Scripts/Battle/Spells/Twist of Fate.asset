@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   element: 3
   name: Twist of Fate
-  Ability: {fileID: 0}
+  Ability: {fileID: 11400000, guid: 51dc23e11b1122c4b9c0cc7b06f2c9c3, type: 2}
   cost: 0
   description: Switch the Health and Attack of one character
   SpellEffectAmount: 0

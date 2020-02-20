@@ -25,5 +25,18 @@ namespace Albatross
         {
             return CardInventory;
         }
+
+        void Update()
+        {
+            if (HumanHealth < 1)
+            {
+                Respawn();
+            }
+        }
+
+        void Respawn()
+        {
+            transform.position = GetComponent<PlayerController>().getRespawnPoint();
+        }
     }
 }
