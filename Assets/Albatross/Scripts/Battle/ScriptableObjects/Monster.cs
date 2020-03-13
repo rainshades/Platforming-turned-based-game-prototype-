@@ -12,7 +12,6 @@ namespace Albatross
     {
         public new string name;
 
-        public ActiveAbility active;
         public PassiveAbility passive;
 
         public string description;

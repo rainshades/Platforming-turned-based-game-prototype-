@@ -9,8 +9,6 @@ namespace Albatross
     {
         [SerializeField]
         List<SpellCard> FullListOfSpells = new List<SpellCard>();
-        [SerializeField]
-        GameObject DemoGameManager;
         GameManager gm;
 
         public GameObject prefab;
@@ -18,20 +16,8 @@ namespace Albatross
 		
         void Awake()
         {
-
-            if (FindObjectOfType<GameManager>() == null)
-            {
-                Instantiate(DemoGameManager);
-                FullListOfSpells = DemoGameManager.GetComponent<GameManager>().DemoInventory.SpellsInInventory; // Only for DEMO TODO: REMOVE
-            }
-            else
-            {
-
                 gm = FindObjectOfType<GameManager>();
-                FullListOfSpells = gm.DemoInventory.SpellsInInventory; // Only for DEMO TODO: REMOVE
-
-            }
-
+                FullListOfSpells = gm.DemoInventory.SpellsInInventory; 
         }
 
         void Start()

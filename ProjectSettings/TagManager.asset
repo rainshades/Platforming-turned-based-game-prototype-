@@ -9,10 +9,8 @@ TagManager:
   - NPC
   - SayStarter
   - EnemyNPC
-  - TutorialPoint
   - TransitionSpace
-  - DeathZone
-  - RespawnPoint
+  - Spawner
   layers:
   - Default
   - TransparentFX

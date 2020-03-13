@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Albatross
 {
-    public class TransitionSpace : MonoBehaviour
+    public class TransitionCameraSpace : MonoBehaviour
     {
         enum Direction { North, South, East, West}
         Vector3 NewCameraPosition = Vector3.zero;
@@ -14,7 +14,7 @@ namespace Albatross
         Direction CameraDirection; 
 
         void Update()
-        {
+        {            
             float height = 5.0f;
             float width = 15.0f;
             if (CameraDirection == Direction.North)

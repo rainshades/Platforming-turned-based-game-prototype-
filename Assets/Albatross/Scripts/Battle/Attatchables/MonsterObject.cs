@@ -51,7 +51,6 @@ namespace Albatross
             attack = thisMonster.attack;
             speed = thisMonster.speed;
             type = thisMonster.element;
-            ActiveAbility = thisMonster.active;
             PassiveAbility = thisMonster.passive;
 
             bm = FindObjectOfType<BattleManager>();
