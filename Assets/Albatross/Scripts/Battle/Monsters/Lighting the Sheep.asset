@@ -20,5 +20,5 @@ MonoBehaviour:
   attack: 2
   health: 16
   speed: 3
-  artwork: {fileID: 21300000, guid: 2121d00973a1313449c7f2acfe06ab36, type: 3}
+  artwork: {fileID: 21300000, guid: a5dd6c22b21ae654b9dfb04843abe5b1, type: 3}
   alive: 1

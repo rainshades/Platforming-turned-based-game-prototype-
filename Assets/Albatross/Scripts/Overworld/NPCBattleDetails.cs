@@ -5,37 +5,24 @@ using UnityEngine;
 
 namespace Albatross
 {
-    public class NPCBattleDetails : PhysicsObject
+    public class NPCBattleDetails: MonoBehaviour
     {
 
         public Party party;
         public Deck deck;
-        public Animator animator;
-        public bool isAlive;
-        public int NPC_identifier; 
-
-        void Awake()
-        {
-            if (!isAlive)
-            {
-                GameObject.Destroy(gameObject);
-            }
-        }
-
-
+        public bool isAlive = true;
+        
         void OnCollisionEnter2D(Collision2D collision2D)
         {
-            if(collision2D.gameObject.tag == "Player")
+            if (isAlive)
             {
-                GameManager Gm = FindObjectOfType<GameManager>();
-                Gm.enemyParty = party;
-                Gm.enemyDeck = deck;
+                if (collision2D.gameObject.tag == "Player")
+                {
+                    GameManager Gm = FindObjectOfType<GameManager>();
+                    Gm.enemyParty = party;
+                    Gm.enemyDeck = deck;
+                }
             }
-        }
-
-        protected override void ComputeVelocity()
-        {
-            animator.SetBool("Grounded", grounded);
         }
     }
 }

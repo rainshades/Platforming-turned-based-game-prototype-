@@ -15,10 +15,12 @@ namespace Albatross
         [SerializeField]
         GameObject en; 
         BattleManager bm;
+        SpellManager sm; 
         
 
-        void Update()
+        void Awake()
         {
+            sm = FindObjectOfType<SpellManager>();
             tm = FindObjectOfType<TurnManager>();
             mon = tm.getCurrentMonster();
             bm = FindObjectOfType<BattleManager>();
@@ -47,11 +49,12 @@ namespace Albatross
             mon.health += 10;
             tm.EndTurn();
         }
-        public void SpellButton(SpellObject spell)
+        public void SpellButton()
         {
+            SpellObject spell = sm.getCurrentSpell();
+
             if (spell != null)
             {
-                
                 en.gameObject.GetComponent<Populate_Enemy>().Depopulate();
             }
             else
