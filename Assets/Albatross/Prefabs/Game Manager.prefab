@@ -45,7 +45,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DemoInventory:
     MonstersInInventory:
-    - {fileID: 11400000, guid: d94b83039beefeb4383a9ceae3024f0b, type: 2}
+    - {fileID: 11400000, guid: 23bdaf17fba01614d98bcc0e894e391d, type: 2}
+    - {fileID: 11400000, guid: cd525bc57a4b9b14dbb61a154934f7f3, type: 2}
+    - {fileID: 11400000, guid: af73fb0b7ecbaad4983a99ccbc50c722, type: 2}
+    - {fileID: 11400000, guid: 95f7a9cc27596dc41b6e15d3e25bb929, type: 2}
+    - {fileID: 11400000, guid: 0620137b896f7d14a848daa7de75d347, type: 2}
+    - {fileID: 11400000, guid: feab6e63ac25bc642adf8d85e23003bd, type: 2}
     SpellsInInventory:
     - {fileID: 11400000, guid: 6b13e4dc88670ed43a7fcd8a2dcfde16, type: 2}
     - {fileID: 11400000, guid: e5bebc9aa84777d4e8678aef82de45cb, type: 2}
@@ -64,12 +69,3 @@ MonoBehaviour:
     name: 
   mon: []
   spell: []
-  data:
-    PlayerLocation: {x: 0, y: 0, z: 0}
-    HumanHealth: 0
-    OverWorldManaPool: 0
-    inv:
-      MonstersInInventory: []
-      SpellsInInventory: []
-    AreTheyAlive: 01
-    CameraLocation: {x: 0, y: 0, z: 0}

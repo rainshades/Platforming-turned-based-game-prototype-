@@ -11,20 +11,20 @@ namespace Albatross
         [SerializeField]
         Flowchart flow = null;
 
-        Player pete = null;
-        PlayerActions action = null;
-        Vector2 move = Vector2.zero;
+        Player pete;
+        PlayerActions action;
+        Vector2 move;
 
         [SerializeField]
-        GameObject optionsmenu = null;
+        GameObject optionsmenu;
 
         public float maxSpeed = 7;
         public float jumpTakeOffSpeed = 0.00001f;
 
-        SpriteRenderer spriteRenderer = null;
+        SpriteRenderer spriteRenderer;
 
         [SerializeField]
-        Animator animator = null;
+        Animator animator;
 
         bool action_augment_flag = false;
 
@@ -33,11 +33,6 @@ namespace Albatross
 
         void Awake()
         {
-
-            Camera cam = FindObjectOfType<Camera>();
-            cam.transform.position =  new Vector3 (this.transform.position.x, this.transform.position.y, cam.transform.position.z);
-
-            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
             action = new PlayerActions();
 
@@ -112,46 +107,49 @@ namespace Albatross
                 }//Quick Fall
 
                 action.InputsMap.Walk.performed += ctx => move.x = ctx.ReadValue<Vector2>().x * 2.5f;//Sprint
-                action.InputsMap.Walk.performed += ctx => animator.speed *= 2.5f;
                 action.InputsMap.Walk.canceled += ctx => move = Vector2.zero;
 
-            }
-
-
-            if (move.x < 0)
-            {
-                spriteRenderer.flipX = true;
-            }else if(move.x > 0) { 
-                spriteRenderer.flipX = false; 
             }
 
             targetVelocity = move * maxSpeed;
         }
 
+        public void StartConversation()
+        {
+
+        }
+
+        public void ReleaseConversation()
+        {
+
+        }
+
+        void OnCollisionEnter2D(UnityEngine.Collision2D col)
+        {
+            if (col.gameObject.tag == "EnemyNPC")
+            {
+                flow.ExecuteBlock("BattleStarter");
+            }
+        }
+
         void OnTriggerEnter2D(UnityEngine.Collider2D col)
         {
-            /*    if (col.gameObject.tag.Equals("NPC"))
-                {
-                    Flowchart fc = FindObjectOfType<Flowchart>();
-                    if(fc == null)
-                    {
-                        GameObject go = new GameObject();
-                        go.AddComponent<Flowchart>();
-                        fc = go.GetComponent<Flowchart>();
-                    }
-
-                    Block nb = fc.CreateBlock(Vector2.zero);
-                    Say dialog = col.GetComponent<Say>();
-                    dialog.SetStandardText(col.GetComponent<NPC>().overworld_dialog);
-                    nb.CommandList.Add(dialog);
-
-
-                } NPC Flowchart innit and dialog spawner (likely not neccessary) TODO: DELETE
-               */
-
-            if (col.GetComponent<AreaTransition>())
+            if (col.gameObject.tag.Equals("NPC"))
             {
-                col.GetComponent<AreaTransition>().text.SetText(col.GetComponent<AreaTransition>().AreaName);
+                Flowchart fc = FindObjectOfType<Flowchart>();
+                if(fc == null)
+                {
+                    GameObject go = new GameObject();
+                    go.AddComponent<Flowchart>();
+                    fc = go.GetComponent<Flowchart>();
+                }
+
+                Block nb = fc.CreateBlock(Vector2.zero);
+                Say dialog = col.GetComponent<Say>();
+                dialog.SetStandardText(col.GetComponent<NPC>().overworld_dialog);
+                nb.CommandList.Add(dialog);
+
+                
             }
             if (col.gameObject.tag.Equals("DeathZone"))
             {
@@ -163,6 +161,8 @@ namespace Albatross
             }
             if (col.gameObject.tag.Equals("TransitionSpace"))
             {
+                GameManager gm = FindObjectOfType<GameManager>();
+                gm.NewGameButton(col.GetComponent<SceneTransition>().NextScene);
             }
         }
 

@@ -79,7 +79,6 @@ namespace Albatross
 
             DrawCard();
             DrawCard();
-            DrawCard();
 
         }
         void Update()
