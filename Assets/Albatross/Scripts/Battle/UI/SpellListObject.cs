@@ -35,11 +35,8 @@ namespace Albatross
         {
             if(pe.clickCount < 2 || pe.dragging)
             {
+                dbh.selectedSpell = gameObject;
                 dbh.SpellPreview.sprite = this.Image.sprite; 
-            }
-            else if (dbh.Deck.spells.Count < 20)
-            {
-                dbh.addToDeck(spell);
             }
         }
 
