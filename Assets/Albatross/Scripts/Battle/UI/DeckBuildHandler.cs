@@ -14,6 +14,8 @@ namespace Albatross
         public Party Party;
         public Deck Deck;
 
+        public GameObject selectedMonster;
+        public GameObject selectedSpell;
 
         public GameObject SpellListPrefab;
         public GameObject SpellListContent;
@@ -64,11 +66,31 @@ namespace Albatross
         {
             if (Party.PartyMembers.Count < 3) Party.PartyMembers.Add(mon);
         }
+
+        public void addToParty()
+        {
+            if (Party.PartyMembers.Count < 3)
+            {
+                Party.PartyMembers.Add(selectedMonster.GetComponent<MonsterListObject>().mon);
+                Destroy(selectedMonster);
+            }
+        }
+
         public void addToDeck(SpellCard spell)
         {
             Deck.Add(spell);
             GameObject newObj = Instantiate(SpellListPrefab, SpellListContent.transform);
             newObj.GetComponent<SpellListObject>().UpdatePrefab(spell, spell.name, spell.artwork);
+        }
+
+        public void addToDeck()
+        {
+            Deck.Add(selectedSpell.GetComponent<SpellListObject>().spell);
+            GameObject newObj = Instantiate(SpellListPrefab, SpellListContent.transform);
+            newObj.GetComponent<SpellListObject>().UpdatePrefab(selectedSpell.GetComponent<SpellListObject>().spell,
+                selectedSpell.GetComponent<SpellListObject>().spell.name, 
+                selectedSpell.GetComponent<SpellListObject>().spell.artwork);
+            Destroy(selectedSpell);
         }
 
         public void removeFromParty(Monster mon)

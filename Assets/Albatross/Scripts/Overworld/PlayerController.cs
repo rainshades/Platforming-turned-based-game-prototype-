@@ -130,24 +130,6 @@ namespace Albatross
 
         void OnTriggerEnter2D(UnityEngine.Collider2D col)
         {
-            /*    if (col.gameObject.tag.Equals("NPC"))
-                {
-                    Flowchart fc = FindObjectOfType<Flowchart>();
-                    if(fc == null)
-                    {
-                        GameObject go = new GameObject();
-                        go.AddComponent<Flowchart>();
-                        fc = go.GetComponent<Flowchart>();
-                    }
-
-                    Block nb = fc.CreateBlock(Vector2.zero);
-                    Say dialog = col.GetComponent<Say>();
-                    dialog.SetStandardText(col.GetComponent<NPC>().overworld_dialog);
-                    nb.CommandList.Add(dialog);
-
-
-                } NPC Flowchart innit and dialog spawner (likely not neccessary) TODO: DELETE
-               */
 
             if (col.GetComponent<AreaTransition>())
             {

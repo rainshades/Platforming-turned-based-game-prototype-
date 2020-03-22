@@ -1,14 +1,15 @@
 // GENERATED AUTOMATICALLY FROM 'Assets/Albatross/Player Controlls.inputactions'
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class PlayerActions : IInputActionCollection
+public class @PlayerActions : IInputActionCollection, IDisposable
 {
-    private InputActionAsset asset;
-    public PlayerActions()
+    public InputActionAsset asset { get; }
+    public @PlayerActions()
     {
         asset = InputActionAsset.FromJson(@"{
     ""name"": ""Player Controlls"",
@@ -331,19 +332,19 @@ public class PlayerActions : IInputActionCollection
     ""controlSchemes"": []
 }");
         // Inputs Map
-        m_InputsMap = asset.GetActionMap("Inputs Map");
-        m_InputsMap_Action = m_InputsMap.GetAction("Action");
-        m_InputsMap_Jump = m_InputsMap.GetAction("Jump");
-        m_InputsMap_Walk = m_InputsMap.GetAction("Walk");
-        m_InputsMap_OptionsMenu = m_InputsMap.GetAction("OptionsMenu");
+        m_InputsMap = asset.FindActionMap("Inputs Map", throwIfNotFound: true);
+        m_InputsMap_Action = m_InputsMap.FindAction("Action", throwIfNotFound: true);
+        m_InputsMap_Jump = m_InputsMap.FindAction("Jump", throwIfNotFound: true);
+        m_InputsMap_Walk = m_InputsMap.FindAction("Walk", throwIfNotFound: true);
+        m_InputsMap_OptionsMenu = m_InputsMap.FindAction("OptionsMenu", throwIfNotFound: true);
         // UI
-        m_UI = asset.GetActionMap("UI");
-        m_UI_ConfirmSelection = m_UI.GetAction("ConfirmSelection");
-        m_UI_SelectCycle = m_UI.GetAction("SelectCycle");
-        m_UI_CloseMenu = m_UI.GetAction("CloseMenu");
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_ConfirmSelection = m_UI.FindAction("ConfirmSelection", throwIfNotFound: true);
+        m_UI_SelectCycle = m_UI.FindAction("SelectCycle", throwIfNotFound: true);
+        m_UI_CloseMenu = m_UI.FindAction("CloseMenu", throwIfNotFound: true);
     }
 
-    ~PlayerActions()
+    public void Dispose()
     {
         UnityEngine.Object.Destroy(asset);
     }
@@ -396,8 +397,8 @@ public class PlayerActions : IInputActionCollection
     private readonly InputAction m_InputsMap_OptionsMenu;
     public struct InputsMapActions
     {
-        private PlayerActions m_Wrapper;
-        public InputsMapActions(PlayerActions wrapper) { m_Wrapper = wrapper; }
+        private @PlayerActions m_Wrapper;
+        public InputsMapActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Action => m_Wrapper.m_InputsMap_Action;
         public InputAction @Jump => m_Wrapper.m_InputsMap_Jump;
         public InputAction @Walk => m_Wrapper.m_InputsMap_Walk;
@@ -411,34 +412,34 @@ public class PlayerActions : IInputActionCollection
         {
             if (m_Wrapper.m_InputsMapActionsCallbackInterface != null)
             {
-                Action.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction;
-                Action.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction;
-                Action.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction;
-                Jump.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnJump;
-                Jump.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnJump;
-                Jump.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnJump;
-                Walk.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk;
-                Walk.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk;
-                Walk.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk;
-                OptionsMenu.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnOptionsMenu;
-                OptionsMenu.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnOptionsMenu;
-                OptionsMenu.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnOptionsMenu;
+                @Action.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction;
+                @Action.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction;
+                @Action.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnAction;
+                @Jump.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnJump;
+                @Walk.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk;
+                @Walk.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk;
+                @Walk.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnWalk;
+                @OptionsMenu.started -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnOptionsMenu;
+                @OptionsMenu.performed -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnOptionsMenu;
+                @OptionsMenu.canceled -= m_Wrapper.m_InputsMapActionsCallbackInterface.OnOptionsMenu;
             }
             m_Wrapper.m_InputsMapActionsCallbackInterface = instance;
             if (instance != null)
             {
-                Action.started += instance.OnAction;
-                Action.performed += instance.OnAction;
-                Action.canceled += instance.OnAction;
-                Jump.started += instance.OnJump;
-                Jump.performed += instance.OnJump;
-                Jump.canceled += instance.OnJump;
-                Walk.started += instance.OnWalk;
-                Walk.performed += instance.OnWalk;
-                Walk.canceled += instance.OnWalk;
-                OptionsMenu.started += instance.OnOptionsMenu;
-                OptionsMenu.performed += instance.OnOptionsMenu;
-                OptionsMenu.canceled += instance.OnOptionsMenu;
+                @Action.started += instance.OnAction;
+                @Action.performed += instance.OnAction;
+                @Action.canceled += instance.OnAction;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @Walk.started += instance.OnWalk;
+                @Walk.performed += instance.OnWalk;
+                @Walk.canceled += instance.OnWalk;
+                @OptionsMenu.started += instance.OnOptionsMenu;
+                @OptionsMenu.performed += instance.OnOptionsMenu;
+                @OptionsMenu.canceled += instance.OnOptionsMenu;
             }
         }
     }
@@ -452,8 +453,8 @@ public class PlayerActions : IInputActionCollection
     private readonly InputAction m_UI_CloseMenu;
     public struct UIActions
     {
-        private PlayerActions m_Wrapper;
-        public UIActions(PlayerActions wrapper) { m_Wrapper = wrapper; }
+        private @PlayerActions m_Wrapper;
+        public UIActions(@PlayerActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @ConfirmSelection => m_Wrapper.m_UI_ConfirmSelection;
         public InputAction @SelectCycle => m_Wrapper.m_UI_SelectCycle;
         public InputAction @CloseMenu => m_Wrapper.m_UI_CloseMenu;
@@ -466,28 +467,28 @@ public class PlayerActions : IInputActionCollection
         {
             if (m_Wrapper.m_UIActionsCallbackInterface != null)
             {
-                ConfirmSelection.started -= m_Wrapper.m_UIActionsCallbackInterface.OnConfirmSelection;
-                ConfirmSelection.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnConfirmSelection;
-                ConfirmSelection.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnConfirmSelection;
-                SelectCycle.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectCycle;
-                SelectCycle.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectCycle;
-                SelectCycle.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectCycle;
-                CloseMenu.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCloseMenu;
-                CloseMenu.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCloseMenu;
-                CloseMenu.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCloseMenu;
+                @ConfirmSelection.started -= m_Wrapper.m_UIActionsCallbackInterface.OnConfirmSelection;
+                @ConfirmSelection.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnConfirmSelection;
+                @ConfirmSelection.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnConfirmSelection;
+                @SelectCycle.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectCycle;
+                @SelectCycle.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectCycle;
+                @SelectCycle.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectCycle;
+                @CloseMenu.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCloseMenu;
+                @CloseMenu.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCloseMenu;
+                @CloseMenu.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCloseMenu;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
             {
-                ConfirmSelection.started += instance.OnConfirmSelection;
-                ConfirmSelection.performed += instance.OnConfirmSelection;
-                ConfirmSelection.canceled += instance.OnConfirmSelection;
-                SelectCycle.started += instance.OnSelectCycle;
-                SelectCycle.performed += instance.OnSelectCycle;
-                SelectCycle.canceled += instance.OnSelectCycle;
-                CloseMenu.started += instance.OnCloseMenu;
-                CloseMenu.performed += instance.OnCloseMenu;
-                CloseMenu.canceled += instance.OnCloseMenu;
+                @ConfirmSelection.started += instance.OnConfirmSelection;
+                @ConfirmSelection.performed += instance.OnConfirmSelection;
+                @ConfirmSelection.canceled += instance.OnConfirmSelection;
+                @SelectCycle.started += instance.OnSelectCycle;
+                @SelectCycle.performed += instance.OnSelectCycle;
+                @SelectCycle.canceled += instance.OnSelectCycle;
+                @CloseMenu.started += instance.OnCloseMenu;
+                @CloseMenu.performed += instance.OnCloseMenu;
+                @CloseMenu.canceled += instance.OnCloseMenu;
             }
         }
     }

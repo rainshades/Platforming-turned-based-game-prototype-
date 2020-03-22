@@ -33,9 +33,7 @@ namespace Albatross
             if (pe.clickCount < 2 || pe.dragging)
             {
                 dbh.PreviewImage.sprite = Image.sprite;
-            }
-            else if (dbh.Party.PartyMembers.Count < 3) {
-                dbh.addToParty(mon); 
+                dbh.selectedMonster = this.gameObject;
             }
 
         }

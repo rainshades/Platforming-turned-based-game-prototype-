@@ -31,7 +31,7 @@ namespace Albatross
         bool PleaseSetData = false;
 
         public GameData data = new GameData();
-
+        public string LastScene = "";
         
         void Start()
         {
@@ -54,6 +54,17 @@ namespace Albatross
         public void NewGameButton(string nextScene)
         {
             SceneManager.LoadScene(nextScene);
+        }
+
+        public void ToUIScene(string nextScene)
+        {
+            LastScene = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(nextScene);
+        }
+
+        public void ToOverworldScene()
+        {
+            SceneManager.LoadScene(LastScene);
         }
 
         public void SavedGameButton(string nextScene)
