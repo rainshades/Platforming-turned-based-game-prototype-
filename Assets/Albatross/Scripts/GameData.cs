@@ -17,9 +17,6 @@ namespace Albatross
         public float OverWorldManaPool = 0.0f;
         public PlayerInventory inv = null;
 
-        //NPC Persistant Game Data
-        public bool[] AreTheyAlive = {true};
-
         //Script Persistant Game Data
         public Vector3 CameraLocation = Vector3.zero;
        

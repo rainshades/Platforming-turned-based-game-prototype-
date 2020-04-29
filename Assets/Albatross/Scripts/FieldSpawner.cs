@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,18 +30,20 @@ namespace Albatross
         public List<MonsterObject> AllyField;
         public List<MonsterObject> EnemyField;
 
-
-        // Start is called before the first frame update
+        
         void Awake()
         {
             gm = FindObjectOfType<GameManager>();
             tm = FindObjectOfType<TurnManager>();
+            bm = FindObjectOfType<BattleManager>();
 
             AllyParty = gm.currentParty;
-            EnemyParty = gm.enemyParty;
+            EnemyParty = gm.getEnemyParty();
 
             PopulateField();
 
+            bm.AllyField = this.AllyField;
+            bm.EnemyField = this.EnemyField; 
         }
 
         void UnhidPartySpace()
@@ -71,35 +72,28 @@ namespace Albatross
         {
             UnhidPartySpace();
 
-            int numberToCreate = 6;
+            int AlliesToCreate = AllyParty.PartyMembers.Count;
+            int EnemiesToCreate = EnemyParty.PartyMembers.Count;
 
-            for(int i = 0; i <= numberToCreate - 1; i++)
+            for (int i = 0; i < AlliesToCreate; i++)
             {
-                if(i < 3)//Player's Party
-                {
-                    if (AllyParty.PartyMembers[i] != null)
-                    {
-                        monPrefab.GetComponent<MonsterObject>().thisMonster = AllyParty.PartyMembers[i];
-                        GameObject go = Instantiate(monPrefab, SpawnPoints[i]);
-                        go.GetComponent<MonsterObject>().ownedByPlayer = true;
-                        AllyField.Add(go.GetComponent<MonsterObject>());
-                        tm.TurnOrder.Add(go.GetComponent<MonsterObject>());
-                    }
-                }
-                else //Enemy's Party
-                {
-                    if (EnemyParty.PartyMembers[i - 3] != null)
-                    {
-                        enemyMonPrefab.GetComponent<MonsterObject>().thisMonster = EnemyParty.PartyMembers[i - 3];
-                        GameObject go = Instantiate(enemyMonPrefab, EnemySpawnPoints[i - 3]);
-                        EnemyField.Add(go.GetComponent<MonsterObject>());
-                        tm.TurnOrder.Add(go.GetComponent<MonsterObject>());
-                    }
-
-                }
+                monPrefab.GetComponent<MonsterObject>().thisMonster = AllyParty.PartyMembers[i];
+                GameObject go = Instantiate(monPrefab, SpawnPoints[i]);
+                go.GetComponent<MonsterObject>().ownedByPlayer = true;
+                go.SetActive(true);
+                AllyField.Add(go.GetComponent<MonsterObject>());
+                tm.TurnOrder.Add(go.GetComponent<MonsterObject>());
             }
-        }
 
+            for (int i = 0; i < EnemiesToCreate; i++)
+            {
+                enemyMonPrefab.GetComponent<MonsterObject>().thisMonster = EnemyParty.PartyMembers[i];
+                GameObject go = Instantiate(enemyMonPrefab, EnemySpawnPoints[i]);
+                EnemyField.Add(go.GetComponent<MonsterObject>());
+                tm.TurnOrder.Add(go.GetComponent<MonsterObject>());
+            }
+            
+        }
 
         public void setAllyParty(Party p)
         {

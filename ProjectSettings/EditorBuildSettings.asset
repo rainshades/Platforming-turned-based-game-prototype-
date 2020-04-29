@@ -18,16 +18,16 @@ EditorBuildSettings:
     path: Assets/Albatross/Scenes/Single Player/BattleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
-    path: Assets/Albatross/Scenes/Levels/HellinDale(Town Center).unity
+    path: Assets/Albatross/Scenes/Levels/Hellindale Sections/HellinDale(Town Center).unity
     guid: d276cf3239b8c8b4b8ebcf798d4eed4b
   - enabled: 0
-    path: Assets/Albatross/Scenes/Levels/HellinDale(Outskirts-West).unity
+    path: Assets/Albatross/Scenes/Levels/Hellindale Sections/HellinDale(Outskirts-West).unity
     guid: f4aa8d6354d86814d95db56c575f4107
   - enabled: 0
-    path: Assets/Albatross/Scenes/Levels/SunsetRock.unity
+    path: Assets/Albatross/Scenes/Levels/Hellindale Sections/SunsetRock.unity
     guid: c783231fda903cb41b9a8276d5f4db66
   - enabled: 0
-    path: Assets/Albatross/Scenes/Levels/HellinDale(Outskirts-East).unity
+    path: Assets/Albatross/Scenes/Levels/Hellindale Sections/HellinDale(Outskirts-East).unity
     guid: 5a8b0fea2da35a2459eeaa39907aedc0
   - enabled: 1
     path: Assets/Albatross/Scenes/Levels/HellinDale.unity

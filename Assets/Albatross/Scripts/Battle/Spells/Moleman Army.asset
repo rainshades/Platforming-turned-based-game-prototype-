@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   element: 0
   name: Moleman Army
-  Ability: {fileID: 0}
+  SpellEffect: {fileID: 11400000, guid: 00713006dfcb86b4197c18a33a8158d5, type: 2}
   cost: 0
   description: Doubles the attack or health of a character
-  SpellEffectAmount: 0
+  SpellEffectAmount: 10
   artwork: {fileID: 21300000, guid: 5cd396deee82e3e4ba5dfe958110f12d, type: 3}
   inHand: 0
   canPlay: 0

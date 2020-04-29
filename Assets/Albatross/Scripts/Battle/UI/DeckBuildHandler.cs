@@ -25,7 +25,6 @@ namespace Albatross
         public Image[] PartyPreview;
         public Image[] PartyPreview2;
 
-        // Start is called before the first frame update
         void Start()
         {
             gm = FindObjectOfType<GameManager>();
@@ -33,16 +32,17 @@ namespace Albatross
             Deck = gm.currentDeck;
         }
 
-        // Update is called once per frame
         void Update()
         {
-
             for (int i = 0; i < 3; i++)
             {
-                PartyPreview[i].sprite = null;
-                PartyPreview2[i].sprite = null;
+                if (PartyPreview[i] != null || PartyPreview2[i] != null)
+                {
+                    PartyPreview[i].sprite = null;
+                    PartyPreview2[i].sprite = null;
+                }
             }
-
+            
             if (Party.PartyMembers.Count > 0)
             {
                 for (int i = 0; i < Party.PartyMembers.Count; i++)

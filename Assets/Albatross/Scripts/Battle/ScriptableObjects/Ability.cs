@@ -7,6 +7,8 @@ using UnityEngine.Events;
 namespace Albatross
 {
     public enum TargetType { Self, EnemyMonster, AllyMonster, EnemySpell, AllySpell, NoTarget }
+
+    [System.Serializable]
     public class Ability : ScriptableObject
     {
 

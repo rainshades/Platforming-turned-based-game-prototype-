@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b269fee30752df458a3bc8a95dffc87, type: 3}
-  m_Name: Thunder Clap
-  m_EditorClassIdentifier: Assembly-CSharp::ActiveAbility
-  isTargetAbility: 1
+  m_Script: {fileID: 0}
+  m_Name: 10 Damage to Enemy
+  m_EditorClassIdentifier: Assembly-CSharp:Albatross:SlowSpell
+  isTargetAbility: 0
   effect:
     EffectAmount: 10
     effect: 1
   TargetType: 1
-  EffectDescription: 
+  EffectDescription: Does 10 Damage to the Enemy
+  thisCastType: 0
+  CastCondition: 8

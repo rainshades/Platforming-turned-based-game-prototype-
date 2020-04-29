@@ -1,11 +1,4 @@
-﻿/* Project Albatross 
- * Prepared by Eddie Fulton
- * Unpublished/Unfinished
- * Purpose: Loads the Scritable Objects for use in Battle. 
- * Status: Member: Testing 
- */
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,8 +23,9 @@ namespace Albatross
         bool AbilityTargets = false;
 
         public Monster thisMonster;
-        [SerializeField]
-        Ability ActiveAbility;
+        
+        Ability ActiveAbility; //Temp Remove it and all references later 
+        
         [SerializeField]
         Ability PassiveAbility;
 
@@ -59,13 +53,13 @@ namespace Albatross
             sr = GetComponent<SpriteRenderer>();
 
 
-            ActiveAbility.effect.SetAttatchedEntity(thisMonster);
+            //ActiveAbility.effect.SetAttatchedEntity(thisMonster);
             PassiveAbility.effect.SetAttatchedEntity(thisMonster);
 
-            ActiveAbility.effect.SetAttatchedCard(this);
+            //ActiveAbility.effect.SetAttatchedCard(this);
             PassiveAbility.effect.SetAttatchedCard(this);
 
-            AbilityTargets = ActiveAbility.isTargetAbility;
+            //AbilityTargets = ActiveAbility.isTargetAbility;
 
             if (sr != null)
             {
@@ -103,9 +97,14 @@ namespace Albatross
 
         void Update()
         {
+
             if (health < 1)
             {
                 this.gameObject.SetActive(false);
+            }
+            else
+            {
+                this.gameObject.SetActive(true);
             }
 
         }

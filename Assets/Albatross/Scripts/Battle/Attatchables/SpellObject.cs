@@ -1,13 +1,4 @@
-﻿/* Project Albatross 
- * Prepared by Eddie Fulton
- * Unpublished/Unfinished
- * Purpose: Loads the Scritable Objects for use in Battle.
- * Status: Member: Testing 
- */
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -36,7 +27,6 @@ namespace Albatross
 
         Image attatchedImage;
 
-        // Start is called before the first frame update
         void Start()
         {
             name = spell.name;
@@ -46,8 +36,8 @@ namespace Albatross
             cost = spell.cost;
 
            
-            tt = spell.Ability.TargetType;
-            et = spell.Ability.effect.getEffectType();
+            tt = spell.SpellEffect.TargetType;
+            et = spell.SpellEffect.effect.getEffectType();
 
             attatchedImage = GetComponent<Image>();
             attatchedImage.sprite = cardImage;
@@ -94,34 +84,29 @@ namespace Albatross
             switch (tt)
             {
                 case TargetType.Self:
-                    spell.Ability.Activate();
+                    spell.SpellEffect.Activate();
                     Destroy(gameObject);
                     tm.EndTurn();
-                    break;
-                case TargetType.AllyMonster:
-                    break;
-                case TargetType.AllySpell:
-                    break;
-                case TargetType.EnemySpell:
-                    break;
-                case TargetType.EnemyMonster:
                     break;
                 case TargetType.NoTarget:
-                    spell.Ability.Activate();
+                    spell.SpellEffect.Activate();
                     Destroy(gameObject);
                     tm.EndTurn();
                     break;
+                default:
+                    Debug.LogError("This is not a nontargetted Spell");
+                    break; 
             }
-        }
+        }//NonTarget Cast
 
         public void CastToTarget(MonsterObject target)
         {
-            spell.Ability.Activate(target);
+            spell.SpellEffect.Activate(target);
         }
 
         public void CastToTarget(SpellObject target)
         {
-            spell.Ability.Activate(target);
+            spell.SpellEffect.Activate(target);
         }
     }
 }

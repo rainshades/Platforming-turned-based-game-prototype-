@@ -11,6 +11,8 @@ TagManager:
   - EnemyNPC
   - TransitionSpace
   - Spawner
+  - Death Zone
+  - Major NPC
   layers:
   - Default
   - TransparentFX

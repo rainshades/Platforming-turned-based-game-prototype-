@@ -130,14 +130,9 @@ namespace Albatross
 
         void OnTriggerEnter2D(UnityEngine.Collider2D col)
         {
-
-            if (col.GetComponent<AreaTransition>())
-            {
-                col.GetComponent<AreaTransition>().text.SetText(col.GetComponent<AreaTransition>().AreaName);
-            }
             if (col.gameObject.tag.Equals("DeathZone"))
             {
-                pete.HumanHealth = 0;
+                pete.transform.position = RespawnPoint;
             }
             if (col.gameObject.tag.Equals("RespawnPoint"))
             {

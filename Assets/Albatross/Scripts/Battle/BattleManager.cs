@@ -7,7 +7,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -24,8 +23,6 @@ namespace Albatross
         public List<MonsterObject> AllyField;
         public List<MonsterObject> EnemyField;
 
-        public string PostBattleScene;
-
         [SerializeField]
         List<SpellCard> SpellsDisplay = new List<SpellCard>();
 
@@ -33,27 +30,29 @@ namespace Albatross
         GameObject cardPrefab = null;
 
         MonsterObject CurrentMonster = null;
+
+        int NPCBATTLENUMBER; 
       
-        void Start()
+        void Awake()
         {
             TargetUI = FindObjectOfType<TargetUI>();
 
             gm = FindObjectOfType<GameManager>();
-            tm = FindObjectOfType<TurnManager>();
-            fs = FindObjectOfType<FieldSpawner>();
+            tm = GetComponentInChildren<TurnManager>();
+            fs = GetComponentInChildren<FieldSpawner>();
 
-            AllyField = fs.AllyField;
-
-            EnemyField = fs.EnemyField;
+            NPCBATTLENUMBER = gm.currentNPCNumber;
         }
+
 
         void Update()
         {
-
             for(int i = 0; i < EnemyField.Count; i++)
             {
                 if(EnemyField[i].health <= 0 && EnemyField[i] != null)
                 {
+                    Debug.Log("Enemy " + i + " Down");
+
                     EnemyField.RemoveAt(i);
                 }               
             }
@@ -62,7 +61,7 @@ namespace Albatross
             {
                 if (AllyField[i].health > 1)
                 {
-                 //   TargetUI.GetHPObjects()[i].GetComponent<Text>().text = "HP: " + AllyField[i].health;
+                    //Percent of Healthbar coincide with Damage taken
                 }
                 if(AllyField[i].health <= 1 && AllyField[i] != null)
                 {
@@ -70,52 +69,25 @@ namespace Albatross
                     AllyField.RemoveAt(i);
                 }
             }
-            
-            switch (AllyField.Count)
-            {
-                case 1:
-                    if (AllyField[0].health == 0)
-                    {
-                        SceneManager.LoadScene(PostBattleScene);
-                    }//Loads the beginning of the Level
-                    break;
-                case 2:
-                    if (AllyField[0].health == 0 && AllyField[1].health == 0)
-                    {
-                        SceneManager.LoadScene(PostBattleScene);
-                    }
-                    break;
-                case 3:
-                    if (AllyField[0].health == 0 && AllyField[1].health == 0 && AllyField[2].health == 0)
-                    {
-                        SceneManager.LoadScene(PostBattleScene);
-                    }
-                    break;
-                
-            }
-            switch (EnemyField.Count)
-            {
-                case 1:
-                    if (EnemyField[0].health == 0)
-                    {
-                        SceneManager.LoadScene(PostBattleScene);
-                    }
-                    break;
-                case 2:
-                    if (EnemyField[0].health == 0 && EnemyField[1].health == 0)
-                    {
-                        SceneManager.LoadScene(PostBattleScene);
-					}
-                    break;
-                case 3:
-                    if (EnemyField[0].health == 0 && EnemyField[1].health == 0 && EnemyField[2].health == 0)
-                    {
-                        SceneManager.LoadScene(PostBattleScene);
-                    }//Loads where the player was before the battle, the enemy defeated.
-                     //Sets the players party health to the same amount of health they had at the end of the battle
-                     //If one of party members died it sets them to 1hp
-                    break;
-            }
+            BattleFinish();
          }
+
+        bool BattleFinish()
+        {
+            if(AllyField.Count == 0)
+            {
+                gm.SetBattleResults(true, NPCBATTLENUMBER);
+                gm.ToOverworldScene();
+            }
+
+            if(EnemyField.Count == 0)
+            {
+                gm.SetBattleResults(false, NPCBATTLENUMBER);
+                gm.ToOverworldScene();
+            }
+
+            return false; 
+
+        }
     }
 }

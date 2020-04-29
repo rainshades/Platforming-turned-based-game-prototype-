@@ -8,14 +8,14 @@ namespace Albatross
     [CreateAssetMenu(fileName = "New Spell", menuName = "Spell")]
     public class SpellCard : Entity
     {
-        enum cast_type { Quick, Slow, Equip };
         public new string name;
 
-        public Ability Ability;
+        public SpellEffect SpellEffect;
 
         public int cost;
 
         public string description;
+
         public int SpellEffectAmount;
 
         public Sprite artwork;

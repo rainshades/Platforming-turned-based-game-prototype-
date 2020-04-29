@@ -11,16 +11,13 @@ namespace Albatross
     {
         public TextMeshProUGUI text;
         public string AreaName;
-        bool isPlayed; 
         
 
-        void OnTriggerEnter2D(UnityEngine.Collider2D col)
+        void OnTriggerEnter2D(Collider2D col)
         {
-            if (col.tag.Equals("Player"))
-            {
-                text.gameObject.SetActive(true);
-                text.text = AreaName;
-            }
+            text.text = AreaName;
+            text.gameObject.SetActive(true);
         }
+        
     }
 }

@@ -12,12 +12,14 @@ namespace Albatross
     {
         public new string name;
 
-        public PassiveAbility passive;
+        public MonAbility passive;
 
         public string description;
 
         public int attack;
         public int health;
+        public int defence;
+        public int mana; 
         public int speed;
 
         public Sprite artwork;

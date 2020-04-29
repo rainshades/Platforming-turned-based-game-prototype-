@@ -51,9 +51,9 @@ MonoBehaviour:
   thisMonster: {fileID: 0}
   ActiveAbility: {fileID: 0}
   PassiveAbility: {fileID: 0}
-  health: 0
-  attack: 0
-  speed: 0
+  health: 1
+  attack: 1
+  speed: 1
 --- !u!212 &3103755288350893983
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -68,6 +68,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9ef552c683628d4790882c0c95f38af, type: 3}
+  m_Script: {fileID: 11500000, guid: 342d23952d3158e4ebd9363f45f28ec7, type: 3}
   m_Name: Static
   m_EditorClassIdentifier: 
   isTargetAbility: 0
   effect:
-    EffectAmount: 0
-    effect: 2
-  TargetType: 0
-  EffectDescription: 
+    EffectAmount: 10
+    effect: 1
+  TargetType: 1
+  EffectDescription: Discharges a bit of electricity. Doing 10 to an enemy
   PassiveTrigger: 2

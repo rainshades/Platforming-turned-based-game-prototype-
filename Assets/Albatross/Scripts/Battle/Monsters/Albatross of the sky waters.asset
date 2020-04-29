@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   element: 0
   name: Albatross Of SkyWaters
-  passive: {fileID: 11400000, guid: 2e655fb7672bed84ea4eca23a56b2af6, type: 2}
+  passive: {fileID: 11400000, guid: 51dc23e11b1122c4b9c0cc7b06f2c9c3, type: 2}
   description: 'The one who brings those who have lived honorable to the afterlife. '
   attack: 20
   health: 20

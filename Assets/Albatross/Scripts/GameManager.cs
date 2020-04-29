@@ -1,12 +1,6 @@
-﻿/* Project Albatross
- * Prepared by Eddie Fulton
- * Purpose: SceneMangement, SaveStateManagement, Storing objects meant to be used inbetween scenes
- * Status: Member: Testing
- */
-
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
@@ -22,11 +16,15 @@ namespace Albatross
         public Deck currentDeck = new Deck("Player's Deck");
         public Party currentParty = new Party("Player's party");
 
-        public Deck enemyDeck;
-        public Party enemyParty;
 
-        public List<Monster> mon;
-        public List<SpellCard> spell;
+        [SerializeField]
+        List<NPCBattleDetails> BattleDetails;
+        [SerializeField]
+        List<bool> CanNPCBattle; 
+
+        [SerializeField]
+        NPCBattleDetails currentBattleDetails;
+        public int currentNPCNumber; 
 
         bool PleaseSetData = false;
 
@@ -35,22 +33,50 @@ namespace Albatross
         
         void Start()
         {
-            mon = currentParty.PartyMembers;
-            spell = currentDeck.spells;
-
             DontDestroyOnLoad(this.gameObject);
         }
 
-
         void Update()
         {
-
             if (PleaseSetData)
             {
                 SetData();
             }
         }
 
+        public void SetBattleResults(bool isDefeated, int NPCBattleNumber)
+        {
+            CanNPCBattle[NPCBattleNumber] = isDefeated;
+        }
+
+        public void setCurrentBattleDetails(NPCBattleDetails nbd)
+        {
+            currentBattleDetails = nbd;
+        }
+
+        public bool CanBattle(int NPCNumber)
+        {
+            return CanNPCBattle[NPCNumber];
+        }
+
+        public Party getEnemyParty()
+        {
+            return currentBattleDetails.party;
+        }
+
+        public Deck getEnemyDeck()
+        {
+            return currentBattleDetails.deck;
+        }
+
+
+        public NPCBattleDetails BattleDetailsAt(int i)
+        {
+            return BattleDetails[i];
+        }
+
+        
+        #region Scene Transitions
         public void NewGameButton(string nextScene)
         {
             SceneManager.LoadScene(nextScene);
@@ -60,12 +86,31 @@ namespace Albatross
         {
             LastScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(nextScene);
-        }
+        }//To UI Scenes
+
+        public void ToBattleScene(string BattleScene)
+        {
+            SaveGame();
+            LastScene = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(BattleScene);
+        }//Transition to Battle Scenes
 
         public void ToOverworldScene()
         {
+            LoadData();
             SceneManager.LoadScene(LastScene);
+        }//Transtion to Overworld Scenes Usually From Battle Scene Wins
+
+        public void EnemyDefeated(NPCBattleDetails nbd)
+        {
+            //BattleDetails.isDefeated = true;
         }
+
+        #endregion
+
+
+        #region Save/Load Game
+
 
         public void SavedGameButton(string nextScene)
         {
@@ -76,13 +121,20 @@ namespace Albatross
         public void SaveGame()
         {
             data.inv = DemoInventory;
+            try
+            {
+                data.PlayerLocation = FindObjectOfType<Player>().transform.position;
+                data.HumanHealth = FindObjectOfType<Player>().HumanHealth;
+                data.CameraLocation = FindObjectOfType<Camera>().transform.position;
+                data.OverWorldManaPool = FindObjectOfType<Player>().OverWorldManaPool;
 
-            data.PlayerLocation = FindObjectOfType<Player>().transform.position;
-            data.HumanHealth = FindObjectOfType<Player>().HumanHealth;
-            data.CameraLocation = FindObjectOfType<Camera>().transform.position;
-            data.OverWorldManaPool = FindObjectOfType<Player>().OverWorldManaPool;
 
-            data.Save();
+                data.Save();
+            }
+            catch
+            {
+                Debug.Log("Save Error");
+            }
         }
 
         public void SetParty(Party p)
@@ -176,4 +228,6 @@ namespace Albatross
             Application.Quit();
         }
     }
+    #endregion 
+   
 }
