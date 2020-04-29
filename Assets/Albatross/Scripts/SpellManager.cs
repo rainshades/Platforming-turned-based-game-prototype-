@@ -1,10 +1,4 @@
-﻿/* Project Albatross 
- * Prepared by Eddie Fulton
- * Purpose: Hold and Mangement of Spells to be used in the action script
- * Status: Member: Testing 
- */
- 
- using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -75,7 +69,7 @@ namespace Albatross
 
             AllyDeck = new PlayDeck(gm.currentDeck.spells);
 
-            EnemyDeck = new PlayDeck(gm.enemyDeck.spells);
+            EnemyDeck = new PlayDeck(gm.getEnemyDeck().spells);
 
             DrawCard();
             DrawCard();

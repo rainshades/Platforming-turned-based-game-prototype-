@@ -13,13 +13,25 @@ namespace Albatross
         [SerializeField]
         protected NPCTYPE thisNPC;
         public string overworld_dialog;
-        public Flowchart flow;
+        private Flowchart flow;
         
         [SerializeField]
         private Animator animator;
-        public string[] dialog_options;
-        string current_dialog_option = null;
+        string current_dialog_option = "";
 
+        public string VictoryDialog;
+        public string InnitDialog;
+        public string DefeatDialog; 
+
+        [SerializeField]
+        bool isBattleNPC = false; 
+        [SerializeField]
+        int NPCBattleDataNumber; 
+
+        private void Awake()
+        {
+            flow = FindObjectOfType<Flowchart>();
+        }
 
         protected override void ComputeVelocity()
         {
@@ -34,19 +46,37 @@ namespace Albatross
 
         public void ExecuteBlock(string BlockName)
         {
-            flow.ExecuteBlock("LinaOne");
+            flow.ExecuteBlock(BlockName);
         }
 
-        public void CycletoBlock(int i)
-        {
-            current_dialog_option = dialog_options[i]; 
-        }
 
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (col.gameObject.CompareTag("Player"))
             {
+                GameManager gm = FindObjectOfType<GameManager>();
+                NPCBattleDetails BattleDetails = gm.BattleDetailsAt(NPCBattleDataNumber);
+                gm.setCurrentBattleDetails(BattleDetails);
+
+                isAbleToBattle();
                 ExecuteBlock(current_dialog_option);
+                
+            }
+        }
+
+        private void isAbleToBattle()
+        {
+            if (isBattleNPC)
+            {
+                GameManager gm = FindObjectOfType<GameManager>();
+                if(gm.currentParty.PartyMembers.Count >= 1)
+                {
+                    if (gm.CanBattle(NPCBattleDataNumber))
+                    {
+                        current_dialog_option = InnitDialog;
+                    }
+                    else current_dialog_option = VictoryDialog;
+                }
             }
         }
     }

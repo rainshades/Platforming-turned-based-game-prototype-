@@ -5,24 +5,13 @@ using UnityEngine;
 
 namespace Albatross
 {
-    public class NPCBattleDetails: MonoBehaviour
+    
+    [CreateAssetMenu(fileName = "New Battle Status", menuName = "Battle Details")]
+    public class NPCBattleDetails: ScriptableObject
     {
-
         public Party party;
         public Deck deck;
-        public bool isAlive = true;
-        
-        void OnCollisionEnter2D(Collision2D collision2D)
-        {
-            if (isAlive)
-            {
-                if (collision2D.gameObject.tag == "Player")
-                {
-                    GameManager Gm = FindObjectOfType<GameManager>();
-                    Gm.enemyParty = party;
-                    Gm.enemyDeck = deck;
-                }
-            }
-        }
+        public bool isDefeated = false;
+
     }
 }

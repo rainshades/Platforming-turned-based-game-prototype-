@@ -55,6 +55,36 @@ namespace Albatross
 
             if (spell != null)
             {
+                switch (spell.getTargetType())
+                {
+                    case TargetType.AllyMonster:
+                        en.gameObject.GetComponent<Populate_Enemy>().Depopulate();
+                        targetBox.gameObject.SetActive(true);
+                        tm.setAction(Action.Cast);
+                        en.gameObject.GetComponent<Populate_Enemy>().Populate(bm.AllyField);
+                        break;
+                    case TargetType.EnemyMonster:
+                        en.gameObject.GetComponent<Populate_Enemy>().Depopulate();
+                        targetBox.gameObject.SetActive(true);
+                        tm.setAction(Action.Cast);
+                        en.gameObject.GetComponent<Populate_Enemy>().Populate(bm.EnemyField);
+                        break;
+                    case TargetType.Self:
+                        tm.setAction(Action.Cast);
+                        spell.Cast();
+                        break;
+                    case TargetType.NoTarget:
+                        tm.setAction(Action.Cast);
+                        spell.Cast();
+                        break;
+                    case TargetType.AllySpell:
+                        break;
+                    case TargetType.EnemySpell:
+                        break;
+                    default:
+                        Debug.LogError("This Spell is flawed");
+                        break;
+                }
                 en.gameObject.GetComponent<Populate_Enemy>().Depopulate();
             }
             else

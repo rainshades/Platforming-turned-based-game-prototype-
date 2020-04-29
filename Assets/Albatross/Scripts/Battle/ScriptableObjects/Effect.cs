@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Albatross
 {
-    public enum EffectType { Heal, Damage, Negate, Destroy, Stun }
+    public enum EffectType { Heal, Damage, Negate, Destroy, Stun, BuffStat, NerfStat, SwapSwap, ModifyStat, SwapAlignment }
 
     [System.Serializable]
     public class Effect

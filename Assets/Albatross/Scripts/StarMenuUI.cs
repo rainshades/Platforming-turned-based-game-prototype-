@@ -83,5 +83,10 @@ namespace Albatross
             actions.InputsMap.Disable();
         }
 
+        public void CloseGame()
+        {
+            Application.Quit();
+        }
+
     }
 }
