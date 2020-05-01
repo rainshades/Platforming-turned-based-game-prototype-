@@ -12,7 +12,8 @@ namespace Albatross
         
         [SerializeField]
         protected NPCTYPE thisNPC;
-        public string overworld_dialog;
+        public string[] overworld_dialog;
+        int current_overworld_dialog_iterator = 0;
         private Flowchart flow;
         
         [SerializeField]

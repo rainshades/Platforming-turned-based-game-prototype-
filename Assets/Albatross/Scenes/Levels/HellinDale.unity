@@ -35061,12 +35061,12 @@ PrefabInstance:
     - target: {fileID: 351169589763759300, guid: 0ee542e9f2aa67045b4d34b2f63799cf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -330.6
+      value: -905.82
       objectReference: {fileID: 0}
     - target: {fileID: 351169589763759300, guid: 0ee542e9f2aa67045b4d34b2f63799cf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -266.49
+      value: -385
       objectReference: {fileID: 0}
     - target: {fileID: 351169589763759300, guid: 0ee542e9f2aa67045b4d34b2f63799cf,
         type: 3}
@@ -35414,18 +35414,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3988760528750848907, guid: 8d0ac678fc8beb24f9ca26cd0e778fb8,
         type: 3}
+      propertyPath: overworld_dialog.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3988760528750848907, guid: 8d0ac678fc8beb24f9ca26cd0e778fb8,
+        type: 3}
       propertyPath: NPCBattleDataNumber
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3988760528750848907, guid: 8d0ac678fc8beb24f9ca26cd0e778fb8,
         type: 3}
       propertyPath: InnitDialog
-      value: 
+      value: TomasOne
       objectReference: {fileID: 0}
     - target: {fileID: 3988760528750848907, guid: 8d0ac678fc8beb24f9ca26cd0e778fb8,
         type: 3}
       propertyPath: VictoryDialog
-      value: 
+      value: TomasOneVictory
       objectReference: {fileID: 0}
     - target: {fileID: 3988760528750848907, guid: 8d0ac678fc8beb24f9ca26cd0e778fb8,
         type: 3}
@@ -122716,12 +122721,12 @@ PrefabInstance:
     - target: {fileID: 8713446738342534185, guid: c3ec12e7e4f44c24f8e709e95c5d96f9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.800018
+      value: -457.6
       objectReference: {fileID: 0}
     - target: {fileID: 8713446738342534185, guid: c3ec12e7e4f44c24f8e709e95c5d96f9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.399994
+      value: -121.4
       objectReference: {fileID: 0}
     - target: {fileID: 8713446738342534185, guid: c3ec12e7e4f44c24f8e709e95c5d96f9,
         type: 3}
@@ -135852,6 +135857,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3988760528750848907, guid: 8d0ac678fc8beb24f9ca26cd0e778fb8,
         type: 3}
+      propertyPath: overworld_dialog.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3988760528750848907, guid: 8d0ac678fc8beb24f9ca26cd0e778fb8,
+        type: 3}
       propertyPath: overworld_dialog
       value: 
       objectReference: {fileID: 0}
@@ -136033,7 +136043,8 @@ MonoBehaviour:
   grounded: 0
   velocity: {x: 0, y: 0}
   thisNPC: 2
-  overworld_dialog: 
+  overworld_dialog:
+  - DadOne
   animator: {fileID: 7838935770802877262}
   VictoryDialog: 
   InnitDialog: 

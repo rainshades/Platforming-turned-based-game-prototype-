@@ -112,7 +112,6 @@ namespace Albatross
                 }//Quick Fall
 
                 action.InputsMap.Walk.performed += ctx => move.x = ctx.ReadValue<Vector2>().x * 2.5f;//Sprint
-                action.InputsMap.Walk.performed += ctx => animator.speed *= 2.5f;
                 action.InputsMap.Walk.canceled += ctx => move = Vector2.zero;
 
             }
@@ -137,9 +136,6 @@ namespace Albatross
             if (col.gameObject.tag.Equals("RespawnPoint"))
             {
                 RespawnPoint = col.gameObject.transform.position;
-            }
-            if (col.gameObject.tag.Equals("TransitionSpace"))
-            {
             }
         }
 
