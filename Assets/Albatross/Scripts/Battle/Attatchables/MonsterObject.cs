@@ -24,14 +24,15 @@ namespace Albatross
 
         public Monster thisMonster;
         
-        Ability ActiveAbility; //Temp Remove it and all references later 
-        
         [SerializeField]
         Ability PassiveAbility;
 
         TypeElement type;
 
-        public float health, attack, speed;
+        public float health, attack, mana, defence_value, speed;
+
+        public bool shock_status, rush_status;
+        //Shock for nerf speed, rush for buff speed
 
         SpriteRenderer sr;
 
@@ -43,30 +44,28 @@ namespace Albatross
             name = thisMonster.name;
             health = thisMonster.health;
             attack = thisMonster.attack;
+            defence_value = thisMonster.defence;
+            mana = thisMonster.mana;
             speed = thisMonster.speed;
             type = thisMonster.element;
             PassiveAbility = thisMonster.passive;
 
             bm = FindObjectOfType<BattleManager>();
             rt = GetComponent<RectTransform>();
-
             sr = GetComponent<SpriteRenderer>();
 
 
-            //ActiveAbility.effect.SetAttatchedEntity(thisMonster);
             PassiveAbility.effect.SetAttatchedEntity(thisMonster);
 
-            //ActiveAbility.effect.SetAttatchedCard(this);
             PassiveAbility.effect.SetAttatchedCard(this);
 
-            //AbilityTargets = ActiveAbility.isTargetAbility;
+            AbilityTargets = PassiveAbility.isTargetAbility;
 
             if (sr != null)
             {
                 sr.sprite = thisMonster.artwork;
             }
 
-            
         }
 
         public void hit(GameObject target)
@@ -87,7 +86,8 @@ namespace Albatross
 
         public void defend()
         {
-
+            health += defence_value;
+            mana -= defence_value * 2;
         }
 
         public void RecieveDamage(float damage)
@@ -106,7 +106,6 @@ namespace Albatross
             {
                 this.gameObject.SetActive(true);
             }
-
         }
 
         public void AttackTarget(MonsterObject target)
@@ -116,11 +115,11 @@ namespace Albatross
 
         public void ActivateAbility(MonsterObject target)
         {
-            ActiveAbility.Activate(target);
+            PassiveAbility.Activate(target);
         }
         public void ActivateAbility()
         {
-            ActiveAbility.Activate();
+            PassiveAbility.Activate();
         }
 
         public bool getCanAct()

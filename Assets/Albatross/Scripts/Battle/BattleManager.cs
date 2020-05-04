@@ -31,6 +31,7 @@ namespace Albatross
 
         MonsterObject CurrentMonster = null;
 
+        [SerializeField]
         int NPCBATTLENUMBER; 
       
         void Awake()

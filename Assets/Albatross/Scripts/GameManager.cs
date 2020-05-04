@@ -44,6 +44,8 @@ namespace Albatross
             }
         }
 
+        #region Battle
+
         public void SetBattleResults(bool isDefeated, int NPCBattleNumber)
         {
             CanNPCBattle[NPCBattleNumber] = isDefeated;
@@ -74,8 +76,8 @@ namespace Albatross
         {
             return BattleDetails[i];
         }
+        #endregion
 
-        
         #region Scene Transitions
         public void NewGameButton(string nextScene)
         {
@@ -128,6 +130,17 @@ namespace Albatross
                 data.CameraLocation = FindObjectOfType<Camera>().transform.position;
                 data.OverWorldManaPool = FindObjectOfType<Player>().OverWorldManaPool;
 
+                FileStream DeckFile = File.Create(Application.persistentDataPath + "/Deck.json");
+                string json1 = JsonUtility.ToJson(currentDeck);
+                BinaryFormatter bf1 = new BinaryFormatter();
+                bf1.Serialize(DeckFile, json1);
+                DeckFile.Close();
+
+                FileStream PartyFile = File.Create(Application.persistentDataPath + "/Parties.json");
+                string json2 = JsonUtility.ToJson(currentParty);
+                BinaryFormatter bf2 = new BinaryFormatter();
+                bf2.Serialize(PartyFile, json2);
+                PartyFile.Close();
 
                 data.Save();
             }
@@ -158,10 +171,20 @@ namespace Albatross
                 FileStream file = File.Open(DataPath, FileMode.Open);
                 BinaryFormatter bf = new BinaryFormatter();
                 string json = (string)bf.Deserialize(file);
-
                 data = JsonUtility.FromJson<GameData>(json);
-
                 file.Close();
+
+                FileStream file2 = File.Open(Application.persistentDataPath + "/Deck.json", FileMode.Open);
+                BinaryFormatter bf2 = new BinaryFormatter();
+                string json2 = (string)bf2.Deserialize(file2);
+                currentDeck = JsonUtility.FromJson<Deck>(json);
+                file2.Close();
+
+                FileStream file3 = File.Open(Application.persistentDataPath + "/Parties.json", FileMode.Open);
+                BinaryFormatter bf3 = new BinaryFormatter();
+                string json3 = (string)bf3.Deserialize(file3);
+                currentParty = JsonUtility.FromJson<Party>(json3);
+                file3.Close();
 
             }
             catch

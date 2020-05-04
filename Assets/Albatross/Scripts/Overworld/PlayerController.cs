@@ -30,9 +30,13 @@ namespace Albatross
 
 
         Vector3 RespawnPoint = Vector3.zero;
+        bool speaking = false;
 
         void Awake()
         {
+
+            flow = FindObjectOfType<Flowchart>();
+            
 
             Camera cam = FindObjectOfType<Camera>();
             cam.transform.position =  new Vector3 (this.transform.position.x, this.transform.position.y, cam.transform.position.z);
@@ -80,7 +84,12 @@ namespace Albatross
         
         protected override void ComputeVelocity()
         {
-         
+            speaking = flow.GetBooleanVariable("InConversation");
+
+            if (speaking)
+            {
+                maxSpeed = 0;
+            }
             action.InputsMap.Walk.performed += ctx => move.x = ctx.ReadValue<Vector2>().x;
             action.InputsMap.Walk.performed += ctx => animator.SetBool("Running", true);
 
@@ -112,7 +121,6 @@ namespace Albatross
                 }//Quick Fall
 
                 action.InputsMap.Walk.performed += ctx => move.x = ctx.ReadValue<Vector2>().x * 2.5f;//Sprint
-                action.InputsMap.Walk.performed += ctx => animator.speed *= 2.5f;
                 action.InputsMap.Walk.canceled += ctx => move = Vector2.zero;
 
             }
@@ -137,9 +145,6 @@ namespace Albatross
             if (col.gameObject.tag.Equals("RespawnPoint"))
             {
                 RespawnPoint = col.gameObject.transform.position;
-            }
-            if (col.gameObject.tag.Equals("TransitionSpace"))
-            {
             }
         }
 
