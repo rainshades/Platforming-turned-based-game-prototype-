@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79eb32a404ce3c409e15815f32783b3, type: 3}
+  m_Name: Soldier2
+  m_EditorClassIdentifier: 
+  element: 0
+  name: 
+  passive: {fileID: 0}
+  description: 
+  attack: 0
+  health: 0
+  defence: 0
+  mana: 0
+  speed: 0
+  artwork: {fileID: 0}
+  alive: 0

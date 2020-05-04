@@ -134,7 +134,6 @@ namespace Albatross
             FileStream file = File.Open(Application.persistentDataPath + "/Deck.json", FileMode.Open);
             BinaryFormatter bf = new BinaryFormatter();
             string json = (string)bf.Deserialize(file);
-
             d = JsonUtility.FromJson<Deck>(json);
 
             file.Close();
@@ -156,9 +155,7 @@ namespace Albatross
             FileStream file = File.Open(Application.persistentDataPath + "/Parties.json", FileMode.Open);
             BinaryFormatter bf = new BinaryFormatter();
             string json = (string)bf.Deserialize(file);
-
             party = JsonUtility.FromJson<Party>(json);
-
             file.Close();
 
         }

@@ -55,17 +55,24 @@ namespace Albatross
         {
             if (col.gameObject.CompareTag("Player"))
             {
+
+                PlayerController Player = col.GetComponent<PlayerController>();
                 GameManager gm = FindObjectOfType<GameManager>();
+                gm.currentNPCNumber = NPCBattleDataNumber;
                 NPCBattleDetails BattleDetails = gm.BattleDetailsAt(NPCBattleDataNumber);
                 gm.setCurrentBattleDetails(BattleDetails);
 
-                isAbleToBattle();
+
+                if (isAbleToBattle())
+                {
+                    Player.maxSpeed = 0;
+                }
                 ExecuteBlock(current_dialog_option);
                 
             }
         }
 
-        private void isAbleToBattle()
+        private bool isAbleToBattle()
         {
             if (isBattleNPC)
             {
@@ -75,10 +82,13 @@ namespace Albatross
                     if (gm.CanBattle(NPCBattleDataNumber))
                     {
                         current_dialog_option = InnitDialog;
+                        return true; 
                     }
                     else current_dialog_option = VictoryDialog;
+                    return false;
                 }
             }
+            return false; 
         }
     }
 }

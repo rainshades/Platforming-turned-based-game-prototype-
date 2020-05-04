@@ -17,6 +17,8 @@ namespace Albatross
         {
             GameManager gm = FindObjectOfType<GameManager>();
             gm.ToBattleScene(BattleScene);
+
+            Continue();
         }
     }
 }
