@@ -21,7 +21,7 @@ namespace Albatross
         void Awake()
         {
             gm = FindObjectOfType<GameManager>();
-            SpellsinDeck = gm.currentDeck.spells;
+            SpellsinDeck = gm.currentDeck.Spells;
         }
 
         // Start is called before the first frame update
@@ -37,7 +37,7 @@ namespace Albatross
 
             for (int i = 0; i < numberToCreate; i++)
             {
-                prefab.GetComponent<SpellListObject>().setSpell(SpellsinDeck[i]);
+                prefab.GetComponent<SpellListObject>().SetSpell(SpellsinDeck[i]);
                 newObj = Instantiate(prefab, transform);
                 //Debug.Log(newObj.name + " has been born");
             }

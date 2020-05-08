@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// Scriptable Spells
+/// </summary>
 namespace Albatross
 {
     [CreateAssetMenu(fileName = "New Spell", menuName = "Spell")]
@@ -16,33 +18,74 @@ namespace Albatross
 
         public string description;
 
-        public int SpellEffectAmount;
-
         public Sprite artwork;
 
         public bool inHand, canPlay;
 
-        public override void Damage(MonsterObject mon)
+        public override void Damage(MonsterObject mon, int EffectAmount)
         {
-            mon.health -= SpellEffectAmount;
+            mon.health -= EffectAmount;
         }
-        public override void Heal(MonsterObject mon)
+        public override void Heal(MonsterObject mon, int EffectAmount)
         {
-            mon.health += SpellEffectAmount;
+            mon.health += EffectAmount;
         }
-    }
-}
 
-namespace Albatross { 
-    public class Entity : ScriptableObject
-    {
+        public override void DamagePercentage(MonsterObject mon, float Percentage)
+        {
+            if(mon.health > 1)
+            mon.health *= Percentage;
+        }
+        public override void HealPercentage(MonsterObject mon, float Percentage)
+        {
+            mon.health *= Percentage;
+        }
 
-        public TypeElement element;
-        public virtual void Damage(MonsterObject mon) { }
-        public virtual void Heal(MonsterObject mon) { }
-        public virtual void Heal(MonsterObject mon, int HealAmount) { }
-        public virtual void Destroy(MonsterObject mon) { }
-        public virtual void Destroy(SpellObject spell) { Negate(); }
-        public virtual void Negate() { }
+        public void AlignmentSwap(MonsterObject mon)
+        {
+            switch (mon.element)
+            {
+                case TypeElement.Chaos:
+                    mon.element = TypeElement.Order;
+                    break;
+                case TypeElement.Order:
+                    mon.element = TypeElement.Chaos;
+                    break;
+                default:
+                    Debug.LogError("Invalid ID Element");
+                    break;
+            }
+        }
+
+
+        #region Swap
+        public void AttackSwap(MonsterObject a, MonsterObject b)
+        {
+            float holder = b.attack;
+            a.attack = b.attack;
+            b.attack = holder;             
+        }
+
+        public void DefenseSwap(MonsterObject a, MonsterObject b)
+        {
+            float holder = b.defence_value;
+            a.defence_value = b.defence_value;
+            b.defence_value = holder;
+        }
+
+        public void SpeedSwap(MonsterObject a, MonsterObject b)
+        {
+            float holder = b.speed;
+            a.speed = b.speed;
+            b.speed = holder;
+        }
+        public void HealthSwap(MonsterObject a, MonsterObject b)
+        {
+            float holder = b.health;
+            a.health = b.health;
+            b.health = holder;
+
+        }
+        #endregion
     }
 }

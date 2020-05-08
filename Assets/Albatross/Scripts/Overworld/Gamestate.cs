@@ -11,12 +11,12 @@ namespace Albatross
     public class Gamestate : Command
     {
 
-        public string BattleScene; 
-
+        public string BattleScene;
+        public AudioClip BattleSong; 
         public override void OnEnter()
         {
             GameManager gm = FindObjectOfType<GameManager>();
-            gm.ToBattleScene(BattleScene);
+            gm.ToBattleScene(BattleScene, BattleSong);
 
             Continue();
         }

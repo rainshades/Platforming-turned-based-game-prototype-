@@ -3,49 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
+/// <summary>
+/// Handles the UI of the Battle Scene
+/// </summary>
 namespace Albatross
 {
     public class BattleUi : MonoBehaviour
     {
         [SerializeField]
         TurnManager tm;
-        public Canvas targetBox;
         [SerializeField]
         MonsterObject mon;
         [SerializeField]
         GameObject en; 
         BattleManager bm;
-        SpellManager sm; 
-        
+        SpellManager sm;
+
+        public Canvas TargetBox;
 
         void Awake()
         {
             sm = FindObjectOfType<SpellManager>();
             tm = FindObjectOfType<TurnManager>();
-            mon = tm.getCurrentMonster();
+            mon = tm.GetCurrentMonster();
             bm = FindObjectOfType<BattleManager>();
         }
 
         public void AttackButton()
         {
             en.gameObject.GetComponent<Populate_Enemy>().Depopulate();
-            targetBox.gameObject.SetActive(true);
-            tm.setAction(Action.Attack);
+            TargetBox.gameObject.SetActive(true);
+            tm.SetAction(Action.Attack);
             en.gameObject.GetComponent<Populate_Enemy>().Populate(bm.EnemyField);
         }
 
         public void AbilityButton()
         {
             en.gameObject.GetComponent<Populate_Enemy>().Depopulate();
-            tm.setAction(Action.ActiveAbility);
-            tm.CanvasOn(targetBox.gameObject);
+            tm.SetAction(Action.ActiveAbility);
+            tm.CanvasOn(TargetBox.gameObject);
             en.gameObject.GetComponent<Populate_Enemy>().Populate(bm.EnemyField);
         }
 
         public void DefendButton()
         {
             en.gameObject.GetComponent<Populate_Enemy>().Depopulate();
-            tm.setAction(Action.Defend);
+            tm.SetAction(Action.Defend);
             mon.health += 10;
             tm.EndTurn();
         }
@@ -55,26 +59,26 @@ namespace Albatross
 
             if (spell != null)
             {
-                switch (spell.getTargetType())
+                switch (spell.GetTargetType())
                 {
                     case TargetType.AllyMonster:
                         en.gameObject.GetComponent<Populate_Enemy>().Depopulate();
-                        targetBox.gameObject.SetActive(true);
-                        tm.setAction(Action.Cast);
+                        TargetBox.gameObject.SetActive(true);
+                        tm.SetAction(Action.Cast);
                         en.gameObject.GetComponent<Populate_Enemy>().Populate(bm.AllyField);
                         break;
                     case TargetType.EnemyMonster:
                         en.gameObject.GetComponent<Populate_Enemy>().Depopulate();
-                        targetBox.gameObject.SetActive(true);
-                        tm.setAction(Action.Cast);
+                        TargetBox.gameObject.SetActive(true);
+                        tm.SetAction(Action.Cast);
                         en.gameObject.GetComponent<Populate_Enemy>().Populate(bm.EnemyField);
                         break;
                     case TargetType.Self:
-                        tm.setAction(Action.Cast);
+                        tm.SetAction(Action.Cast);
                         spell.Cast();
                         break;
                     case TargetType.NoTarget:
-                        tm.setAction(Action.Cast);
+                        tm.SetAction(Action.Cast);
                         spell.Cast();
                         break;
                     case TargetType.AllySpell:

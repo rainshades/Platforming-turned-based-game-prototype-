@@ -1,36 +1,36 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-
+/// <summary>
+/// Manages Game Activities when changing Scenes and Saving
+/// </summary>
 namespace Albatross
 {
     public class GameManager : MonoBehaviour
     {
-
-        public PlayerInventory DemoInventory;//Inventory specifically for the DOJO
-
         public Deck currentDeck = new Deck("Player's Deck");
         public Party currentParty = new Party("Player's party");
 
-
         [SerializeField]
-        List<NPCBattleDetails> BattleDetails;
+        private List<NPCBattleDetails> BattleDetails;
         [SerializeField]
-        List<bool> CanNPCBattle; 
+        private List<bool> CanNPCBattle;
 
         [SerializeField]
         NPCBattleDetails currentBattleDetails;
-        public int currentNPCNumber; 
-
         bool PleaseSetData = false;
 
-        public GameData data = new GameData();
+        [SerializeField]
+        GameData data = new GameData();
+
         public string LastScene = "";
-        
+
+        public int CurrentNPCNumber;
+        public PlayerInventory DemoInventory; //Inventory specifically for the Demo
+
         void Start()
         {
             DontDestroyOnLoad(this.gameObject);
@@ -51,7 +51,7 @@ namespace Albatross
             CanNPCBattle[NPCBattleNumber] = isDefeated;
         }
 
-        public void setCurrentBattleDetails(NPCBattleDetails nbd)
+        public void SetCurrentBattleDetails(NPCBattleDetails nbd)
         {
             currentBattleDetails = nbd;
         }
@@ -61,14 +61,14 @@ namespace Albatross
             return CanNPCBattle[NPCNumber];
         }
 
-        public Party getEnemyParty()
+        public Party GetEnemyParty()
         {
-            return currentBattleDetails.party;
+            return currentBattleDetails.Party;
         }
 
-        public Deck getEnemyDeck()
+        public Deck GetEnemyDeck()
         {
-            return currentBattleDetails.deck;
+            return currentBattleDetails.Deck;
         }
 
 
@@ -90,11 +90,15 @@ namespace Albatross
             SceneManager.LoadScene(nextScene);
         }//To UI Scenes
 
-        public void ToBattleScene(string BattleScene)
+
+        public void ToBattleScene(string BattleScene, AudioClip battle_music)
         {
             SaveGame();
             LastScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(BattleScene);
+            //FindObjectOfType<AudioSource>().clip = battle_music;
+            //FindObjectOfType<AudioSource>().Play();
+
         }//Transition to Battle Scenes
 
         public void ToOverworldScene()
@@ -102,12 +106,6 @@ namespace Albatross
             LoadData();
             SceneManager.LoadScene(LastScene);
         }//Transtion to Overworld Scenes Usually From Battle Scene Wins
-
-        public void EnemyDefeated(NPCBattleDetails nbd)
-        {
-            //BattleDetails.isDefeated = true;
-        }
-
         #endregion
 
 

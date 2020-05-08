@@ -1,39 +1,28 @@
-﻿/* Project Albatross 
- * Prepared by Eddie Fulton
- * Unpublished/Unfinished
- * Purpose: Holds a group of Spell ScritableObjects
- * Status: Member: Testing 
- */
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using System.Collections.Generic;
 
 namespace Albatross
 {
     [System.Serializable]
     public class Deck
     {
-        public List<SpellCard> spells;
-
-        public string name;
+        public List<SpellCard> Spells;
+        public string Name;
 
         public void Add(SpellCard sc)
         {
-            spells.Add(sc);
+            Spells.Add(sc);
         }
 
         public Deck()
         {
-            spells = new List<SpellCard>();
-            name = "Deck";
+            Spells = new List<SpellCard>();
+            Name = "Deck";
         }
 
         public Deck(string name)
         {
-            spells = new List<SpellCard>();
-            this.name = name;
+            Spells = new List<SpellCard>();
+            this.Name = name;
         }
     }
 }

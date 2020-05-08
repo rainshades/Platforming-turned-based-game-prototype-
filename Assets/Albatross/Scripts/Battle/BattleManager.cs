@@ -1,27 +1,18 @@
-﻿/* Project Albatross 
- * Prepared by Eddie Fulton
- * Purpose: The battle state manager: Handles battle phases, transitions them, and established win/loss battle condition 
- * Status: Member: Testing 
- */
-
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-
-
+/// <summary>
+/// Handles the moment to moment parts of the battle
+/// </summary>
 namespace Albatross
 {
     public class BattleManager : MonoBehaviour
     {
         GameManager gm;
         TurnManager tm;
-        TargetUI TargetUI;
         FieldSpawner fs;
 
-        public List<MonsterObject> AllyField;
-        public List<MonsterObject> EnemyField;
+        public bool QuickTriggerFlag = true; 
 
         [SerializeField]
         List<SpellCard> SpellsDisplay = new List<SpellCard>();
@@ -32,59 +23,61 @@ namespace Albatross
         MonsterObject CurrentMonster = null;
 
         [SerializeField]
-        int NPCBATTLENUMBER; 
-      
+        int NPCBATTLENUMBER;
+
+        public List<MonsterObject> AllyField;
+        public List<MonsterObject> EnemyField;
+
         void Awake()
         {
-            TargetUI = FindObjectOfType<TargetUI>();
-
             gm = FindObjectOfType<GameManager>();
             tm = GetComponentInChildren<TurnManager>();
             fs = GetComponentInChildren<FieldSpawner>();
 
-            NPCBATTLENUMBER = gm.currentNPCNumber;
+            NPCBATTLENUMBER = gm.CurrentNPCNumber;
         }
 
-
-        void Update()
+        void FightRotation()
         {
-            for(int i = 0; i < EnemyField.Count; i++)
+            tm.Turn();
+            if (!BattleFinish())
             {
-                if(EnemyField[i].health <= 0 && EnemyField[i] != null)
+                for (int i = 0; i < EnemyField.Count; i++)
                 {
-                    Debug.Log("Enemy " + i + " Down");
+                    if (EnemyField[i].health <= 0 && EnemyField[i] != null)
+                    {
+                        Debug.Log("Enemy " + i + " Down");
 
-                    EnemyField.RemoveAt(i);
-                }               
-            }
+                        EnemyField.RemoveAt(i);
+                    }
+                }
 
-            for(int i = 0; i < AllyField.Count; i++)
-            {
-                if (AllyField[i].health > 1)
+                for (int i = 0; i < AllyField.Count; i++)
                 {
-                    //Percent of Healthbar coincide with Damage taken
-                }
-                if(AllyField[i].health <= 1 && AllyField[i] != null)
-                {
-                    TargetUI.GetHPObjects()[i].GetComponent<Text>().text = "HP: " + 0;
-                    AllyField.RemoveAt(i);
+                    if (AllyField[i].health > 1)
+                    {
+                        //Percent of Healthbar coincide with Damage taken
+                    }
+                    if (AllyField[i].health <= 1 && AllyField[i] != null)
+                    {
+                        AllyField.RemoveAt(i);
+                    }
                 }
             }
-            BattleFinish();
-         }
+        }
 
         bool BattleFinish()
         {
             if(AllyField.Count == 0)
             {
                 gm.SetBattleResults(true, NPCBATTLENUMBER);
-                gm.ToOverworldScene();
+                gm.ToOverworldScene(); //Not Final
             }
 
             if(EnemyField.Count == 0)
             {
                 gm.SetBattleResults(false, NPCBATTLENUMBER);
-                gm.ToOverworldScene();
+                gm.ToOverworldScene(); //Will load Overworld Scene
             }
 
             return false; 

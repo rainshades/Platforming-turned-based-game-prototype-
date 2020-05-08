@@ -5,44 +5,47 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
+/// <summary>
+/// Used in Deck creator to add a spell to deck
+/// </summary>
 namespace Albatross
 {
     public class SpellListObject : MonoBehaviour, IPointerClickHandler
     {
-        public SpellCard spell;
-        public Text SpellName;
-        public Image Image;
-        public DeckBuildHandler dbh;
+        public SpellCard Spell { get; set; }
+        public Text SpellName { get; set; }
+        public Image Image { get; set; }
+        public DeckBuildHandler Dbh { get; set; }
 
         void Awake()
         {
             SpellName = GetComponentInChildren<Text>();
             Image = GetComponent<Image>();
-            dbh = FindObjectOfType<DeckBuildHandler>();
+            Dbh = FindObjectOfType<DeckBuildHandler>();
 
-            SpellName.text = spell.name;
-            Image.sprite = spell.artwork;
+            SpellName.text = Spell.name;
+            Image.sprite = Spell.artwork;
 
-            transform.name = spell.name;
+            transform.name = Spell.name;
         }
 
         public void UpdatePrefab(SpellCard spell, string SpellName, Sprite sprite)
         {
-            this.spell = spell; this.SpellName.text = SpellName; this.Image.sprite = sprite; 
+            Spell = spell; this.SpellName.text = SpellName; Image.sprite = sprite; 
         }
 
         public void OnPointerClick(PointerEventData pe)
         {
             if(pe.clickCount < 2 || pe.dragging)
             {
-                dbh.selectedSpell = gameObject;
-                dbh.SpellPreview.sprite = this.Image.sprite; 
+                Dbh.SelectedSpell = gameObject;
+                Dbh.SpellPreview.sprite = this.Image.sprite; 
             }
         }
 
-        public void setSpell(SpellCard spell)
+        public void SetSpell(SpellCard spell)
         {
-            this.spell = spell;
+            Spell = spell;
         }
     }
 }

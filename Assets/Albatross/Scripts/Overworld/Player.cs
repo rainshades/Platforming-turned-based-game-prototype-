@@ -8,13 +8,13 @@ namespace Albatross
     public class Player : MonoBehaviour 
 	//Contains the player's data
     {
-        public int HumanHealth = 0;
+        public int HumanHealth = 5;
         public float OverWorldManaPool = 0;
-        public int AttackDamage;
 
         List<Monster> PotentialPartyMembers = new List<Monster>();
         List<SpellCard> CardInventory = new List<SpellCard>();
 
+        public int AttackDamage;
 
         public List<Monster> GetPotentialPartyMembers()
         {

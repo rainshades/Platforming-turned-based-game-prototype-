@@ -3,24 +3,27 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 
-
+/// <summary>
+/// A continer class for Spell Scriptable Objects to be used in the Unity Engine
+/// Used in the Deck creation and Battles
+/// </summary>
 namespace Albatross
 {
     public class SpellObject : MonoBehaviour, IPointerClickHandler
     {
         BattleManager gm;
-        DeckManager dm;
 
         [SerializeField]
         SpellManager sm;
 
         [SerializeField]
         TargetType tt;
+        [SerializeField]
         EffectType et;
 
-        public int cost; 
+        public int cost;
 
-        public SpellCard spell;
+        public SpellCard Spell;
 
         public string description;
         public Sprite cardImage;
@@ -29,32 +32,31 @@ namespace Albatross
 
         void Start()
         {
-            name = spell.name;
-            description = spell.description;
-            cardImage = spell.artwork;
+            name = Spell.name;
+            description = Spell.description;
+            cardImage = Spell.artwork;
 
-            cost = spell.cost;
+            cost = Spell.cost;
 
            
-            tt = spell.SpellEffect.TargetType;
-            et = spell.SpellEffect.effect.getEffectType();
+            tt = Spell.SpellEffect.TargetType;
+            et = Spell.SpellEffect.Effect.GetEffectType();
 
             attatchedImage = GetComponent<Image>();
             attatchedImage.sprite = cardImage;
 
             sm = FindObjectOfType<SpellManager>();
             gm = FindObjectOfType<BattleManager>();
-            dm = FindObjectOfType<DeckManager>();
         }
-        void Update()
+        /*void Update()
         {
             sm = FindObjectOfType<SpellManager>();
             gm = FindObjectOfType<BattleManager>();
-            dm = FindObjectOfType<DeckManager>();
             attatchedImage = GetComponent<Image>();
             attatchedImage.sprite = cardImage;
-        }
-        public TargetType getTargetType()
+        }*/
+
+        public TargetType GetTargetType()
         {
             return tt;
         }
@@ -63,7 +65,7 @@ namespace Albatross
         {
             sm.setSpell(this);
             SpellPreviewPanel spp = FindObjectOfType<SpellPreviewPanel>();
-            spp.setPreviewPanel(spell.artwork, spell.description);
+            spp.setPreviewPanel(Spell.artwork, Spell.description);
 
             if (pe.clickCount > 1)
             {
@@ -84,12 +86,12 @@ namespace Albatross
             switch (tt)
             {
                 case TargetType.Self:
-                    spell.SpellEffect.Activate();
+                    Spell.SpellEffect.Activate();
                     Destroy(gameObject);
                     tm.EndTurn();
                     break;
                 case TargetType.NoTarget:
-                    spell.SpellEffect.Activate();
+                    Spell.SpellEffect.Activate();
                     Destroy(gameObject);
                     tm.EndTurn();
                     break;
@@ -101,12 +103,12 @@ namespace Albatross
 
         public void CastToTarget(MonsterObject target)
         {
-            spell.SpellEffect.Activate(target);
+            Spell.SpellEffect.Activate(target);
         }
 
         public void CastToTarget(SpellObject target)
         {
-            spell.SpellEffect.Activate(target);
+            Spell.SpellEffect.Activate(target);
         }
     }
 }

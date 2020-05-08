@@ -1,39 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
+﻿using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+/// <summary>
+/// Used to build and customize Parties and Decks through UI
+/// </summary>
 namespace Albatross
 {
     public class DeckBuildHandler : MonoBehaviour
     {
-        public GameManager gm;
-        public Party Party;
-        public Deck Deck;
-
-        public GameObject selectedMonster;
-        public GameObject selectedSpell;
-
-        public GameObject SpellListPrefab;
-        public GameObject SpellListContent;
-
-        public Image PreviewImage;
-        public Image SpellPreview;
-        public Image[] PartyPreview;
-        public Image[] PartyPreview2;
+        public GameManager Gm { get; set; }
+        public Party Party { get; set; }
+        public Deck Deck { get; set; }
+        public GameObject SelectedMonster { get; set; } //Previews the selected ID
+        public GameObject SelectedSpell { get; set; } //Previews the current Spell 
+        public GameObject SpellListPrefab { get; set; }
+        public GameObject SpellListContent { get; set; }
+        public Image PreviewImage { get; set; }
+        public Image SpellPreview { get; set; }
+        public Image[] PartyPreview { get; set; }
+        public Image[] PartyPreview2 { get; set; }
 
         void Start()
         {
-            gm = FindObjectOfType<GameManager>();
-            Party = gm.currentParty;
-            Deck = gm.currentDeck;
+            Gm = FindObjectOfType<GameManager>();
+            Party = Gm.currentParty;
+            Deck = Gm.currentDeck;
         }
 
         void Update()
         {
+            ///TODO: See if this can be moved from Update as to not be checked for every frame
             for (int i = 0; i < 3; i++)
             {
                 if (PartyPreview[i] != null || PartyPreview2[i] != null)
@@ -62,102 +60,63 @@ namespace Albatross
             }
         }
 
-        public void addToParty(Monster mon)
+        public void AddToParty(Monster mon)
         {
             if (Party.PartyMembers.Count < 3) Party.PartyMembers.Add(mon);
         }
 
-        public void addToParty()
+        public void AddToParty()
         {
             if (Party.PartyMembers.Count < 3)
             {
-                Party.PartyMembers.Add(selectedMonster.GetComponent<MonsterListObject>().mon);
-                Destroy(selectedMonster);
+                Party.PartyMembers.Add(SelectedMonster.GetComponent<MonsterListObject>().Mon);
+                Destroy(SelectedMonster);
             }
         }
 
-        public void addToDeck(SpellCard spell)
+        public void AddToDeck(SpellCard spell)
         {
             Deck.Add(spell);
             GameObject newObj = Instantiate(SpellListPrefab, SpellListContent.transform);
             newObj.GetComponent<SpellListObject>().UpdatePrefab(spell, spell.name, spell.artwork);
         }
 
-        public void addToDeck()
+        public void AddToDeck()
         {
-            Deck.Add(selectedSpell.GetComponent<SpellListObject>().spell);
+            Deck.Add(SelectedSpell.GetComponent<SpellListObject>().Spell);
             GameObject newObj = Instantiate(SpellListPrefab, SpellListContent.transform);
-            newObj.GetComponent<SpellListObject>().UpdatePrefab(selectedSpell.GetComponent<SpellListObject>().spell,
-                selectedSpell.GetComponent<SpellListObject>().spell.name, 
-                selectedSpell.GetComponent<SpellListObject>().spell.artwork);
-            Destroy(selectedSpell);
+            newObj.GetComponent<SpellListObject>().UpdatePrefab(SelectedSpell.GetComponent<SpellListObject>().Spell,
+                SelectedSpell.GetComponent<SpellListObject>().Spell.name, 
+                SelectedSpell.GetComponent<SpellListObject>().Spell.artwork);
+            Destroy(SelectedSpell);
         }
 
-        public void removeFromParty(Monster mon)
+        public void RemoveFromParty(Monster mon)
         {
             if (Party.PartyMembers.Contains(mon))
             {
                 Party.PartyMembers.Remove(mon);
             }
         }
-        public void removeFromParty(int index)
+        public void RemoveFromParty(int index)
         {
             Party.PartyMembers.RemoveAt(index);
         }
-        public void removeFromDeck(SpellCard spell)
+        public void RemoveFromDeck(int index)
         {
-
+            Deck.Spells.RemoveAt(index);
         }
 
-        public void setDeck()
+        public void SetDeck()
         {
-            gm.currentDeck = this.Deck;
-            gm.SetDeck(Deck);
+            Gm.currentDeck = this.Deck;
+            Gm.SetDeck(Deck);
         }
-        public void setParty()
+        public void SetParty()
         {
-            gm.currentParty = this.Party;
-            gm.SetParty(Party);
-        }
-
-        public void saveDeck(string DeckName)
-        {
-            FileStream file = File.Create(Application.persistentDataPath + "/Deck.json");
-            string json = JsonUtility.ToJson(Deck);
-            BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(file, json);
-            file.Close();
+            Gm.currentParty = this.Party;
+            Gm.SetParty(Party);
         }
 
-        public static void LoadDeck(Deck d)
-        {
-            FileStream file = File.Open(Application.persistentDataPath + "/Deck.json", FileMode.Open);
-            BinaryFormatter bf = new BinaryFormatter();
-            string json = (string)bf.Deserialize(file);
-            d = JsonUtility.FromJson<Deck>(json);
-
-            file.Close();
-        }
-
-        public void saveParty()
-        {
-            FileStream file = File.Create(Application.persistentDataPath + "/Parties.json");
-            string json = JsonUtility.ToJson(Party);
-            BinaryFormatter bf = new BinaryFormatter();
-            bf.Serialize(file, json);
-            file.Close();
-                
-        }
-
-
-        public static void LoadParty(Party party)
-        {
-            FileStream file = File.Open(Application.persistentDataPath + "/Parties.json", FileMode.Open);
-            BinaryFormatter bf = new BinaryFormatter();
-            string json = (string)bf.Deserialize(file);
-            party = JsonUtility.FromJson<Party>(json);
-            file.Close();
-
-        }
     }
 }

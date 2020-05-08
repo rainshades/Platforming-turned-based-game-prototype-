@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// All Objects that will be using "Cartoon Phsyics" will be children of this class
+/// </summary>
 public class PhysicsObject : MonoBehaviour
 {
 

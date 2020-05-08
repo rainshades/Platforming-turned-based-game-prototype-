@@ -1,15 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 namespace Albatross
 {
+    //If clicked removes the Monster(ID) from the Party
     public class PartySlot : MonoBehaviour, IPointerClickHandler
     {
-        public int PartyPosition;
-        Image image; 
+        Image image;
+
+        public int PartyPosition { get; set; }
 
         void Awake()
         {
@@ -27,7 +27,7 @@ namespace Albatross
             {
                 Debug.Log("ID Removed");
                 image.sprite = null; 
-                dm.removeFromParty(PartyPosition);
+                dm.RemoveFromParty(PartyPosition);
             }
         }
     }

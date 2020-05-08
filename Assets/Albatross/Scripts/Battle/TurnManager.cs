@@ -1,22 +1,16 @@
-﻿/* Project Albatross 
- * Prepared by Eddie Fulton
- * Purpose: Manages the array of Characters on screen
- * Status: Member: Testing 
- */
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Manages how the turns in a battle are organized
+/// </summary>
 
 namespace Albatross
 {
     public class TurnManager : MonoBehaviour
     {
-
-        int currentTurn;
-
-        public int turnNumber;
         [SerializeField]
         Action a;
 
@@ -37,18 +31,23 @@ namespace Albatross
 
         BattleManager bm;
 
+        public int TurnNumber;
+
+        public Phases current_phase = Phases.Start;
+        public bool SlowSpellFlag = false; 
+
         void Start()
         {
             bm = FindObjectOfType<BattleManager>();
 
-            TurnOrder = determineTurnOrder(TurnOrder);
+            TurnOrder = DetermineTurnOrder(TurnOrder);
         }
 
-        public List<MonsterObject> determineTurnOrder(List<MonsterObject> A)
+        public List<MonsterObject> DetermineTurnOrder(List<MonsterObject> A)
         {
             List<MonsterObject> tmp = new List<MonsterObject>();
 
-            for (int i = 0; i < A.Count; i++)
+            for (int i = 0; i < A.Count-1; i++)
             {
                 if (A[i].health > 0)
                 {
@@ -56,7 +55,7 @@ namespace Albatross
                 }
                 if (A.Count > 1)
                 {
-                    for (int j = 0; j <= A.Count; j++)
+                    for (int j = 0; j < A.Count; j++)
                     {
                         if (A[i] != null && A[j] != null)
                         {
@@ -73,22 +72,40 @@ namespace Albatross
             return tmp;
         }
 
+
+        public void Turn()
+        {
+            switch (current_phase)
+            {
+                case Phases.Start:
+                    SpellManager sm = FindObjectOfType<SpellManager>();
+                    SlowSpellFlag = false; 
+                    sm.DrawCard();
+                    current_phase = Phases.Main;
+                    break;
+                case Phases.Main:
+                    SlowSpellFlag = true;
+                    break;
+                case Phases.End:
+                    if (currentMonIndex < TurnOrder.Count - 1)
+                    {
+                        currentMonIndex++;
+                    }
+                    else
+                    {
+                        Debug.Log(TurnNumber++);
+                        currentMonIndex = 0;
+                    }
+                    TurnOrder = DetermineTurnOrder(TurnOrder);
+                    current_phase = Phases.Start;
+                    break;
+            }
+        }
+
+
         public void EndTurn()
         {
-            SpellManager sm = FindObjectOfType<SpellManager>(); 
-
-            if (currentMonIndex < TurnOrder.Count - 1)
-            {
-                currentMonIndex++;
-            }
-            else
-            {
-                Debug.Log(turnNumber++);
-                currentMonIndex = 0;
-            }
-            sm.DrawCard();
-            TurnOrder = determineTurnOrder(TurnOrder);
-            
+            current_phase = Phases.End;
         }
 
         void Update()
@@ -103,7 +120,7 @@ namespace Albatross
                 NextMonster = TurnOrder[0];
             }
 
-            if (CurrentMonster.ownedByPlayer)
+            if (CurrentMonster.OwnedByPlayer)
             {
                 PlayerControls.gameObject.SetActive(true);
             }
@@ -129,17 +146,17 @@ namespace Albatross
             c.gameObject.SetActive(false);
         }
 
-        public MonsterObject getCurrentMonster()
+        public MonsterObject GetCurrentMonster()
         {
             return CurrentMonster;
         }
 
-        public Action getAction()
+        public Action GetAction()
         {
             return a;
         }
 
-        public void setAction(Action a)
+        public void SetAction(Action a)
         {
             this.a = a;
         }
