@@ -33,7 +33,7 @@ namespace Albatross
 
             for (int i = 0; i < numberToCreate; i++)
             {
-                prefab.GetComponent<SpellListObject>().setSpell(FullListOfSpells[i]);
+                prefab.GetComponent<SpellListObject>().SetSpell(FullListOfSpells[i]);
                 newObj = Instantiate(prefab, transform);
             }
         }

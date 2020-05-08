@@ -1,13 +1,4 @@
-﻿/* Project Albatross 
- * Prepared by Eddie Fulton
- * Unpublished/Unfinished
- * Purpose: Holds a group of Monster ScritableObjects
- * Status: Member: Testing 
- */
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 
 namespace Albatross
@@ -17,7 +8,7 @@ namespace Albatross
     public class Party
     {
         public List<Monster> PartyMembers;
-        public string name;
+        public string Name;
 
         public void Add(Monster mon)
         {
@@ -30,7 +21,7 @@ namespace Albatross
         public Party(string name)
         {
             PartyMembers = new List<Monster>();
-            this.name = name;
+            this.Name = name;
         }
 
         public Party()

@@ -7,40 +7,40 @@ using UnityEngine.EventSystems;
 
 namespace Albatross
 {
+    //Used by the Deck manager to add Monsters (IDs) to the Player's Party
     public class MonsterListObject : MonoBehaviour, IPointerClickHandler
     {
-		//Represents an ID's data in UI for deck building 
 
-        public Monster mon;
-        public Text CharacterName;
-        public Image Image;
-        public DeckBuildHandler dbh;
+        public Monster Mon { get; set; }
+        public Text CharacterName { get; set; }
+        public Image Image { get; set; }
+        public DeckBuildHandler Dbh { get; set; }
 
         void Awake()
         {
             CharacterName = GetComponentInChildren<Text>();
             Image = GetComponent<Image>();
-            dbh = FindObjectOfType<DeckBuildHandler>();
+            Dbh = FindObjectOfType<DeckBuildHandler>();
 
-            CharacterName.text = mon.name;
-            Image.sprite = mon.artwork;
+            CharacterName.text = Mon.name;
+            Image.sprite = Mon.artwork;
 
-            transform.name = mon.name;
+            transform.name = Mon.name;
         }
 
         public void OnPointerClick(PointerEventData pe)
         {
             if (pe.clickCount < 2 || pe.dragging)
             {
-                dbh.PreviewImage.sprite = Image.sprite;
-                dbh.selectedMonster = this.gameObject;
+                Dbh.PreviewImage.sprite = Image.sprite;
+                Dbh.SelectedMonster = gameObject;
             }
 
         }
 
-        public void setMon(Monster mon)
+        public void SetMon(Monster mon)
         {
-            this.mon = mon;
+            Mon = mon;
         }
     }
 }

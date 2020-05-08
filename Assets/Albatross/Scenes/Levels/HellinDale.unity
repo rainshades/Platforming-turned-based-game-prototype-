@@ -33619,8 +33619,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336081dcf662ecb40907ddfaa8a5442a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1968239616}
-  AreaName: Hellindale Outskirts (West)
+  Text: {fileID: 1968239616}
+  AreaName: 
+  Audio: {fileID: 0}
 --- !u!61 &84384393
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33806,8 +33807,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336081dcf662ecb40907ddfaa8a5442a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
+  Text: {fileID: 1968239616}
   AreaName: Sunset Rock
+  Audio: {fileID: 8300000, guid: 6b0737a408a5dee429b6f5de186e7f1e, type: 3}
 --- !u!61 &211388636
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33904,8 +33906,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336081dcf662ecb40907ddfaa8a5442a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  AreaName: Hellindale Outskirts (West)
+  Text: {fileID: 1968239616}
+  AreaName: 
+  Audio: {fileID: 0}
 --- !u!1 &392567118
 GameObject:
   m_ObjectHideFlags: 0
@@ -34278,14 +34281,142 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336081dcf662ecb40907ddfaa8a5442a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  AreaName: Hellindale
+  Text: {fileID: 1968239616}
+  AreaName: 
+  Audio: {fileID: 0}
 --- !u!4 &910498431 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 40983936572592664, guid: 8d0ac678fc8beb24f9ca26cd0e778fb8,
     type: 3}
   m_PrefabInstance: {fileID: 40983936803604583}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &979392287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 979392289}
+  - component: {fileID: 979392288}
+  m_Layer: 0
+  m_Name: Audio Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &979392288
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979392287}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d920e326de9ff44448a9b9067592496e, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &979392289
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979392287}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.565754, y: -6.2944527, z: -260.46875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1011002179
 GameObject:
   m_ObjectHideFlags: 0
@@ -37005,12 +37136,12 @@ PrefabInstance:
     - target: {fileID: 351169589763759300, guid: 0ee542e9f2aa67045b4d34b2f63799cf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -444.43
+      value: -140.2
       objectReference: {fileID: 0}
     - target: {fileID: 351169589763759300, guid: 0ee542e9f2aa67045b4d34b2f63799cf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -259.24
+      value: -266.4
       objectReference: {fileID: 0}
     - target: {fileID: 351169589763759300, guid: 0ee542e9f2aa67045b4d34b2f63799cf,
         type: 3}
@@ -125598,8 +125729,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336081dcf662ecb40907ddfaa8a5442a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  AreaName: Hellindale Outskirts (East)
+  Text: {fileID: 1968239616}
+  AreaName: 
+  Audio: {fileID: 0}
 --- !u!61 &1823914104
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -138699,7 +138831,12 @@ PrefabInstance:
     - target: {fileID: 3988760528750848907, guid: 8d0ac678fc8beb24f9ca26cd0e778fb8,
         type: 3}
       propertyPath: VictoryDialog
-      value: LinaOneVictory
+      value: LuzOneVictory
+      objectReference: {fileID: 0}
+    - target: {fileID: 3988760528750848907, guid: 8d0ac678fc8beb24f9ca26cd0e778fb8,
+        type: 3}
+      propertyPath: InnitDialog
+      value: LuzOne
       objectReference: {fileID: 0}
     - target: {fileID: 5466231191025276383, guid: 8d0ac678fc8beb24f9ca26cd0e778fb8,
         type: 3}
@@ -138901,6 +139038,7 @@ MonoBehaviour:
   thisNPC: 2
   overworld_dialog:
   - DadOne
+  flow: {fileID: 0}
   animator: {fileID: 7838935770802877262}
   VictoryDialog: 
   InnitDialog: 

@@ -5,27 +5,40 @@ using UnityEngine;
 
 namespace Albatross
 {
-    public enum EffectType { Heal, Damage, Negate, Destroy, Stun, BuffStat, NerfStat, SwapSwap, ModifyStat, SwapAlignment }
-
+ 
     [System.Serializable]
     public class Effect
     {
-        public int EffectAmount;//For use in Healing and Damaging
+        public int EffectAmountInt;//For use in Healing and Damaging
+        public float EffectAmountFloat;
         MonsterObject AttatchedCard;
         Entity AttatchedEntity;
         [SerializeField]
         EffectType effect;
 
-        public void setEffect(EffectType effect)
+        #if true
+            
+        #endif
+
+        public void SetEffect(EffectType effect)
         {
             this.effect = effect;
         }
-        public EffectType getEffectType()
+
+        public EffectType GetEffectType()
         {
             return effect;
         }
-        public void SetAttatchedEntity(Entity e) { AttatchedEntity = e; }
-        public void SetAttatchedCard(MonsterObject mon) { AttatchedCard = mon; }
+
+        public void SetAttatchedEntity(Entity e) 
+        { 
+            AttatchedEntity = e; 
+        }
+
+        public void SetAttatchedCard(MonsterObject mon) 
+        {
+            AttatchedCard = mon;
+        }
 
         public void Deploy()
         {
@@ -34,7 +47,7 @@ namespace Albatross
                 switch (effect)
                 {
                     case EffectType.Heal:
-                        AttatchedEntity.Heal(AttatchedCard, EffectAmount);
+                        AttatchedEntity.Heal(AttatchedCard, EffectAmountInt);
                         break;
                     case EffectType.Damage:
                         AttatchedEntity.Damage(AttatchedCard);
@@ -55,10 +68,16 @@ namespace Albatross
             switch (effect)
             {
                 case EffectType.Heal:
-                    AttatchedEntity.Heal(targetMon, EffectAmount);
+                    AttatchedEntity.Heal(targetMon, EffectAmountInt);
+                    break;
+                case EffectType.HealPercentage:
+                    AttatchedEntity.HealPercentage(targetMon, EffectAmountFloat);
                     break;
                 case EffectType.Damage:
                     AttatchedEntity.Damage(targetMon);
+                    break;
+                case EffectType.DamagePercentage:
+                    AttatchedEntity.DamagePercentage(targetMon, EffectAmountFloat);
                     break;
                 case EffectType.Negate:
                     AttatchedEntity.Negate();

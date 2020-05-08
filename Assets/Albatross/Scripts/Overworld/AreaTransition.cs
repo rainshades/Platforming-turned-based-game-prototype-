@@ -7,16 +7,21 @@ using TMPro;
 
 namespace Albatross
 {
+    //Holds The name of the region the player is moving to
+    //and then sets the textmesh to active when the player triggers it
     public class AreaTransition : MonoBehaviour
     {
-        public TextMeshProUGUI text;
+        public TextMeshProUGUI Text;
         public string AreaName;
-        
+        public AudioClip Audio;
 
         void OnTriggerEnter2D(Collider2D col)
         {
-            text.text = AreaName;
-            text.gameObject.SetActive(true);
+            Text.text = AreaName;
+            Text.gameObject.SetActive(true);
+            AudioSource ao = FindObjectOfType<AudioSource>();
+            ao.clip = Audio;
+            ao.Play();
         }
         
     }

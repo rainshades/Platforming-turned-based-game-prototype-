@@ -8,15 +8,12 @@ namespace Albatross
 {
     public class Populate_Enemy : MonoBehaviour
     {
-		//Populates the enemy selectors for an action 
-		//and depopulates it so that actions cannot be taken twice
-        
-		public BattleManager bm;
-        public GameObject prefabSprite;
-		
+        public BattleManager Bm;
+        public GameObject PrefabSprite;
+
         void Start()
         {
-            bm = FindObjectOfType<BattleManager>();
+            Bm = FindObjectOfType<BattleManager>();
         }
 
         public void Populate( List<MonsterObject> Monsters)
@@ -27,9 +24,9 @@ namespace Albatross
 
             for (int i = 0; i < numberToCreate; i++)
             {
-                prefabSprite.GetComponent<Image>().sprite = Monsters[i].thisMonster.artwork;
-                prefabSprite.GetComponent<Select_Enemy>().TargetMon = Monsters[i];
-                newObj = Instantiate(prefabSprite, transform);
+                PrefabSprite.GetComponent<Image>().sprite = Monsters[i].ThisMonster.artwork;
+                PrefabSprite.GetComponent<Select_Enemy>().TargetMon = Monsters[i];
+                newObj = Instantiate(PrefabSprite, transform);
                 //Debug.Log(newObj.name + " has been born");
             }
         }

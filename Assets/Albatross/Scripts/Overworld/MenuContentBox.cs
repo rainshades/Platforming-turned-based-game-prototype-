@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// Switches the input to Menu controls (if using a controller)
+/// </summary>
 namespace Albatross
 {
     public class MenuContentBox : MonoBehaviour

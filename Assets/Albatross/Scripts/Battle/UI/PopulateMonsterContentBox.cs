@@ -38,7 +38,7 @@ namespace Albatross
 
             for (int i = 0; i < numberToCreate; i++)
             {
-                prefab.GetComponent<MonsterListObject>().setMon(FullListOfMonsters[i]);
+                prefab.GetComponent<MonsterListObject>().SetMon(FullListOfMonsters[i]);
                 newObj = Instantiate(prefab, transform);
             }
         }

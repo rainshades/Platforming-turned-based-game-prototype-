@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace Albatross
 {
+    /// <summary>
+    /// Manages Deck and the Spells effects and abilities on the Battle Scene
+    /// </summary>
     public class SpellManager : MonoBehaviour
     {
         [SerializeField]
@@ -40,7 +43,7 @@ namespace Albatross
 
             public void Discard(SpellObject Spell)
             {
-                CardsInDiscard.Add(Spell.spell);
+                CardsInDiscard.Add(Spell.Spell);
             }
 
             public void Refresh()
@@ -64,12 +67,12 @@ namespace Albatross
         {
             TurnManager tm = FindObjectOfType<TurnManager>();
             gm = FindObjectOfType<GameManager>();
-            currentMonster = tm.getCurrentMonster();
+            currentMonster = tm.GetCurrentMonster();
 
 
-            AllyDeck = new PlayDeck(gm.currentDeck.spells);
+            AllyDeck = new PlayDeck(gm.currentDeck.Spells);
 
-            EnemyDeck = new PlayDeck(gm.getEnemyDeck().spells);
+            EnemyDeck = new PlayDeck(gm.GetEnemyDeck().Spells);
 
             DrawCard();
             DrawCard();
@@ -96,7 +99,7 @@ namespace Albatross
             if (AllyDeck.CardsInDeck.Count > 0)
             {
                 GameObject go = cardPrefab;
-                go.GetComponent<SpellObject>().spell = AllyDeck.CardsInDeck[0];
+                go.GetComponent<SpellObject>().Spell = AllyDeck.CardsInDeck[0];
                 AllyDeck.Draw();
                 Instantiate(go, PlayerHand.transform);
             }

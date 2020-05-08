@@ -1,32 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 
 namespace Albatross
 {
+    /// <summary>
+    /// Selects an Enemy to target during battle
+    /// After A spell has been selected
+    /// OR 
+    /// An Attack order has been issued
+    /// </summary>
     public class Select_Enemy : MonoBehaviour, IPointerClickHandler
     {
         TurnManager tm;
         SpellManager sm;
-        public MonsterObject TargetMon;
         MonsterObject currentMon;
-        public GameObject CanvasToTurnOff;
         Populate_Enemy populate;
+
+        public MonsterObject TargetMon;
+        public GameObject CanvasToTurnOff;
 
         void Start()
         {
             CanvasToTurnOff = transform.parent.gameObject;
             tm = FindObjectOfType<TurnManager>();
             sm = FindObjectOfType<SpellManager>();
-            currentMon = tm.getCurrentMonster();
+            currentMon = tm.GetCurrentMonster();
             populate = FindObjectOfType<Populate_Enemy>();
         }
 
         public void OnPointerClick(PointerEventData PE)
         {
-            switch (tm.getAction())
+            switch (tm.GetAction())
             { //Enacts the action given to it by the turn manager
                 case Action.Attack:
                     currentMon.AttackTarget(TargetMon);
@@ -39,7 +44,7 @@ namespace Albatross
 
                 case Action.ActiveAbility:
                     Debug.Log("Ability the target");
-                    if (currentMon.canTarget())
+                    if (currentMon.CanTarget())
                     {
                         currentMon.ActivateAbility(TargetMon);
                         populate.Depopulate();

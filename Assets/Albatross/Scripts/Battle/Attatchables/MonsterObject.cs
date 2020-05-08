@@ -1,17 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 
-
-
+/// <summary>
+/// A container class for the Monster Scriptable Object to be used in the Scenes
+/// Used in Deck Creation and Battles
+/// </summary>
 namespace Albatross
 {
     public class MonsterObject : MonoBehaviour
     {
         BattleManager bm;
-        public bool ownedByPlayer;
+        public bool OwnedByPlayer;
 
         [SerializeField]
         string AttackAnimation = null;
@@ -19,10 +17,12 @@ namespace Albatross
         [SerializeField]
         string CastAnimation = null;
 
-        bool canAct = false;
+        public TypeElement element;
+
+        bool CanAct = false;
         bool AbilityTargets = false;
 
-        public Monster thisMonster;
+        public Monster ThisMonster;
         
         [SerializeField]
         Ability PassiveAbility;
@@ -41,34 +41,34 @@ namespace Albatross
         // Start is called before the first frame update
         void Awake()
         {
-            name = thisMonster.name;
-            health = thisMonster.health;
-            attack = thisMonster.attack;
-            defence_value = thisMonster.defence;
-            mana = thisMonster.mana;
-            speed = thisMonster.speed;
-            type = thisMonster.element;
-            PassiveAbility = thisMonster.passive;
+            name = ThisMonster.name;
+            health = ThisMonster.health;
+            attack = ThisMonster.attack;
+            defence_value = ThisMonster.defence;
+            mana = ThisMonster.mana;
+            speed = ThisMonster.speed;
+            type = ThisMonster.element;
+            PassiveAbility = ThisMonster.passive;
 
             bm = FindObjectOfType<BattleManager>();
             rt = GetComponent<RectTransform>();
             sr = GetComponent<SpriteRenderer>();
 
 
-            PassiveAbility.effect.SetAttatchedEntity(thisMonster);
+            PassiveAbility.Effect.SetAttatchedEntity(ThisMonster);
 
-            PassiveAbility.effect.SetAttatchedCard(this);
+            PassiveAbility.Effect.SetAttatchedCard(this);
 
-            AbilityTargets = PassiveAbility.isTargetAbility;
+            AbilityTargets = PassiveAbility.IsTargetAbility;
 
             if (sr != null)
             {
-                sr.sprite = thisMonster.artwork;
+                sr.sprite = ThisMonster.artwork;
             }
 
         }
 
-        public void hit(GameObject target)
+        public void Hit(GameObject target)
         {
             MonsterObject ownerStats = this.GetComponent<MonsterObject>();
             MonsterObject targetStats = target.GetComponent<MonsterObject>();
@@ -84,7 +84,7 @@ namespace Albatross
             this.GetComponent<Animator>().Play(CastAnimation);
         }
 
-        public void defend()
+        public void Defend()
         {
             health += defence_value;
             mana -= defence_value * 2;
@@ -110,7 +110,7 @@ namespace Albatross
 
         public void AttackTarget(MonsterObject target)
         {
-            thisMonster.Damage(target);
+            ThisMonster.Damage(target);
         }
 
         public void ActivateAbility(MonsterObject target)
@@ -122,16 +122,16 @@ namespace Albatross
             PassiveAbility.Activate();
         }
 
-        public bool getCanAct()
+        public bool GetCanAct()
         {
-            return canAct;
+            return CanAct;
         }
 
-        public void setCanAct(bool b)
+        public void SetCanAct(bool b)
         {
-            canAct = b;
+            CanAct = b;
         }
-        public bool canTarget()
+        public bool CanTarget()
         {
             return AbilityTargets;
         }

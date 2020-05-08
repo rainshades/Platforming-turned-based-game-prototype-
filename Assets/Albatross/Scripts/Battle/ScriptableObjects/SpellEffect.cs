@@ -9,7 +9,6 @@ namespace Albatross {
 
     public class SpellEffect : Ability
     {
-        public enum CastType { Slow, Quick, Equipment }
 
     }
 
@@ -21,9 +20,9 @@ namespace Albatross {
         public CastType thisCastType = CastType.Slow;
 
         [SerializeField]
-        trigger CastCondition = trigger.NoTrigger; 
+        List<Trigger> CastCondition; 
 
-        public trigger GetCastCondition()
+        public List<Trigger> GetCastCondition()
         {
             return CastCondition;
         }
@@ -37,9 +36,9 @@ namespace Albatross
     {
         public CastType thisCastType = CastType.Quick;
         [SerializeField]
-        trigger Trigger = trigger.NoTrigger;
+        List<Trigger> Trigger;
 
-        public trigger GetTrigger()
+        public List<Trigger> GetTrigger()
         {
             return Trigger;
         }
@@ -54,9 +53,9 @@ namespace Albatross
         public CastType thisCastType = CastType.Equipment;
 
         [SerializeField]
-        trigger ActiveTrigger = trigger.NoTrigger;
+        Trigger ActiveTrigger = Trigger.NoTrigger;
         [SerializeField]
-        trigger PassiveTrigger = trigger.NoTrigger; 
+        Trigger PassiveTrigger = Trigger.NoTrigger; 
 
 
         
@@ -65,15 +64,15 @@ namespace Albatross
         /// Get Trigger returns Both into a List
         /// If the list has a count of two the the Passive Trigger will always come second
         /// </returns>
-        public List<trigger> GetTrigger()
+        public List<Trigger> GetTrigger()
         {
-            List<trigger> triggers = new List<trigger>();
+            List<Trigger> triggers = new List<Trigger>();
 
-            if(ActiveTrigger != trigger.NoTrigger)
+            if(ActiveTrigger != Trigger.NoTrigger)
             {
                 triggers.Add(ActiveTrigger);
             }
-            if(PassiveTrigger != trigger.NoTrigger)
+            if(PassiveTrigger != Trigger.NoTrigger)
             {
                 triggers.Add(PassiveTrigger);
             }

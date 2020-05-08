@@ -3,50 +3,54 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
+/// <summary>
+/// 
+/// </summary>
 namespace Albatross
 {
-    public enum TargetType { Self, EnemyMonster, AllyMonster, EnemySpell, AllySpell, NoTarget }
 
     [System.Serializable]
     public class Ability : ScriptableObject
     {
-
-        public bool isTargetAbility;
-        public Effect effect;
+        public bool IsTargetAbility;
+        public Effect Effect;
         public TargetType TargetType;
 
         public string EffectDescription;
 
-        //Effect Triggers
-        public virtual void Activate() { effect.Deploy(); }
-        public virtual void Activate(MonsterObject target) { effect.Deploy(target); }
-        public virtual void Activate(SpellObject target) { effect.Deploy(target); }
+        //If the User has a choice in activating 
+        public virtual void Activate() { Effect.Deploy(); }
+        public virtual void Activate(MonsterObject target) { Effect.Deploy(target); }
+        public virtual void Activate(SpellObject target) { Effect.Deploy(target); }
+
+        //If the ability lasts longer then a turn
         public virtual void RecurringOverDuration(int duration) { }
         public virtual void InfinateRecurring() { }
-        public virtual void onDraw() { effect.Deploy(); }
-        public virtual void onDraw(MonsterObject target) { effect.Deploy(target); }
-        public virtual void onDraw(SpellObject target) { effect.Deploy(target); }
-        public virtual void onAttack() { effect.Deploy(); }
-        public virtual void onAttack(MonsterObject target) { effect.Deploy(target); }
-        public virtual void onAttack(SpellObject target) { effect.Deploy(target); }
-        public virtual void onDefend() { effect.Deploy(); }
-        public virtual void onDefend(MonsterObject target) { effect.Deploy(target); }
-        public virtual void onDefend(SpellObject target) { effect.Deploy(target); }
-        public virtual void onAbility() { effect.Deploy(); }
-        public virtual void onAbility(MonsterObject target) { effect.Deploy(target); }
-        public virtual void onAbility(SpellObject target) { effect.Deploy(target); }
-        public virtual void onDeath() { effect.Deploy(); }
-        public virtual void onDeath(MonsterObject target) { effect.Deploy(target); }
-        public virtual void onDeath(SpellObject target) { effect.Deploy(target); }
-        public virtual void onHealthAmount() { effect.Deploy(); }
-        public virtual void onHealthAmount(MonsterObject target) { effect.Deploy(target); }
-        public virtual void onHealthAmount(SpellObject target) { effect.Deploy(target); }
-        public virtual void onDestory() { effect.Deploy(); }
-        public virtual void onDestory(MonsterObject target) { effect.Deploy(target); }
-        public virtual void onDestory(SpellObject target) { effect.Deploy(target); }
-        public virtual void onEffect() { effect.Deploy(); }
-        public virtual void onEffect(MonsterObject target) { effect.Deploy(target); }
-        public virtual void onEffect(SpellObject target) { effect.Deploy(target); }
+
+        //When the Ability's effect triggers
+        public virtual void OnDraw() { Effect.Deploy(); }
+        public virtual void OnDraw(MonsterObject target) { Effect.Deploy(target); }
+        public virtual void OnDraw(SpellObject target) { Effect.Deploy(target); }
+        public virtual void OnAttack() { Effect.Deploy(); }
+        public virtual void OnAttack(MonsterObject target) { Effect.Deploy(target); }
+        public virtual void OnAttack(SpellObject target) { Effect.Deploy(target); }
+        public virtual void OnDefend() { Effect.Deploy(); }
+        public virtual void OnDefend(MonsterObject target) { Effect.Deploy(target); }
+        public virtual void OnDefend(SpellObject target) { Effect.Deploy(target); }
+        public virtual void OnAbility() { Effect.Deploy(); }
+        public virtual void OnAbility(MonsterObject target) { Effect.Deploy(target); }
+        public virtual void OnAbility(SpellObject target) { Effect.Deploy(target); }
+        public virtual void OnDeath() { Effect.Deploy(); }
+        public virtual void OnDeath(MonsterObject target) { Effect.Deploy(target); }
+        public virtual void OnDeath(SpellObject target) { Effect.Deploy(target); }
+        public virtual void OnHealthAmount() { Effect.Deploy(); }
+        public virtual void OnHealthAmount(MonsterObject target) { Effect.Deploy(target); }
+        public virtual void OnHealthAmount(SpellObject target) { Effect.Deploy(target); }
+        public virtual void OnDestory() { Effect.Deploy(); }
+        public virtual void OnDestory(MonsterObject target) { Effect.Deploy(target); }
+        public virtual void OnDestory(SpellObject target) { Effect.Deploy(target); }
+        public virtual void OnEffect() { Effect.Deploy(); }
+        public virtual void OnEffect(MonsterObject target) { Effect.Deploy(target); }
+        public virtual void OnEffect(SpellObject target) { Effect.Deploy(target); }
     }
 }

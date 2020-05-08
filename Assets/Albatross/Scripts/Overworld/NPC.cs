@@ -6,28 +6,34 @@ using TMPro;
 
 namespace Albatross
 {
-    public class NPC : PhysicsObject //A non playerable character that contains dialog options
+    /// <summary>
+    /// A non playerable character that contains dialog options, Friendlyness
+    /// by using the Fungus Plugin
+    /// NPCs are either battle or non battle
+    /// </summary>
+    public class NPC : PhysicsObject
     {
-        public enum NPCTYPE { Neutral, Hostile, Friendly }
-        
+
+
         [SerializeField]
         protected NPCTYPE thisNPC;
         public string[] overworld_dialog;
         int current_overworld_dialog_iterator = 0;
-        private Flowchart flow;
-        
+
+        public Flowchart flow;
+
         [SerializeField]
         private Animator animator;
         string current_dialog_option = "";
 
         public string VictoryDialog;
         public string InnitDialog;
-        public string DefeatDialog; 
+        public string DefeatDialog;
 
         [SerializeField]
-        bool isBattleNPC = false; 
+        bool isBattleNPC = false;
         [SerializeField]
-        int NPCBattleDataNumber; 
+        int NPCBattleDataNumber;
 
         private void Awake()
         {
@@ -58,37 +64,37 @@ namespace Albatross
 
                 PlayerController Player = col.GetComponent<PlayerController>();
                 GameManager gm = FindObjectOfType<GameManager>();
-                gm.currentNPCNumber = NPCBattleDataNumber;
+                gm.CurrentNPCNumber = NPCBattleDataNumber;
                 NPCBattleDetails BattleDetails = gm.BattleDetailsAt(NPCBattleDataNumber);
-                gm.setCurrentBattleDetails(BattleDetails);
+                gm.SetCurrentBattleDetails(BattleDetails);
 
 
-                if (isAbleToBattle())
+                if (IsAbleToBattle())
                 {
                     Player.maxSpeed = 0;
                 }
                 ExecuteBlock(current_dialog_option);
-                
+
             }
         }
 
-        private bool isAbleToBattle()
+        private bool IsAbleToBattle()
         {
             if (isBattleNPC)
             {
                 GameManager gm = FindObjectOfType<GameManager>();
-                if(gm.currentParty.PartyMembers.Count >= 1)
+                if (gm.currentParty.PartyMembers.Count >= 1)
                 {
                     if (gm.CanBattle(NPCBattleDataNumber))
                     {
                         current_dialog_option = InnitDialog;
-                        return true; 
+                        return true;
                     }
                     else current_dialog_option = VictoryDialog;
                     return false;
                 }
             }
-            return false; 
+            return false;
         }
     }
 }

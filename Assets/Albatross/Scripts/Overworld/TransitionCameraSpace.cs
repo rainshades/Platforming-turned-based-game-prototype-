@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+//Moves the Camera whenever the player gets a certain portion of the Screen
 namespace Albatross
 {
     public class TransitionCameraSpace : MonoBehaviour
     {
-        enum Direction { North, South, East, West}
+
         Vector3 NewCameraPosition = Vector3.zero;
 
         [SerializeField]
@@ -39,7 +40,7 @@ namespace Albatross
         void OnTriggerEnter2D(Collider2D col)
         {
             if(col.transform.CompareTag("Player"))
-            this.transform.parent.transform.position = NewCameraPosition;
+            transform.parent.transform.position = NewCameraPosition;
         }
         
     }

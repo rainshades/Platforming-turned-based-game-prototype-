@@ -1,17 +1,14 @@
-﻿/* Project Albatross 
- * Prepared by Eddie Fulton
- * Unpublished/Unfinished
- * Purpose: To manage individual decisions by a single dummy enemy unit.
- * Status: Temporary: Testing 
- */
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 namespace Albatross
 {
+
+    /// <summary>
+    /// Placeholder for Enemy AI
+    /// At the moment the enemy simply choosing a random available action
+    /// if Spells aren't available it will simply choose to attack or defend
+    /// </summary>
     public class EnemyBattleDecision : MonoBehaviour
     {
         [SerializeField]
@@ -60,7 +57,7 @@ namespace Albatross
                         Debug.Log(actor.name + " " + action.ToString() + "ed against " + target.name);
                         break;
                     case Action.ActiveAbility:
-                        if (actor.canTarget())
+                        if (actor.CanTarget())
                         {
                             actor.ActivateAbility(target.GetComponent<MonsterObject>());
                         }
@@ -72,7 +69,7 @@ namespace Albatross
                         Debug.Log("target has " + target.GetComponent<MonsterObject>().health + "hp left");
                         break;
                     case Action.Defend:
-                        actor.defend();
+                        actor.Defend();
                         Debug.Log(actor.name + " gained hp back");
                         break;
                 }

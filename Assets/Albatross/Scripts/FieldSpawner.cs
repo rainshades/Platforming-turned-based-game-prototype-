@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Albatross
 {
+    /// <summary>
+    /// Spawns the IDs on the field 
+    /// </summary>
     public class FieldSpawner : MonoBehaviour
     {
         GameManager gm;
@@ -24,13 +27,12 @@ namespace Albatross
         [SerializeField]
         GameObject enemyMonPrefab = null;
 
-        Party AllyParty = null;
-        Party EnemyParty = null;
+        private Party AllyParty = null;
+        private Party EnemyParty = null;
 
         public List<MonsterObject> AllyField;
         public List<MonsterObject> EnemyField;
 
-        
         void Awake()
         {
             gm = FindObjectOfType<GameManager>();
@@ -38,7 +40,7 @@ namespace Albatross
             bm = FindObjectOfType<BattleManager>();
 
             AllyParty = gm.currentParty;
-            EnemyParty = gm.getEnemyParty();
+            EnemyParty = gm.GetEnemyParty();
 
             PopulateField();
 
@@ -77,9 +79,9 @@ namespace Albatross
 
             for (int i = 0; i < AlliesToCreate; i++)
             {
-                monPrefab.GetComponent<MonsterObject>().thisMonster = AllyParty.PartyMembers[i];
+                monPrefab.GetComponent<MonsterObject>().ThisMonster = AllyParty.PartyMembers[i];
                 GameObject go = Instantiate(monPrefab, SpawnPoints[i]);
-                go.GetComponent<MonsterObject>().ownedByPlayer = true;
+                go.GetComponent<MonsterObject>().OwnedByPlayer = true;
                 go.SetActive(true);
                 AllyField.Add(go.GetComponent<MonsterObject>());
                 tm.TurnOrder.Add(go.GetComponent<MonsterObject>());
@@ -87,7 +89,7 @@ namespace Albatross
 
             for (int i = 0; i < EnemiesToCreate; i++)
             {
-                enemyMonPrefab.GetComponent<MonsterObject>().thisMonster = EnemyParty.PartyMembers[i];
+                enemyMonPrefab.GetComponent<MonsterObject>().ThisMonster = EnemyParty.PartyMembers[i];
                 GameObject go = Instantiate(enemyMonPrefab, EnemySpawnPoints[i]);
                 EnemyField.Add(go.GetComponent<MonsterObject>());
                 tm.TurnOrder.Add(go.GetComponent<MonsterObject>());
@@ -95,7 +97,7 @@ namespace Albatross
             
         }
 
-        public void setAllyParty(Party p)
+        public void SetAllyParty(Party p)
         {
             AllyParty = p;
         }

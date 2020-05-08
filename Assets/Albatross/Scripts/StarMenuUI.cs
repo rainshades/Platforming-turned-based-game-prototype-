@@ -1,11 +1,4 @@
-﻿/* Project Albatross 
- * Prepared by Eddie Fulton
- * Unpublished/Unfinished
- * Purpose: Manages the UI upon the game start. 
- * Status: Member: Testing 
- */
-
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
@@ -13,6 +6,10 @@ using UnityEngine.InputSystem;
 
 namespace Albatross
 {
+    /// <summary>
+    /// Controller support for the start menu
+    /// Contains a close game button
+    /// </summary>
     public class StarMenuUI : MonoBehaviour
     {
         [SerializeField]
