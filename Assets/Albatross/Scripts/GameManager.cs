@@ -15,9 +15,9 @@ namespace Albatross
         public Party currentParty = new Party("Player's party");
 
         [SerializeField]
-        private List<NPCBattleDetails> BattleDetails;
+        private List<NPCBattleDetails> BattleDetails = new List<NPCBattleDetails>();
         [SerializeField]
-        private List<bool> CanNPCBattle;
+        private List<bool> CanNPCBattle = new List<bool>();
 
         [SerializeField]
         NPCBattleDetails currentBattleDetails;
@@ -106,6 +106,11 @@ namespace Albatross
             LoadData();
             SceneManager.LoadScene(LastScene);
         }//Transtion to Overworld Scenes Usually From Battle Scene Wins
+
+        public void DoorToScene(string Destination)
+        {
+            SceneManager.LoadScene(Destination);
+        }
         #endregion
 
 
@@ -123,10 +128,12 @@ namespace Albatross
             data.inv = DemoInventory;
             try
             {
-                data.PlayerLocation = FindObjectOfType<Player>().transform.position;
+                data.PlayerLocation = FindObjectOfType<PlayerController>().transform.position;
                 data.HumanHealth = FindObjectOfType<Player>().HumanHealth;
                 data.CameraLocation = FindObjectOfType<Camera>().transform.position;
                 data.OverWorldManaPool = FindObjectOfType<Player>().OverWorldManaPool;
+                data.Bravery = FindObjectOfType<Player>().Bravery;
+                data.LastScene = LastScene;
 
                 FileStream DeckFile = File.Create(Application.persistentDataPath + "/Deck.json");
                 string json1 = JsonUtility.ToJson(currentDeck);
@@ -230,7 +237,7 @@ namespace Albatross
         {
             try
             {
-                FindObjectOfType<Player>().transform.position = data.PlayerLocation;
+                FindObjectOfType<PlayerController>().transform.position = data.PlayerLocation;
                 FindObjectOfType<Player>().HumanHealth = data.HumanHealth;
                 FindObjectOfType<Camera>().transform.position = data.CameraLocation;
 

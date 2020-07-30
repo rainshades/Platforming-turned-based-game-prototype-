@@ -11,10 +11,8 @@ namespace Albatross
     /// by using the Fungus Plugin
     /// NPCs are either battle or non battle
     /// </summary>
-    public class NPC : PhysicsObject
+    public class NPC : MonoBehaviour
     {
-
-
         [SerializeField]
         protected NPCTYPE thisNPC;
         public string[] overworld_dialog;
@@ -40,12 +38,6 @@ namespace Albatross
             flow = FindObjectOfType<Flowchart>();
         }
 
-        protected override void ComputeVelocity()
-        {
-            animator.SetBool("Grounded", grounded);
-
-        }
-
         public NPCTYPE GetNpcType()
         {
             return thisNPC;
@@ -57,42 +49,40 @@ namespace Albatross
         }
 
 
-        private void OnTriggerEnter2D(Collider2D col)
+        public void NPCInteraction(PlayerController PC)
         {
-            if (col.gameObject.CompareTag("Player"))
+            GameManager gm = FindObjectOfType<GameManager>();
+            gm.CurrentNPCNumber = NPCBattleDataNumber;
+            NPCBattleDetails BattleDetails = gm.BattleDetailsAt(NPCBattleDataNumber);
+            gm.SetCurrentBattleDetails(BattleDetails);
+
+            if (isBattleNPC)
             {
-
-                PlayerController Player = col.GetComponent<PlayerController>();
-                GameManager gm = FindObjectOfType<GameManager>();
-                gm.CurrentNPCNumber = NPCBattleDataNumber;
-                NPCBattleDetails BattleDetails = gm.BattleDetailsAt(NPCBattleDataNumber);
-                gm.SetCurrentBattleDetails(BattleDetails);
-
-
                 if (IsAbleToBattle())
                 {
-                    Player.maxSpeed = 0;
+                    PC.MAXSPEEDVALUE = 0;
                 }
-                ExecuteBlock(current_dialog_option);
-
             }
+            else
+            {
+                current_dialog_option = InnitDialog;
+            }
+            ExecuteBlock(current_dialog_option);
         }
+
 
         private bool IsAbleToBattle()
         {
-            if (isBattleNPC)
+            GameManager gm = FindObjectOfType<GameManager>();
+            if (gm.currentParty.PartyMembers.Count >= 1)
             {
-                GameManager gm = FindObjectOfType<GameManager>();
-                if (gm.currentParty.PartyMembers.Count >= 1)
+                if (gm.CanBattle(NPCBattleDataNumber))
                 {
-                    if (gm.CanBattle(NPCBattleDataNumber))
-                    {
-                        current_dialog_option = InnitDialog;
-                        return true;
-                    }
+                    current_dialog_option = InnitDialog;
+                    return true;
+                }
                     else current_dialog_option = VictoryDialog;
                     return false;
-                }
             }
             return false;
         }

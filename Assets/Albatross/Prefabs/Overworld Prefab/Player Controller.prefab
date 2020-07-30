@@ -47,6 +47,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -131,10 +132,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 351169589763759300}
-  - component: {fileID: 351169589763759299}
   - component: {fileID: 3502890574529322288}
   - component: {fileID: 351169589763759298}
   - component: {fileID: 4644789454707494568}
+  - component: {fileID: 8556858125307018457}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Player
@@ -157,21 +158,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &351169589763759299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 351169589763759302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa16bb6135bddbf4c8279beed8a8c397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HumanHealth: 5
-  OverWorldManaPool: 3
-  AttackDamage: 1
 --- !u!114 &3502890574529322288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +179,7 @@ MonoBehaviour:
   maxSpeed: 7
   jumpTakeOffSpeed: 0.00001
   animator: {fileID: 351169589434672616}
+  canInteract: 0
 --- !u!50 &351169589763759298
 Rigidbody2D:
   serializedVersion: 4
@@ -229,4 +216,20 @@ CapsuleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.17434816, y: 0.123454206}
   m_Size: {x: 1.9798366, y: 2.877375}
+  m_Direction: 0
+--- !u!70 &8556858125307018457
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351169589763759302}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.15734144, y: 0.1851066}
+  m_Size: {x: 2.9249022, y: 3.554267}
   m_Direction: 0

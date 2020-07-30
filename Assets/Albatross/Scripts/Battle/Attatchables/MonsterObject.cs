@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
 /// A container class for the Monster Scriptable Object to be used in the Scenes
@@ -25,7 +26,7 @@ namespace Albatross
         public Monster ThisMonster;
         
         [SerializeField]
-        Ability PassiveAbility;
+        CardAbility PassiveAbility;
 
         TypeElement type;
 
@@ -54,19 +55,18 @@ namespace Albatross
             rt = GetComponent<RectTransform>();
             sr = GetComponent<SpriteRenderer>();
 
-
-            PassiveAbility.Effect.SetAttatchedEntity(ThisMonster);
-
-            PassiveAbility.Effect.SetAttatchedCard(this);
-
-            AbilityTargets = PassiveAbility.IsTargetAbility;
-
             if (sr != null)
             {
                 sr.sprite = ThisMonster.artwork;
             }
 
         }
+
+/*        public void AddEquipment(EquipmentSpell Spell)
+        {
+            EquipmentList.Add(Spell);
+        }
+        */
 
         public void Hit(GameObject target)
         {
@@ -110,16 +110,14 @@ namespace Albatross
 
         public void AttackTarget(MonsterObject target)
         {
-            ThisMonster.Damage(target);
+            target.health -= attack;
         }
 
         public void ActivateAbility(MonsterObject target)
         {
-            PassiveAbility.Activate(target);
         }
         public void ActivateAbility()
         {
-            PassiveAbility.Activate();
         }
 
         public bool GetCanAct()

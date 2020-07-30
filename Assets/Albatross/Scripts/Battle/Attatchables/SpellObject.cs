@@ -22,7 +22,7 @@ namespace Albatross
         EffectType et;
 
         public int cost;
-
+        public TypeElement element; 
         public SpellCard Spell;
 
         public string description;
@@ -35,12 +35,7 @@ namespace Albatross
             name = Spell.name;
             description = Spell.description;
             cardImage = Spell.artwork;
-
             cost = Spell.cost;
-
-           
-            tt = Spell.SpellEffect.TargetType;
-            et = Spell.SpellEffect.Effect.GetEffectType();
 
             attatchedImage = GetComponent<Image>();
             attatchedImage.sprite = cardImage;
@@ -48,13 +43,6 @@ namespace Albatross
             sm = FindObjectOfType<SpellManager>();
             gm = FindObjectOfType<BattleManager>();
         }
-        /*void Update()
-        {
-            sm = FindObjectOfType<SpellManager>();
-            gm = FindObjectOfType<BattleManager>();
-            attatchedImage = GetComponent<Image>();
-            attatchedImage.sprite = cardImage;
-        }*/
 
         public TargetType GetTargetType()
         {
@@ -63,6 +51,7 @@ namespace Albatross
 
         public void OnPointerClick(PointerEventData pe)
         {
+
             sm.setSpell(this);
             SpellPreviewPanel spp = FindObjectOfType<SpellPreviewPanel>();
             spp.setPreviewPanel(Spell.artwork, Spell.description);
@@ -86,12 +75,10 @@ namespace Albatross
             switch (tt)
             {
                 case TargetType.Self:
-                    Spell.SpellEffect.Activate();
                     Destroy(gameObject);
                     tm.EndTurn();
                     break;
                 case TargetType.NoTarget:
-                    Spell.SpellEffect.Activate();
                     Destroy(gameObject);
                     tm.EndTurn();
                     break;
@@ -103,12 +90,11 @@ namespace Albatross
 
         public void CastToTarget(MonsterObject target)
         {
-            Spell.SpellEffect.Activate(target);
         }
 
         public void CastToTarget(SpellObject target)
         {
-            Spell.SpellEffect.Activate(target);
         }
+
     }
 }

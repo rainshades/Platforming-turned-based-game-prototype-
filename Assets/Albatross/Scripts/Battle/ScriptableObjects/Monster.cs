@@ -12,7 +12,7 @@ namespace Albatross
     {
         public new string name;
 
-        public MonAbility passive;
+        public CardAbility passive;
 
         public string description;
 
@@ -24,10 +24,5 @@ namespace Albatross
 
         public Sprite artwork;
         public bool alive;
-
-        public override void Damage(MonsterObject mon)
-        {
-            mon.health -= attack;
-        }
     }
 }

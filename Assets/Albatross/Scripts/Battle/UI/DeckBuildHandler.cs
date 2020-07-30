@@ -10,17 +10,17 @@ namespace Albatross
 {
     public class DeckBuildHandler : MonoBehaviour
     {
-        public GameManager Gm { get; set; }
-        public Party Party { get; set; }
-        public Deck Deck { get; set; }
-        public GameObject SelectedMonster { get; set; } //Previews the selected ID
-        public GameObject SelectedSpell { get; set; } //Previews the current Spell 
-        public GameObject SpellListPrefab { get; set; }
-        public GameObject SpellListContent { get; set; }
-        public Image PreviewImage { get; set; }
-        public Image SpellPreview { get; set; }
-        public Image[] PartyPreview { get; set; }
-        public Image[] PartyPreview2 { get; set; }
+        public GameManager Gm;
+        public Party Party;
+        public Deck Deck;
+        public GameObject SelectedMonster; //Previews the selected ID
+        public GameObject SelectedSpell; //Previews the current Spell 
+        public GameObject SpellListPrefab;
+        public GameObject SpellListContent;
+        public Image PreviewImage;
+        public Image SpellPreview;
+        public Image[] PartyPreview;
+        public Image[] PartyPreview2;
 
         void Start()
         {

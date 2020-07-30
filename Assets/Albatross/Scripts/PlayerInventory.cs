@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// TODO
+/// Player inventory Container
 /// </summary>
 namespace Albatross
 {
@@ -12,26 +12,5 @@ namespace Albatross
     {
         public List<Monster> MonstersInInventory = new List<Monster>();
         public List<SpellCard> SpellsInInventory = new List<SpellCard>();
-
-
-        public void AddToMonsters(Monster mon)
-        {
-           
-        }
-
-        public void AddToSpells(SpellCard spell)
-        {
-
-        }
-
-        public void RemoveFromMonsters(Monster mon)
-        {
-
-        }
-
-        public void RemoveFromSpells(SpellCard spell)
-        {
-
-        }
     }
 }

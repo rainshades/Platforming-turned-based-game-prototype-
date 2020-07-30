@@ -27,9 +27,11 @@ namespace Albatross
         [SerializeField]
         MonsterObject TargetMon;
 
-        public List<MonsterObject> TurnOrder = new List<MonsterObject>();
+        bool quickSpellPause = false;
 
-        BattleManager bm;
+        public List<MonsterObject> IDTurnOrder = new List<MonsterObject>();
+
+        BattleManager BattleManager;
 
         public int TurnNumber;
 
@@ -38,16 +40,19 @@ namespace Albatross
 
         void Start()
         {
-            bm = FindObjectOfType<BattleManager>();
+            BattleManager = FindObjectOfType<BattleManager>();
 
-            TurnOrder = DetermineTurnOrder(TurnOrder);
+            IDTurnOrder = DetermineTurnOrder(IDTurnOrder);
+
+            CurrentMonster = IDTurnOrder[currentMonIndex];
+            NextMonster = IDTurnOrder[currentMonIndex + 1];
         }
 
         public List<MonsterObject> DetermineTurnOrder(List<MonsterObject> A)
         {
             List<MonsterObject> tmp = new List<MonsterObject>();
 
-            for (int i = 0; i < A.Count-1; i++)
+            for (int i = 0; i < A.Count; i++)
             {
                 if (A[i].health > 0)
                 {
@@ -72,32 +77,66 @@ namespace Albatross
             return tmp;
         }
 
+        private void Update()
+        {
+            Turn();
+        }
 
         public void Turn()
         {
+            SpellManager SpellManager = FindObjectOfType<SpellManager>();
+
             switch (current_phase)
             {
                 case Phases.Start:
-                    SpellManager sm = FindObjectOfType<SpellManager>();
-                    SlowSpellFlag = false; 
-                    sm.DrawCard();
-                    current_phase = Phases.Main;
+                    SpellManager.SetTrigger(Trigger.StartPhase);
+                    
+                    if (CurrentMonster.OwnedByPlayer)
+                    {
+                        PlayerControls.gameObject.SetActive(true);
+                        SpellManager.currentMonster = CurrentMonster;
+                        SlowSpellFlag = false; //Slow/Eq spells are not allowed during Start and End Phase
+                        SpellManager.DrawCard();
+                        BattleManager.FightRotation();//Check if the game is over
+
+                        current_phase = Phases.Main; //If the game isn't over go to next phase
+                    } //Player's Turn
+
+                    else if (CurrentMonster != null)
+                    {
+                        PlayerControls.gameObject.SetActive(false);
+                        CurrentMonster.GetComponentInChildren<EnemyBattleDecision>().act();
+                    } //NPC Turn
+
                     break;
                 case Phases.Main:
-                    SlowSpellFlag = true;
+                    SpellManager.SetTrigger(Trigger.MainPhase);
+
+                    SlowSpellFlag = true; //Slow spells may be used
+                    BattleManager.FightRotation();
                     break;
                 case Phases.End:
-                    if (currentMonIndex < TurnOrder.Count - 1)
-                    {
-                        currentMonIndex++;
-                    }
-                    else
+                    SpellManager.SetTrigger(Trigger.EndPhase);
+
+                    BattleManager.FightRotation(); /*Just in case a quick spell or spell effect takes place when the main phase is ending */
+                    currentMonIndex++;
+                    CurrentMonster = NextMonster;
+                    
+                    if(currentMonIndex >= IDTurnOrder.Count)
                     {
                         Debug.Log(TurnNumber++);
                         currentMonIndex = 0;
+                    } //Checks to make sure index is within bounds
+
+                    NextMonster = IDTurnOrder[currentMonIndex]; 
+
+                    if(currentMonIndex + 1 >= IDTurnOrder.Count)
+                    {
+                        NextMonster = IDTurnOrder[0];
                     }
-                    TurnOrder = DetermineTurnOrder(TurnOrder);
+                    //Next Monster is mostly just for testing currentMonIndex, not for gameplay mechanics. Not super effecient, but easy
                     current_phase = Phases.Start;
+
                     break;
             }
         }
@@ -106,29 +145,6 @@ namespace Albatross
         public void EndTurn()
         {
             current_phase = Phases.End;
-        }
-
-        void Update()
-        {
-            CurrentMonster = TurnOrder[currentMonIndex];
-            if (currentMonIndex + 1 != TurnOrder.Count)
-            {
-                NextMonster = TurnOrder[currentMonIndex + 1];
-            }
-            else
-            {
-                NextMonster = TurnOrder[0];
-            }
-
-            if (CurrentMonster.OwnedByPlayer)
-            {
-                PlayerControls.gameObject.SetActive(true);
-            }
-            else if (CurrentMonster != null)
-            {
-                PlayerControls.gameObject.SetActive(false);
-                CurrentMonster.GetComponentInChildren<EnemyBattleDecision>().act();
-            }
         }
 
         public void Select(MonsterObject mon)

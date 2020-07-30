@@ -9,7 +9,6 @@ public class SpellPreviewPanel : MonoBehaviour
     [SerializeField]
     Text SpellDescription; 
 
-
     void Awake()
     {
         SpellImage = GetComponentInChildren<Image>();

@@ -2,41 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Container for Player 
+/// Not Persistant, meant for calls to other MonoBehaviours like GameManager, PlayerController, NPCs etc. 
+/// </summary>
 
 namespace Albatross
 {
     public class Player : MonoBehaviour 
-	//Contains the player's data
     {
         public int HumanHealth = 5;
-        public float OverWorldManaPool = 0;
-
-        List<Monster> PotentialPartyMembers = new List<Monster>();
-        List<SpellCard> CardInventory = new List<SpellCard>();
-
+        public float OverWorldManaPool = 100;
         public int AttackDamage;
+        public int Bravery; 
+        //Bravery is gained from winning battles, lost be being defeated or spent at a library to learn new spells from a spellsinger
 
-        public List<Monster> GetPotentialPartyMembers()
-        {
-            return PotentialPartyMembers;
-        }
-
-        public List<SpellCard> GetCardInventory()
-        {
-            return CardInventory;
-        }
-
-        void Update()
-        {
-            if (HumanHealth < 1)
-            {
-                Respawn();
-            }
-        }
-
-        void Respawn()
-        {
-            transform.position = GetComponent<PlayerController>().getRespawnPoint();
-        }
     }
 }

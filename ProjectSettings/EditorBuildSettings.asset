@@ -8,27 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Albatross/Scenes/StartMenu.unity
     guid: 38cc73a8b7dffb74bb685385ba7fe0a0
-  - enabled: 0
-    path: Assets/Albatross/Scenes/DOJO/OverWorldDojo.unity
-    guid: 1c2e9236fcb147344b55b94f33ff7e98
   - enabled: 1
-    path: Assets/Albatross/Scenes/DOJO/PartyManagement.unity
-    guid: 21d9ab80720cd654fbefbcd8f9d4c551
-  - enabled: 0
-    path: Assets/Albatross/Scenes/Single Player/BattleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Albatross/Scenes/Levels/Hellindale Sections/HellinDale(Town Center).unity
-    guid: d276cf3239b8c8b4b8ebcf798d4eed4b
-  - enabled: 0
-    path: Assets/Albatross/Scenes/Levels/Hellindale Sections/HellinDale(Outskirts-West).unity
-    guid: f4aa8d6354d86814d95db56c575f4107
-  - enabled: 0
-    path: Assets/Albatross/Scenes/Levels/Hellindale Sections/SunsetRock.unity
-    guid: c783231fda903cb41b9a8276d5f4db66
-  - enabled: 0
-    path: Assets/Albatross/Scenes/Levels/Hellindale Sections/HellinDale(Outskirts-East).unity
-    guid: 5a8b0fea2da35a2459eeaa39907aedc0
+    path: Assets/Albatross/Scenes/Levels/Judge House.unity
+    guid: d3334fc42fe0c0a438a11964c634ca30
+  - enabled: 1
+    path: Assets/Albatross/Scenes/Levels/Cortez's Room.unity
+    guid: c1fa37d61d958564dbf1232210825708
+  - enabled: 1
+    path: Assets/Albatross/Scenes/Levels/Hell Library.unity
+    guid: ff84b041770075e4ebad8ebe0858ac72
   - enabled: 1
     path: Assets/Albatross/Scenes/Levels/HellinDale.unity
     guid: 8d24c3303e65aae43a2633c5f60d6ec2

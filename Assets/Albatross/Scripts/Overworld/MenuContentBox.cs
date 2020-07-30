@@ -11,7 +11,7 @@ namespace Albatross
     {
         [SerializeField]
         GameObject MenuButtons = null;
-        PlayerActions inputs;
+        PlayerControllerActionMap inputs;
         float player_speed_saver;
         PlayerController pc;
 			//Creates the ability to stop the player from
@@ -20,7 +20,7 @@ namespace Albatross
 
         void Awake()
         {
-            inputs = new PlayerActions();
+            inputs = new PlayerControllerActionMap();
             pc = FindObjectOfType<PlayerController>();
             player_speed_saver = pc.maxSpeed;
         }
@@ -42,11 +42,11 @@ namespace Albatross
 
         void OnEnable()
         {
-            inputs.InputsMap.Enable();
+            inputs.UI.Enable();
         }
         void OnDisable()
         {
-            inputs.InputsMap.Disable();
+            inputs.UI.Disable();
         }
     }
 }

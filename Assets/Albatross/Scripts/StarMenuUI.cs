@@ -18,17 +18,17 @@ namespace Albatross
         [SerializeField]
         Button[] buttons = null;
         bool canInteract = true;
-        PlayerActions actions;
+        PlayerControllerActionMap actions;
         int selectedButton, buttonInput;
 
         void Awake()
         {
-            actions = new PlayerActions();
+            actions = new PlayerControllerActionMap();
         }
 
         void Update()
         {
-            actions.InputsMap.Walk.performed += ctx => buttonInput = (int)(ctx.ReadValue<Vector2>().y * 10);
+            actions.WorldInteraction.Movement.performed += ctx => buttonInput = (int)(ctx.ReadValue<Vector2>().y * 10);
             actions.UI.ConfirmSelection.performed += ctx => buttons[selectedButton].onClick.Invoke();
 
             if (buttonInput != 0 && canInteract)
@@ -72,12 +72,12 @@ namespace Albatross
 
         void OnEnable()
         {
-            actions.InputsMap.Enable();
+            actions.UI.Enable();
         }
 
         void OnDisable()
         {
-            actions.InputsMap.Disable();
+            actions.UI.Disable();
         }
 
         public void CloseGame()

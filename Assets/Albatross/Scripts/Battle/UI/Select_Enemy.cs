@@ -32,13 +32,17 @@ namespace Albatross
         public void OnPointerClick(PointerEventData PE)
         {
             switch (tm.GetAction())
-            { //Enacts the action given to it by the turn manager
+            { 
+                //Enacts the action given to it by the turn manager
                 case Action.Attack:
+
                     currentMon.AttackTarget(TargetMon);
                     populate.Depopulate();
-                    Debug.Log(currentMon.name + " basic attacked " + TargetMon.name);
-                    Debug.Log(TargetMon.name + " has " + TargetMon.health + " left");
                     tm.CanvasOff(CanvasToTurnOff);
+
+                    sm.SetTrigger(Trigger.Attack);
+                    sm.SetTrigger(Trigger.AllyAttack);
+
                     tm.EndTurn();
                     break;
 
@@ -48,29 +52,59 @@ namespace Albatross
                     {
                         currentMon.ActivateAbility(TargetMon);
                         populate.Depopulate();
-                        Debug.Log(currentMon.name + " used an ability towards " + TargetMon.name);
-                        Debug.Log(TargetMon.name + " has " + TargetMon.health + " left");
                         tm.CanvasOff(CanvasToTurnOff);
+
+                        sm.SetTrigger(Trigger.Ability);
+                        sm.SetTrigger(Trigger.AllyAbility);
+
                         tm.EndTurn();
                     }
                     else
                     {
                         currentMon.ActivateAbility();
+                        
+                        sm.SetTrigger(Trigger.Ability);
+                        sm.SetTrigger(Trigger.AllyAbility);
+
                         populate.Depopulate();
                         tm.CanvasOff(CanvasToTurnOff);
                         tm.EndTurn();
                     }
                     break;
+
                 case Action.Cast:
-                    Debug.Log("Cast " + sm.getCurrentSpell().name + " on " + TargetMon);
-                    sm.getCurrentSpell().CastToTarget(TargetMon);
-                    tm.EndTurn();
+                    if (tm.GetCurrentMonster().mana > sm.getCurrentSpell().cost)
+                    {
+                        sm.getCurrentSpell().CastToTarget(TargetMon);
+                        tm.CanvasOff(CanvasToTurnOff);
+                        
+                        sm.SetTrigger(Trigger.SpellCast);
+                        sm.SetTrigger(Trigger.AllyCast);
+
+                        tm.EndTurn();
+                    }
+                    else
+                    {
+                        Debug.Log("Not Enough Mana");
+                    }
                     break;
+
                 case Action.Defend:
-                    Debug.Log("Defended Yourself");
-                    Debug.Log(currentMon.name + " defends itself ");
-                    Debug.Log(currentMon.name + " has " + currentMon.health + " left");
-                    tm.EndTurn();
+                    if(tm.GetCurrentMonster().mana > tm.GetCurrentMonster().defence_value)
+                    {
+                        Debug.Log("Defended Yourself");
+                        Debug.Log(currentMon.name + " defends itself ");
+                        Debug.Log(currentMon.name + " has " + currentMon.health + " left");
+
+                        sm.SetTrigger(Trigger.Defend);
+                        sm.SetTrigger(Trigger.AllyDefend);
+                        
+                        tm.EndTurn();
+                    }
+                    else
+                    {
+                        Debug.Log("Not Enough Mana");
+                    }
                     break;
             }
         }

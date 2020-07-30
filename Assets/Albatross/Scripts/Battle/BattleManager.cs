@@ -12,8 +12,6 @@ namespace Albatross
         TurnManager tm;
         FieldSpawner fs;
 
-        public bool QuickTriggerFlag = true; 
-
         [SerializeField]
         List<SpellCard> SpellsDisplay = new List<SpellCard>();
 
@@ -28,6 +26,9 @@ namespace Albatross
         public List<MonsterObject> AllyField;
         public List<MonsterObject> EnemyField;
 
+        [SerializeField]
+        int BraveryReward; 
+
         void Awake()
         {
             gm = FindObjectOfType<GameManager>();
@@ -35,19 +36,17 @@ namespace Albatross
             fs = GetComponentInChildren<FieldSpawner>();
 
             NPCBATTLENUMBER = gm.CurrentNPCNumber;
+            BraveryReward = gm.BattleDetailsAt(NPCBATTLENUMBER).BraveryAward;
         }
 
-        void FightRotation()
+        public void FightRotation()
         {
-            tm.Turn();
             if (!BattleFinish())
             {
                 for (int i = 0; i < EnemyField.Count; i++)
                 {
                     if (EnemyField[i].health <= 0 && EnemyField[i] != null)
                     {
-                        Debug.Log("Enemy " + i + " Down");
-
                         EnemyField.RemoveAt(i);
                     }
                 }
@@ -68,14 +67,17 @@ namespace Albatross
 
         bool BattleFinish()
         {
-            if(AllyField.Count == 0)
+
+            if (AllyField.Count == 0)
             {
+                FindObjectOfType<Player>().Bravery += BraveryReward;
                 gm.SetBattleResults(true, NPCBATTLENUMBER);
                 gm.ToOverworldScene(); //Not Final
             }
 
             if(EnemyField.Count == 0)
             {
+                FindObjectOfType<Player>().Bravery += BraveryReward;
                 gm.SetBattleResults(false, NPCBATTLENUMBER);
                 gm.ToOverworldScene(); //Will load Overworld Scene
             }

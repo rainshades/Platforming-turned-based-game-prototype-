@@ -20,3 +20,4 @@ MonoBehaviour:
     Spells: []
     Name: Deck
   IsDefeated: 0
+  BraveryAward: 10000

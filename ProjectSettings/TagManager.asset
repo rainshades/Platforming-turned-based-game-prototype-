@@ -13,6 +13,9 @@ TagManager:
   - Spawner
   - Death Zone
   - Major NPC
+  - EnemyAnimal
+  - Obstical
+  - Door
   layers:
   - Default
   - TransparentFX

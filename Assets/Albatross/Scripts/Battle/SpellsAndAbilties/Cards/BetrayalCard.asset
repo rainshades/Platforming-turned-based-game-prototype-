@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac330d7026218c4b9b43d120d3b0463, type: 3}
+  m_Name: BetrayalCard
+  m_EditorClassIdentifier: 
+  element: 0
+  name: Betrayal
+  SpellEffect: {fileID: 11400000, guid: 79e107197628e624fbd80d28d419d14a, type: 2}
+  cost: 1
+  description: Heals turn to damage
+  artwork: {fileID: 21300000, guid: b01cdaa631dbdc54eaa204f188f111f6, type: 3}
+  inHand: 0
+  canPlay: 0

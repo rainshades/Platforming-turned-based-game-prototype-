@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1317430186374095561}
   m_Layer: 0
   m_Name: NPC overworld sprite
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3447829437889882312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.077, y: 2.246, z: 1}
   m_Children: []
   m_Father: {fileID: 40983936572592664}
   m_RootOrder: 0
@@ -93,7 +93,7 @@ Animator:
   m_GameObject: {fileID: 3447829437889882312}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b72c19de4513e0644861e57539d90085, type: 2}
+  m_Controller: {fileID: 9100000, guid: 53b5114a717b77746bab747ed183815b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 5466231191025276383}
   m_Layer: 0
   m_Name: Overworld Text Trigger
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,9 +146,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25708008, y: 0.36426544}
+  m_Offset: {x: -0.25708008, y: -0.29640913}
   serializedVersion: 2
-  m_Radius: 12.06958
+  m_Radius: 3.267673
 --- !u!1 &8572568972384745461
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,8 +159,6 @@ GameObject:
   m_Component:
   - component: {fileID: 40983936572592664}
   - component: {fileID: 3988760528750848907}
-  - component: {fileID: 6417585228314699961}
-  - component: {fileID: 6037418312989002311}
   m_Layer: 0
   m_Name: Fightable_NPC
   m_TagString: NPC
@@ -176,7 +174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8572568972384745461}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 297.66486, y: -1.17, z: 40.83222}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 8901890597643278240}
@@ -196,10 +194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f44f287a50e28438c63f3140621dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minGroundNormalY: 0.65
-  gravityModifier: 1
-  grounded: 0
-  velocity: {x: 0, y: 0}
   thisNPC: 2
   overworld_dialog: []
   flow: {fileID: 0}
@@ -209,50 +203,3 @@ MonoBehaviour:
   DefeatDialog: 
   isBattleNPC: 1
   NPCBattleDataNumber: 0
---- !u!50 &6417585228314699961
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8572568972384745461}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 1.0239328
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1000000
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
---- !u!61 &6037418312989002311
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8572568972384745461}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 1
-  m_Offset: {x: -0.17058706, y: -0.01744759}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.5748687, y: 2.600681}
-  m_EdgeRadius: 0

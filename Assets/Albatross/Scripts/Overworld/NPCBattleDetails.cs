@@ -12,5 +12,6 @@ namespace Albatross
         public Party Party = new Party();
         public Deck Deck = new Deck();
         public bool IsDefeated = false;
+        public int BraveryAward; 
     }
 }

@@ -19,6 +19,8 @@ namespace Albatross
         GameObject en; 
         BattleManager bm;
         SpellManager sm;
+        [SerializeField]
+        SpellObject spell;
 
         public Canvas TargetBox;
 
@@ -29,6 +31,8 @@ namespace Albatross
             mon = tm.GetCurrentMonster();
             bm = FindObjectOfType<BattleManager>();
         }
+
+        #region Buttons
 
         public void AttackButton()
         {
@@ -50,12 +54,13 @@ namespace Albatross
         {
             en.gameObject.GetComponent<Populate_Enemy>().Depopulate();
             tm.SetAction(Action.Defend);
-            mon.health += 10;
+            mon.health += mon.defence_value;
             tm.EndTurn();
         }
+
         public void SpellButton()
         {
-            SpellObject spell = sm.getCurrentSpell();
+           spell = sm.getCurrentSpell();
 
             if (spell != null)
             {
@@ -73,14 +78,6 @@ namespace Albatross
                         tm.SetAction(Action.Cast);
                         en.gameObject.GetComponent<Populate_Enemy>().Populate(bm.EnemyField);
                         break;
-                    case TargetType.Self:
-                        tm.SetAction(Action.Cast);
-                        spell.Cast();
-                        break;
-                    case TargetType.NoTarget:
-                        tm.SetAction(Action.Cast);
-                        spell.Cast();
-                        break;
                     case TargetType.AllySpell:
                         break;
                     case TargetType.EnemySpell:
@@ -89,12 +86,14 @@ namespace Albatross
                         Debug.LogError("This Spell is flawed");
                         break;
                 }
-                en.gameObject.GetComponent<Populate_Enemy>().Depopulate();
             }
             else
             {
                 Debug.LogError("No spell selected");
             }
         }
+
+        #endregion
+    
     }
 }

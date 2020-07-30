@@ -4,11 +4,16 @@ using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
+/// <summary>
+/// DO NOT CALL FROM THIS UNLESS SAVING OR LOADING DATA
+/// Meant for the purpose of saving and loading player data for Persistence
+/// i.e. A player wants to save, autosaving, loading games from file
+/// </summary>
 
 namespace Albatross
 {
     [System.Serializable]
-    public class GameData //Holds GameData to be Serialized 
+    public class GameData
     {
 
         //Player Persistant Game Data
@@ -19,6 +24,8 @@ namespace Albatross
 
         //Script Persistant Game Data
         public Vector3 CameraLocation = Vector3.zero;
+        public int Bravery = 0;
+        public string LastScene; 
        
         public void Save()
         {
@@ -38,14 +45,5 @@ namespace Albatross
                 Debug.LogError("Save Error Found");
             }
         }
-
-        /*      public void SetParty(Party p)
-              {
-                  PlayerParty = p;
-              }
-              public void SetDeck(Deck d)
-              {
-                  PlayerDeck = d;
-              }*/
     }
 }

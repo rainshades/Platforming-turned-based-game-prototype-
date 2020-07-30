@@ -12,10 +12,10 @@ namespace Albatross
 {
     public class SpellListObject : MonoBehaviour, IPointerClickHandler
     {
-        public SpellCard Spell { get; set; }
-        public Text SpellName { get; set; }
-        public Image Image { get; set; }
-        public DeckBuildHandler Dbh { get; set; }
+        public SpellCard Spell;
+        public Text SpellName;
+        public Image Image;
+        public DeckBuildHandler Dbh;
 
         void Awake()
         {
@@ -40,6 +40,10 @@ namespace Albatross
             {
                 Dbh.SelectedSpell = gameObject;
                 Dbh.SpellPreview.sprite = this.Image.sprite; 
+            }
+            if(pe.clickCount % 2 == 0)
+            {
+                Dbh.AddToDeck();
             }
         }
 
