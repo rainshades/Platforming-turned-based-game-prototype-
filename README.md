@@ -1,4 +1,6 @@
 # Project_Albatross
+(This project has been moved and the current [as of right now] project is private)
+
 Split into two different sections Platforming overworld and a Turn-based battle sequence. 
 
 Platforming:
